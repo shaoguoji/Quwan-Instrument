@@ -58,8 +58,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="col-xs-6">
 					<ul class="top-link">
-						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
-						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
+						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
 					</ul>
 				</div>
 			</div>
@@ -78,19 +78,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form>
 			</div>
 			<div class="col-md-4">
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>CART : 0 ITEM</a></div>
+				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 : 0 件商品</a></div>
 			</div>
 		</div>
 	</header>
 	<!--Navigation-->
     <nav id="menu" class="navbar">
 		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
+			<div class="navbar-header"><span id="heading" class="visible-xs">分类</span>
 			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.jsp">Home</a></li>
+					<li><a href="index.jsp">首页</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
@@ -155,8 +155,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="breadcrumb">
-						<li><a href="index.jsp">Home</a></li>
-						<li><a href="category.jsp">Category : Mobile</a></li>
+						<li><a href="index.jsp">首页</a></li>
+						<li><a href="category.jsp">分类 : 手机</a></li>
 					</ul>
 				</div>
 			</div>
@@ -327,7 +327,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div id="sidebar" class="col-md-4">
 					<div class="widget wid-categories">
-						<div class="heading"><h4>CATEGORIES</h4></div>
+						<div class="heading"><h4>分类</h4></div>
 						<div class="content">
 							<ul>
 								<li><a href="#">PC Computers</a></li>
@@ -338,7 +338,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="widget wid-type">
-						<div class="heading"><h4>TYPE</h4></div>
+						<div class="heading"><h4>类型</h4></div>
 						<div class="content">
 							<select>
 								<option value="EL" selected>Electronics</option>
@@ -350,17 +350,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="widget wid-discouts">
-						<div class="heading"><h4>DISCOUNTS</h4></div>
+						<div class="heading"><h4>折扣</h4></div>
 						<div class="content">
 							<label class="checkbox"><input type="checkbox" name="discount" checked="">Upto - 10% (20)</label>
 							<label class="checkbox"><input type="checkbox" name="discount">40% - 50% (5)</label>
 							<label class="checkbox"><input type="checkbox" name="discount">30% - 20% (7)</label>
 							<label class="checkbox"><input type="checkbox" name="discount">10% - 5% (2)</label>
-							<label class="checkbox"><input type="checkbox" name="discount">Other(50)</label>
+							<label class="checkbox"><input type="checkbox" name="discount">其它(50)</label>
 						</div>
 					</div>
 					<div class="widget wid-brand">
-						<div class="heading"><h4>BRAND</h4></div>
+						<div class="heading"><h4>品牌</h4></div>
 						<div class="content">
 							<label class="checkbox"><input type="checkbox" name="brand">Nokia</label>
 							<label class="checkbox"><input type="checkbox" name="brand">Samsung</label>
@@ -372,7 +372,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="widget wid-product">
-						<div class="heading"><h4>LATEST</h4></div>
+						<div class="heading"><h4>新品</h4></div>
 						<div class="content">
 							<div class="product">
 								<a href="#"><img src="images/galaxy-note.jpg" /></a>
@@ -413,30 +413,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 					</div>
 					<div class="col-md-3 col-footer footer-2">
-						<div class="heading"><h4>Customer Service</h4></div>
+						<div class="heading"><h4>用户服务</h4></div>
 						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Delivery Information</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Terms & Conditions</a></li>
-							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">关于我们</a></li>
+							<li><a href="#">物流信息</a></li>
+							<li><a href="#">隐私策略</a></li>
+							<li><a href="#">购物须知</a></li>
+							<li><a href="#">联系我们</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-3">
-						<div class="heading"><h4>My Account</h4></div>
+						<div class="heading"><h4>我的账户</h4></div>
 						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Brands</a></li>
-							<li><a href="#">Gift Vouchers</a></li>
-							<li><a href="#">Specials</a></li>
-							<li><a href="#">Site Map</a></li>
+							<li><a href="#">我的账户</a></li>
+							<li><a href="#">品牌</a></li>
+							<li><a href="#">优惠卷</a></li>
+							<li><a href="#">特价</a></li>
+							<li><a href="#">网站导航</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-4">
-						<div class="heading"><h4>Contact Us</h4></div>
+						<div class="heading"><h4>联系我们</h4></div>
 						<ul>
-							<li><span class="glyphicon glyphicon-home"></span>California, United States 3000009</li>
-							<li><span class="glyphicon glyphicon-earphone"></span>+91 8866888111</li>
+							<li><span class="glyphicon glyphicon-home"></span>仲恺农业工程学院</li>
+							<li><span class="glyphicon glyphicon-earphone"></span>+86 8866888111</li>
 							<li><span class="glyphicon glyphicon-envelope"></span>infor@yoursite.com</li>
 						</ul>
 					</div>
