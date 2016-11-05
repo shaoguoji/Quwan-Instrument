@@ -1,3 +1,9 @@
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +45,9 @@
 	<nav id="top">
 		<div class="container">
 			<div class="row">
+			
 				<div class="col-xs-6">
-					<select class="language">
+			<!--		<select class="language">
 						<option value="English" selected>English</option>
 						<option value="France">France</option>
 						<option value="Germany">Germany</option>
@@ -49,12 +56,13 @@
 						<option value="USD" selected>USD</option>
 						<option value="EUR">EUR</option>
 						<option value="DDD">DDD</option>
-					</select>
+			-->		</select>
 				</div>
+			
 				<div class="col-xs-6">
 					<ul class="top-link">
-						<li><a href="account.html"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
-						<li><a href="contact.html"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
+						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
 					</ul>
 				</div>
 			</div>
@@ -64,7 +72,7 @@
 	<header class="container">
 		<div class="row">
 			<div class="col-md-4">
-				<div id="logo"><img src="images/logo.png" /></div>
+				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
 				<form class="form-search">  
@@ -73,7 +81,7 @@
 				</form>
 			</div>
 			<div class="col-md-4">
-				<div id="cart"><a class="btn btn-1" href="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span>CART : 0 ITEM</a></div>
+				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a></div>
 			</div>
 		</div>
 	</header>
@@ -85,13 +93,13 @@
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.jsp">Home</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
-									<li><a href="category.html">Window</a></li>
-									<li><a href="category.html">MacBook</a></li>
+									<li><a href="category.jsp">Window</a></li>
+									<li><a href="category.jsp">MacBook</a></li>
 								</ul>
 							</div>
 						</div>
@@ -100,11 +108,11 @@
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
-									<li><a href="category.html">Dell</a></li>
-									<li><a href="category.html">Asus</a></li>
-									<li><a href="category.html">Samsung</a></li>
-									<li><a href="category.html">Lenovo</a></li>
-									<li><a href="category.html">Acer</a></li>
+									<li><a href="category.jsp">Dell</a></li>
+									<li><a href="category.jsp">Asus</a></li>
+									<li><a href="category.jsp">Samsung</a></li>
+									<li><a href="category.jsp">Lenovo</a></li>
+									<li><a href="category.jsp">Acer</a></li>
 								</ul>
 							</div> 
 						</div>
@@ -113,30 +121,30 @@
 						<div class="dropdown-menu" style="margin-left: -203.625px;">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
-									<li><a href="category.html">Iphone</a></li>
-									<li><a href="category.html">Samsung</a></li>
-									<li><a href="category.html">Nokia</a></li>
-									<li><a href="category.html">Lenovo</a></li>
-									<li><a href="category.html">Google</a></li>
+									<li><a href="category.jsp">Iphone</a></li>
+									<li><a href="category.jsp">Samsung</a></li>
+									<li><a href="category.jsp">Nokia</a></li>
+									<li><a href="category.jsp">Lenovo</a></li>
+									<li><a href="category.jsp">Google</a></li>
 								</ul>
 								<ul class="list-unstyled">
-									<li><a href="category.html">Nexus</a></li>
-									<li><a href="category.html">Dell</a></li>
-									<li><a href="category.html">Oppo</a></li>
-									<li><a href="category.html">Blackberry</a></li>
-									<li><a href="category.html">HTC</a></li>
+									<li><a href="category.jsp">Nexus</a></li>
+									<li><a href="category.jsp">Dell</a></li>
+									<li><a href="category.jsp">Oppo</a></li>
+									<li><a href="category.jsp">Blackberry</a></li>
+									<li><a href="category.jsp">HTC</a></li>
 								</ul>
 								<ul class="list-unstyled">
-									<li><a href="category.html">LG</a></li>
-									<li><a href="category.html">Q-Mobiles</a></li>
-									<li><a href="category.html">Sony</a></li>
-									<li><a href="category.html">Wiko</a></li>
-									<li><a href="category.html">T&T</a></li>
+									<li><a href="category.jsp">LG</a></li>
+									<li><a href="category.jsp">Q-Mobiles</a></li>
+									<li><a href="category.jsp">Sony</a></li>
+									<li><a href="category.jsp">Wiko</a></li>
+									<li><a href="category.jsp">T&T</a></li>
 								</ul>
 							</div>
 						</div>
 					</li>
-					<li><a href="category.html">Software</a></li>
+					<li><a href="category.jsp">Software</a></li>
 				</ul>
 			</div>
 		</div>
@@ -213,14 +221,14 @@
 					<div class="products">
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
-								<div class="image"><a href="product.html"><img src="images/iphone.png" /></a></div>
+								<div class="image"><a href="product.jsp"><img src="images/iphone.png" /></a></div>
 								<div class="buttons">
 									<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 									<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 								</div>
 								<div class="caption">
-									<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
+									<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 									<div class="price">$122<span>$98</span></div>
 									<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
 								</div>
@@ -228,14 +236,14 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
-								<div class="image"><a href="product.html"><img src="images/galaxy-s4.jpg" /></a></div>
+								<div class="image"><a href="product.jsp"><img src="images/galaxy-s4.jpg" /></a></div>
 								<div class="buttons">
 									<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 									<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 								</div>
 								<div class="caption">
-									<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
+									<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 									<div class="price">$122<span>$98</span></div>
 									<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
 								</div>
@@ -243,14 +251,14 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
-								<div class="image"><a href="product.html"><img src="images/galaxy-note.jpg" /></a></div>
+								<div class="image"><a href="product.jsp"><img src="images/galaxy-note.jpg" /></a></div>
 								<div class="buttons">
 									<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 									<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 								</div>
 								<div class="caption">
-									<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
+									<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 									<div class="price">$122<span>$98</span></div>
 									<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
 								</div>
@@ -258,14 +266,14 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
-								<div class="image"><a href="product.html"><img src="images/Z1.png" /></a></div>
+								<div class="image"><a href="product.jsp"><img src="images/Z1.png" /></a></div>
 								<div class="buttons">
 									<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 									<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 								</div>
 								<div class="caption">
-									<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
+									<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 									<div class="price">$122<span>$98</span></div>
 									<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></div>
 								</div>
@@ -290,14 +298,14 @@
 					<div class="products">
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
-								<div class="image"><a href="product.html"><img src="images/iphone.png" /></a></div>
+								<div class="image"><a href="product.jsp"><img src="images/iphone.png" /></a></div>
 								<div class="buttons">
 									<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 									<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 								</div>
 								<div class="caption">
-									<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
+									<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 									<div class="price">$122<span>$98</span></div>
 									<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
 								</div>
@@ -305,14 +313,14 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
-								<div class="image"><a href="product.html"><img src="images/galaxy-s4.jpg" /></a></div>
+								<div class="image"><a href="product.jsp"><img src="images/galaxy-s4.jpg" /></a></div>
 								<div class="buttons">
 									<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 									<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 								</div>
 								<div class="caption">
-									<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
+									<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 									<div class="price">$122<span>$98</span></div>
 									<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
 								</div>
@@ -320,14 +328,14 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
-								<div class="image"><a href="product.html"><img src="images/galaxy-note.jpg" /></a></div>
+								<div class="image"><a href="product.jsp"><img src="images/galaxy-note.jpg" /></a></div>
 								<div class="buttons">
 									<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 									<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 								</div>
 								<div class="caption">
-									<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
+									<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 									<div class="price">$122<span>$98</span></div>
 									<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
 								</div>
@@ -335,14 +343,14 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
-								<div class="image"><a href="product.html"><img src="images/Z1.png" /></a></div>
+								<div class="image"><a href="product.jsp"><img src="images/Z1.png" /></a></div>
 								<div class="buttons">
 									<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 									<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 								</div>
 								<div class="caption">
-									<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
+									<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 									<div class="price">$122<span>$98</span></div>
 									<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></div>
 								</div>
@@ -396,7 +404,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+						Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="#"">&#x8da3;&#x73a9;&#x4e50;&#x5668;&#x7f51;&#x4e0a;&#x5546;&#x57ce;</a>
 					</div>
 					<div class="col-md-6">
 						<div class="pull-right">
@@ -414,3 +422,4 @@
 	</footer>
 </body>
 </html>
+
