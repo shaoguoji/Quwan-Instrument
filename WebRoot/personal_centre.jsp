@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>联系我们</title>
+    <title>个人中心</title>
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -45,18 +45,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<nav id="top">
 		<div class="container">
 			<div class="row">
-			
 				<div class="col-xs-6">
-
-					<div class="col-xs-6">
-						<ul class="top-link">
-							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
-						</ul>
-					</div>
-					
-
+			<!--		<select class="language">
+						<option value="English" selected>English</option>
+						<option value="France">France</option>
+						<option value="Germany">Germany</option>
+					</select>
+					<select class="currency">
+						<option value="USD" selected>USD</option>
+						<option value="EUR">EUR</option>
+						<option value="DDD">DDD</option>
+			-->		</select>
 				</div>
-				
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
@@ -73,14 +73,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
-				<form action="search.jsp"   class="form-search">  
+<<<<<<< HEAD
+				<form class="form-search">  
+=======
+				<form action="search.jsp" class="form-search">  
+>>>>>>> master
 					<input type="text" class="input-medium search-query">  
 					<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>  
 				</form>
 			</div>
 			<div class="col-md-4">
-
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车   </a></div>
+				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 : 0 件商品</a></div>
 			</div>
 		</div>
 	</header>
@@ -92,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.jsp">首页</a></li>
+					<li><a href="index.jsp">Home</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
@@ -156,39 +159,98 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="breadcrumb">
-
 						<li><a href="index.jsp">首页</a></li>
 						<li><a href="contact.jsp">联系我们</a></li>
-
 					</ul>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="heading"><h1>联系我们</h1></div>
+					<div class="heading"><h1>个人信息&账户安全</h1></div>
 				</div>
 				<div class="col-md-6" style="margin-bottom: 30px;">
-					<form name="form1" id="ff" method="post" action="contact.php">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="您的姓名 *" name="name" id="name" required data-validation-required-message="Please enter your name.">
-						</div>
-						<div class="form-group">
-							<input type="email" class="form-control" placeholder="您的邮箱 *" name="email" id="email" required data-validation-required-message="Please enter your email address.">
-						</div>
-						<div class="form-group">
-							<input type="tel" class="form-control" placeholder="您的手机号码 *" name="phone" id="phone" required data-validation-required-message="Please enter your phone number.">
-						</div>
-						<div class="form-group">
-							<textarea class="form-control" placeholder=" ***" name="message" id="message" required data-validation-required-message="Please enter a message."></textarea>
-						</div>
-						<button type="submit" class="btn btn-1">发送</button>
-					</form>
+					<table>
+							<tr>
+								<td><h5>用户名：</h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
+								<td><a href="#" class="btn btn-2">修改用户名</a></td>
+								
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>用户积分： </h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
+								<td><a href="#" class="btn btn-2">申请会员</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>用户地址:<h5/></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 仲恺农业工程学院<h4/></td>
+								<td><a href="#" class="btn btn-2">修改地址</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr style="border-top: 1px solid #333">
+								<td><h5></h5></td>
+								<td></td>
+							</tr>
+						</table>
 				</div>
-				<div class="col-md-6">
-					<p><span class="glyphicon glyphicon-home"></span> 仲恺农业工程学院</p>
-					<p><span class="glyphicon glyphicon-earphone"></span> +86 888 888 90 , +86 888 88891</p>
-					<p><span class="glyphicon glyphicon-envelope"></span> info@yourdomain.com</p>
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.289259162295!2d-120.7989351!3d37.5246781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8091042b3386acd7%3A0x3b4a4cedc60363dd!2sMain+St%2C+Denair%2C+CA+95316%2C+Hoa+K%E1%BB%B3!5e0!3m2!1svi!2s!4v1434016649434" width="95%" height="230" frameborder="0" style="border:0"></iframe>
+				<div class="col-md-6" style="margin-bottom: 30px;">
+					<table>
+							<tr>
+								<td><h5>用户名：</h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
+								<td><a href="#" class="btn btn-2">修改用户名</a></td>
+								
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>用户积分： </h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
+								<td><a href="#" class="btn btn-2">申请会员</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>用户地址:<h5/></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 仲恺农业工程学院<h4/></td>
+								<td><a href="#" class="btn btn-2">修改地址</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr style="border-top: 1px solid #333">
+								<td><h5></h5></td>
+								<td></td>
+							</tr>
+						</table>
 				</div>
 			</div>
 		</div>

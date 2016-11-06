@@ -47,16 +47,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 			
 				<div class="col-xs-6">
-			<!--		<select class="language">
-						<option value="English" selected>English</option>
-						<option value="France">France</option>
-						<option value="Germany">Germany</option>
-					</select>
-					<select class="currency">
-						<option value="USD" selected>USD</option>
-						<option value="EUR">EUR</option>
-						<option value="DDD">DDD</option>
-			-->		</select>
+					<div class="col-xs-6">
+						<ul class="top-link">
+							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
+						</ul>
+					</div>
+
 				</div>
 			
 				<div class="col-xs-6">
@@ -75,13 +71,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
-				<form class="form-search">  
+				<form action="search.jsp"  class="form-search">  
 					<input type="text" class="input-medium search-query">  
 					<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>  
 				</form>
 			</div>
 			<div class="col-md-4">
+
 				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a></div>
+
 			</div>
 		</div>
 	</header>
@@ -93,7 +91,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.jsp">Home</a></li>
+
+					<li><a href="index.jsp">首页</a></li>
+
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
@@ -217,7 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="heading"><h2>SPECIAL PRODUCTS</h2></div>
+					<div class="heading"><h2>热卖商品</h2></div>
 					<div class="products">
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
@@ -294,7 +294,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="heading"><h2>FEATURED PRODUCTS</h2></div>
+					<div class="heading"><h2>明星商品</h2></div>
 					<div class="products">
 						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 							<div class="product">
@@ -361,7 +361,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
-	<footer>
+		<footer>
 		<div class="container">
 			<div class="wrap-footer">
 				<div class="row">
@@ -370,30 +370,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 					</div>
 					<div class="col-md-3 col-footer footer-2">
-						<div class="heading"><h4>Customer Service</h4></div>
+						<div class="heading"><h4>用户服务</h4></div>
 						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Delivery Information</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Terms & Conditions</a></li>
-							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">关于我们</a></li>
+							<li><a href="#">物流信息</a></li>
+							<li><a href="#">隐私策略</a></li>
+							<li><a href="#">购物须知</a></li>
+							<li><a href="#">联系我们</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-3">
-						<div class="heading"><h4>My Account</h4></div>
+						<div class="heading"><h4>我的账户</h4></div>
 						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Brands</a></li>
-							<li><a href="#">Gift Vouchers</a></li>
-							<li><a href="#">Specials</a></li>
-							<li><a href="#">Site Map</a></li>
+							<li><a href="#">我的账户</a></li>
+							<li><a href="#">品牌</a></li>
+							<li><a href="#">优惠卷</a></li>
+							<li><a href="#">特价</a></li>
+							<li><a href="#">网站导航</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-4">
-						<div class="heading"><h4>Contact Us</h4></div>
+						<div class="heading"><h4>联系我们</h4></div>
 						<ul>
-							<li><span class="glyphicon glyphicon-home"></span>California, United States 3000009</li>
-							<li><span class="glyphicon glyphicon-earphone"></span>+91 8866888111</li>
+							<li><span class="glyphicon glyphicon-home"></span>仲恺农业工程学院</li>
+							<li><span class="glyphicon glyphicon-earphone"></span>+86 8866888111</li>
 							<li><span class="glyphicon glyphicon-envelope"></span>infor@yoursite.com</li>
 						</ul>
 					</div>

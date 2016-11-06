@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>分类浏览</title>
+    <title>搜索</title>
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -38,9 +38,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+    	.breadcrumb{
+    		margin:0px;
+    		background-color: white;
+    		padding-left: 0px;
+    	}
+    	.classify{
+    		/*background-color: #C6C7C9;*/
+    		margin: 0px;
+    		height: 43px;
+    		line-height: 43px;
+    		border: 1px solid #F7F5F6;
+    		background-color: #F7F5F6;
+    	}
+    	
+    	a:hover{
+    		color: red;
+    	}
+    	.sort{
+    		border: 1px solid #F7F5F6;
+
+
+    	}
+    	i{
+    		color: #9B9A99;
+    	}
+    	/*.clear{
+    		padding-left: 0px
+    	}*/
+
+    </style>
 </head>
 <body>
-	<!--Top-->
+<!--Top-->
 	<nav id="top">
 		<div class="container">
 			<div class="row">
@@ -52,10 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
 						</ul>
 					</div>
-					
-
 				</div>
-
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
@@ -66,10 +94,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</nav>
 	<!--Header-->
-	<header class="container">
+	<header class="container"  style="padding-bottom:0px;" >
 		<div class="row">
 			<div class="col-md-4">
-				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
+				<div id="logo"><img src="images/logo.png" /></div>
 			</div>
 			<div class="col-md-4">
 				<form class="form-search">  
@@ -78,100 +106,102 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form>
 			</div>
 			<div class="col-md-4">
-
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 </a></div>
-
+				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a></div>
 			</div>
 		</div>
 	</header>
-	<!--Navigation-->
-    <nav id="menu" class="navbar">
-		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">分类</span>
-			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
-			</div>
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-
-					<li><a href="index.jsp">首页</a></li>
-
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
-						<div class="dropdown-menu">
-							<div class="dropdown-inner">
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">Window</a></li>
-									<li><a href="category.jsp">MacBook</a></li>
-								</ul>
-							</div>
-						</div>
-					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Laptops &amp; Notebooks</a>
-						<div class="dropdown-menu">
-							<div class="dropdown-inner">
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">Dell</a></li>
-									<li><a href="category.jsp">Asus</a></li>
-									<li><a href="category.jsp">Samsung</a></li>
-									<li><a href="category.jsp">Lenovo</a></li>
-									<li><a href="category.jsp">Acer</a></li>
-								</ul>
-							</div> 
-						</div>
-					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Mobiles &amp; Tablet</a>
-						<div class="dropdown-menu" style="margin-left: -203.625px;">
-							<div class="dropdown-inner">
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">Iphone</a></li>
-									<li><a href="category.jsp">Samsung</a></li>
-									<li><a href="category.jsp">Nokia</a></li>
-									<li><a href="category.jsp">Lenovo</a></li>
-									<li><a href="category.jsp">Google</a></li>
-								</ul>
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">Nexus</a></li>
-									<li><a href="category.jsp">Dell</a></li>
-									<li><a href="category.jsp">Oppo</a></li>
-									<li><a href="category.jsp">Blackberry</a></li>
-									<li><a href="category.jsp">HTC</a></li>
-								</ul>
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">LG</a></li>
-									<li><a href="category.jsp">Q-Mobiles</a></li>
-									<li><a href="category.jsp">Sony</a></li>
-									<li><a href="category.jsp">Wiko</a></li>
-									<li><a href="category.jsp">T&T</a></li>
-								</ul>
-							</div>
-						</div>
-					</li>
-					<li><a href="category.jsp">Software</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
 	
 	<!--//////////////////////////////////////////////////-->
 	<!--///////////////////Category Page//////////////////-->
 	<!--//////////////////////////////////////////////////-->
 	<div id="page-content" class="single-page">
+
+
+
+		<div class="container">
+			<!-- <div class="classify"></div> -->
+			<!-- <table>
+				<tr>
+					<td class="col-lg-3 col-md-3 ">分类</td>
+					<td class="col-lg-9 col-md-9"></td>
+				</tr>
+			</table> -->
+			<div class="row">
+				<div class="col-lg-12">
+
+					<div class="col-lg-2 col-md-2 classify ">分类</div>
+					<div class="col-lg-10 col-md-10" style="padding-left: 0px">
+						<ul class="breadcrumb">
+							<li><a href="#">民谣吉他</a></li>
+							<li><a href="#">古典吉他</a></li>
+							<li><a href="#">电吉他</a></li>
+							<li><a href="#">电箱吉他</a></li>
+							<li><a href="#">其他吉他</a></li>
+						</ul>
+					</div>
+				</div>
+			
+				
+			
+			
+				<div class="col-lg-12">
+
+					<div class="col-lg-2 col-md-2 classify">尺寸</div>
+					<div class="col-lg-10 col-md-10" style="padding-left: 0px">
+					
+						<ul class="breadcrumb">
+							<li><a href="#">42英寸</a></li>
+							<li><a href="#">41英寸</a></li>
+							<li><a href="#">40英寸</a></li>
+							<li><a href="#">39英寸</a></li>
+							<li><a href="#">38英寸</a></li>
+							<li><a href="#">36英寸</a></li>
+							<li><a href="#">34英寸</a></li>
+							<li><a href="#">26英寸</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-12">
+
+					<div class="col-lg-2 col-md-2 classify ">适用对象</div>
+						<div class="col-lg-10 col-md-10" style="padding-left: 0px">
+							<ul class="breadcrumb">
+								<li><a href="#">初学者</li>
+								<li><a href="#">熟悉者</a></li>
+								<li><a href="#">专业者</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>	
+			
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<ul class="breadcrumb">
-
-						<li><a href="index.jsp">首页</a></li>
-						<li><a href="category.jsp">分类 : 手机</a></li>
-
-					</ul>
-				</div>
+		
+						<div class="col-lg-1 col-md-1 sort"><a href="itemSearch.html">综合 <i class="glyphicon glyphicon-arrow-down"></i></a></div>
+						<div class="col-lg-1 col-md-1 sort"><a href="itemSearch.html">人气<i class="glyphicon glyphicon-arrow-down"></i></a></div>
+						<div class="col-lg-1 col-md-1 sort"><a href="itemSearch.html">新品<i class="glyphicon glyphicon-arrow-down"></i></a></div>
+						<div class="col-lg-1 col-md-1 sort"><a href="itemSearch.html">销量<i class="glyphicon glyphicon-arrow-down"></i></a></div>
+						<div class="col-lg-1 col-md-1 sort"><a href="itemSearch.html">价格<i class="glyphicon glyphicon-arrow-down"></i></a></div>
+				
+					
+						<div class="col-lg-1 col-md-1 sort"><input type="checkbox">包邮</input></div>
+											
+				</div>	
 			</div>
+		</div>
+
+
+
+
 			<div class="row">
-				<div id="main-content" class="col-md-8">
+				<div id="main-content" class="col-md-12">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="products">
-								<div class="col-lg-4 col-md-4 col-xs-12">
+								<div class="col-lg-3 col-md-3 col-xs-12">
 									<div class="product">
 										<div class="image"><a href="product.jsp"><img src="images/iphone.png" /></a></div>
 										<div class="buttons">
@@ -186,7 +216,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-4 col-md-4 col-xs-12">
+								<div class="col-lg-3 col-md-3 col-xs-12">
 									<div class="product">
 										<div class="image"><a href="product.jsp"><img src="images/galaxy-s4.jpg" /></a></div>
 										<div class="buttons">
@@ -201,7 +231,88 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-4 col-md-4 col-xs-12">
+								<div class="col-lg-3 col-md-3 col-xs-12">
+									<div class="product">
+										<div class="image"><a href="product.jsp"><img src="images/galaxy-note.jpg" /></a></div>
+										<div class="buttons">
+											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
+											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
+										</div>
+										<div class="caption">
+											<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
+											<div class="price">$122<span>$98</span></div>
+											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-xs-12">
+									<div class="product">
+										<div class="image"><a href="product.jsp"><img src="images/iphone.png" /></a></div>
+										<div class="buttons">
+											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
+											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
+										</div>
+										<div class="caption">
+											<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
+											<div class="price">$122<span>$98</span></div>
+											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="products">
+								<div class="col-lg-3 col-md-3 col-xs-12">
+									<div class="product">
+										<div class="image"><a href="product.jsp"><img src="images/iphone.png" /></a></div>
+										<div class="buttons">
+											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
+											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
+										</div>
+										<div class="caption">
+											<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
+											<div class="price">$122<span>$98</span></div>
+											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-xs-12">
+									<div class="product">
+										<div class="image"><a href="product.jsp"><img src="images/galaxy-s4.jpg" /></a></div>
+										<div class="buttons">
+											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
+											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
+										</div>
+										<div class="caption">
+											<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
+											<div class="price">$122<span>$98</span></div>
+											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-xs-12">
+									<div class="product">
+										<div class="image"><a href="product.jsp"><img src="images/galaxy-note.jpg" /></a></div>
+										<div class="buttons">
+											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
+											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
+										</div>
+										<div class="caption">
+											<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
+											<div class="price">$122<span>$98</span></div>
+											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-xs-12">
 									<div class="product">
 										<div class="image"><a href="product.jsp"><img src="images/galaxy-note.jpg" /></a></div>
 										<div class="buttons">
@@ -222,7 +333,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="row">
 						<div class="col-md-12">
 							<div class="products">
-								<div class="col-lg-4 col-md-4 col-xs-12">
+								<div class="col-lg-3 col-md-3 col-xs-12">
 									<div class="product">
 										<div class="image"><a href="product.jsp"><img src="images/iphone.png" /></a></div>
 										<div class="buttons">
@@ -237,7 +348,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-4 col-md-4 col-xs-12">
+								<div class="col-lg-3 col-md-3 col-xs-12">
 									<div class="product">
 										<div class="image"><a href="product.jsp"><img src="images/galaxy-s4.jpg" /></a></div>
 										<div class="buttons">
@@ -252,7 +363,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-4 col-md-4 col-xs-12">
+								<div class="col-lg-3 col-md-3 col-xs-12">
+									<div class="product">
+										<div class="image"><a href="product.jsp"><img src="images/galaxy-note.jpg" /></a></div>
+										<div class="buttons">
+											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
+											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
+										</div>
+										<div class="caption">
+											<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
+											<div class="price">$122<span>$98</span></div>
+											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-xs-12">
 									<div class="product">
 										<div class="image"><a href="product.jsp"><img src="images/galaxy-note.jpg" /></a></div>
 										<div class="buttons">
@@ -270,58 +396,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="products">
-								<div class="col-lg-4 col-md-4 col-xs-12">
-									<div class="product">
-										<div class="image"><a href="product.jsp"><img src="images/iphone.png" /></a></div>
-										<div class="buttons">
-											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
-											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
-										</div>
-										<div class="caption">
-											<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
-											<div class="price">$122<span>$98</span></div>
-											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-4 col-xs-12">
-									<div class="product">
-										<div class="image"><a href="product.jsp"><img src="images/galaxy-s4.jpg" /></a></div>
-										<div class="buttons">
-											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
-											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
-										</div>
-										<div class="caption">
-											<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
-											<div class="price">$122<span>$98</span></div>
-											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-4 col-xs-12">
-									<div class="product">
-										<div class="image"><a href="product.jsp"><img src="images/galaxy-note.jpg" /></a></div>
-										<div class="buttons">
-											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
-											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
-										</div>
-										<div class="caption">
-											<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
-											<div class="price">$122<span>$98</span></div>
-											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row text-center">
+					<!-- <div class="row text-center">
 						<ul class="pagination">
 						  <li class="active"><a href="#">1</a></li>
 						  <li><a href="#">2</a></li>
@@ -329,11 +404,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  <li><a href="#">4</a></li>
 						  <li><a href="#">5</a></li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
-				<div id="sidebar" class="col-md-4">
+				<!-- <div id="sidebar" class="col-md-4">
 					<div class="widget wid-categories">
-						<div class="heading"><h4>分类</h4></div>
+						<div class="heading"><h4>CATEGORIES</h4></div>
 						<div class="content">
 							<ul>
 								<li><a href="#">PC Computers</a></li>
@@ -344,7 +419,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="widget wid-type">
-						<div class="heading"><h4>类型</h4></div>
+						<div class="heading"><h4>TYPE</h4></div>
 						<div class="content">
 							<select>
 								<option value="EL" selected>Electronics</option>
@@ -356,17 +431,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="widget wid-discouts">
-						<div class="heading"><h4>折扣</h4></div>
+						<div class="heading"><h4>DISCOUNTS</h4></div>
 						<div class="content">
 							<label class="checkbox"><input type="checkbox" name="discount" checked="">Upto - 10% (20)</label>
 							<label class="checkbox"><input type="checkbox" name="discount">40% - 50% (5)</label>
 							<label class="checkbox"><input type="checkbox" name="discount">30% - 20% (7)</label>
 							<label class="checkbox"><input type="checkbox" name="discount">10% - 5% (2)</label>
-							<label class="checkbox"><input type="checkbox" name="discount">其它(50)</label>
+							<label class="checkbox"><input type="checkbox" name="discount">Other(50)</label>
 						</div>
 					</div>
 					<div class="widget wid-brand">
-						<div class="heading"><h4>品牌</h4></div>
+						<div class="heading"><h4>BRAND</h4></div>
 						<div class="content">
 							<label class="checkbox"><input type="checkbox" name="brand">Nokia</label>
 							<label class="checkbox"><input type="checkbox" name="brand">Samsung</label>
@@ -376,9 +451,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<label class="checkbox"><input type="checkbox" name="brand">Kings</label>
 							<label class="checkbox"><input type="checkbox" name="brand">Zumba</label>	
 						</div>
-					</div>
-					<div class="widget wid-product">
-						<div class="heading"><h4>新品</h4></div>
+					</div> -->
+					<!-- <div class="widget wid-product">
+						<div class="heading"><h4>LATEST</h4></div>
 						<div class="content">
 							<div class="product">
 								<a href="#"><img src="images/galaxy-note.jpg" /></a>
@@ -405,7 +480,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
