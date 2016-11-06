@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
-				<form class="form-search">  
+				<form action="search.jsp"  class="form-search">  
 					<input type="text" class="input-medium search-query">  
 					<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>  
 				</form>
