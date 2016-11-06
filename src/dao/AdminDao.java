@@ -3,7 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import util.DBAdmin;
+import util.DBHelper;
 import entity.Admin;
 
 public class AdminDao {
@@ -12,7 +12,8 @@ public class AdminDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DBAdmin.getConnection();
+			conn = DBHelper.getConnection();
+
 			String sql = "select * from items where admin_username=?;"; // SQLÓï¾ä
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, username);

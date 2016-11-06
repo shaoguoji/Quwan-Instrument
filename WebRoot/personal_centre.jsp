@@ -74,8 +74,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="col-md-4">
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<form class="form-search">  
 =======
+				<form action="search.jsp" class="form-search">  
+>>>>>>> master
+=======
+
 				<form action="search.jsp" class="form-search">  
 >>>>>>> master
 					<input type="text" class="input-medium search-query">  
@@ -183,7 +188,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td><h5>&nbsp</h5></td>
 							</tr>	
 							<tr>
+<<<<<<< HEAD
 								<td><h5>用户积分： </h5></td>
+=======
+								<td><h5>积分： </h5></td>
+>>>>>>> master
 								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
 								<td><a href="#" class="btn btn-2">申请会员</a></td>
 							</tr>
@@ -194,7 +203,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr>
+<<<<<<< HEAD
 								<td><h5>用户地址:<h5/></td>
+=======
+								<td><h5>地址:<h5/></td>
+>>>>>>> master
 								<td><h4>&nbsp&nbsp&nbsp&nbsp 仲恺农业工程学院<h4/></td>
 								<td><a href="#" class="btn btn-2">修改地址</a></td>
 							</tr>
@@ -213,9 +226,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="col-md-6" style="margin-bottom: 30px;">
 					<table>
 							<tr>
+<<<<<<< HEAD
 								<td><h5>用户名：</h5></td>
 								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
 								<td><a href="#" class="btn btn-2">修改用户名</a></td>
+=======
+								<td><h5>手机号：</h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
+								<td><a href="#" class="btn btn-2">修改</a></td>
+>>>>>>> master
 								
 							</tr>
 							<tr>
@@ -225,9 +244,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td><h5>&nbsp</h5></td>
 							</tr>	
 							<tr>
+<<<<<<< HEAD
 								<td><h5>用户积分： </h5></td>
 								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
 								<td><a href="#" class="btn btn-2">申请会员</a></td>
+=======
+								<td><h5>邮箱： </h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
+								<td><a href="#" class="btn btn-2">修改</a></td>
+>>>>>>> master
 							</tr>
 							<tr>
 								<td><h5>&nbsp</h5></td>
@@ -236,9 +261,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr>
+<<<<<<< HEAD
 								<td><h5>用户地址:<h5/></td>
 								<td><h4>&nbsp&nbsp&nbsp&nbsp 仲恺农业工程学院<h4/></td>
 								<td><a href="#" class="btn btn-2">修改地址</a></td>
+=======
+								<td><h5>密码:<h5/></td>
+								<td><a href="#" class="btn btn-2">修改</a></td>
+>>>>>>> master
 							</tr>
 							<tr>
 								<td><h5>&nbsp</h5></td>
