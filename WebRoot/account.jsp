@@ -165,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 				<div class="col-md-6">
 					<div class="heading"><h2>登录</h2></div>
-					<form name="form1" id="ff1" method="post" action="login.php">
+					<form name="form1" id="ff1" method="post" action="servlet/UserLoginServlet">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="用户名 :" name="username" id="username" required>
 						</div>
@@ -178,7 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="col-md-6">
 					<div class="heading"><h2>新用户 ?  注册账号</h2></div>
-					<form name="form2" id="ff2" method="post" action="register.php">
+					<form name="form2" id="ff2" method="post" action="servlet/UserRegServlet">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="用户名 :" name="firstname" id="firstname" required>
 						</div>
