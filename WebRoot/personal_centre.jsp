@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>我的购物车</title>
+    <title>个人中心</title>
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -39,6 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body>
 	<!--Top-->
 	<nav id="top">
@@ -85,12 +86,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--Navigation-->
     <nav id="menu" class="navbar">
 		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">分类</span>
+			<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
 			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.jsp">首页</a></li>
+					<li><a href="index.jsp">Home</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
@@ -147,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</nav>
 	<!--//////////////////////////////////////////////////-->
-	<!--///////////////////Cart Page//////////////////////-->
+	<!--///////////////////Contact Page///////////////////-->
 	<!--//////////////////////////////////////////////////-->
 	<div id="page-content" class="single-page">
 		<div class="container">
@@ -155,93 +156,101 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="col-lg-12">
 					<ul class="breadcrumb">
 						<li><a href="index.jsp">首页</a></li>
-						<li><a href="cart.jsp">购物车</a></li>
+						<li><a href="contact.jsp">联系我们</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="row">
-				<div class="product well">
-					<div class="col-md-3">
-						<div class="image">
-							<img src="images/galaxy-note.jpg" />
-						</div>
-					</div>
-					<div class="col-md-9">
-						<div class="caption"> 
-							<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div> 
-							<div class="info">	 
-								<ul> 
-									<li>商品描述: text</li> 
-									<li>ID: 0122222</li> 
-								</ul> 
-							</div> 
-							<div class="price">$122<span>$98</span></div> 
-							<label>数量: </label> <input type="text" class="form-inline quantity" value="1"><a href="#" class="btn btn-2">确定</a> 
-							<hr> 
-							<a href="#" class="btn btn-default pull-right">删除</a> 
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>	
-			</div>
-			<div class="row">
-				<div class="product well">
-					<div class="col-md-3">
-						<div class="image">
-							<img src="images/Z1.png" />
-						</div>
-					</div>
-					<div class="col-md-9">
-						<div class="caption">
-							<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
-							<div class="info">
-								<ul>
-									<li>商品描述: text</li>
-									<li>ID: 0122222</li>
-								</ul>
-							</div>
-							<div class="price">$122<span>$98</span></div>
-							<label>数量: </label> <input class="form-inline quantity" type="text" value="1"><a href="#" class="btn btn-2 ">确定</a>
-							<hr>
-							<a href="#" class="btn btn-default pull-right">删除</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>	
-			</div>
-			<div class="row">
-				<div class="col-md-4 col-md-offset-8 ">
-					<center><a href="#" class="btn btn-1">继续购物</a></center>
+				<div class="col-lg-12">
+					<div class="heading"><h1>个人信息&账户安全</h1></div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="pricedetails">
-					<div class="col-md-4 col-md-offset-8">
-						<table>
-							<h6>价格详情</h6>
+				<div class="col-md-6" style="margin-bottom: 30px;">
+					<table>
 							<tr>
-								<td>商品总价</td>
-								<td>350.00</td>
+								<td><h5>用户名：</h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
+								<td><a href="#" class="btn btn-2">修改用户名</a></td>
+								
 							</tr>
 							<tr>
-								<td>折扣</td>
-								<td>-----</td>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>用户积分： </h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
+								<td><a href="#" class="btn btn-2">申请会员</a></td>
 							</tr>
 							<tr>
-								<td>派送费</td>
-								<td>100.00</td>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>用户地址:<h5/></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 仲恺农业工程学院<h4/></td>
+								<td><a href="#" class="btn btn-2">修改地址</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr style="border-top: 1px solid #333">
-								<td><h5>总价格</h5></td>
-								<td>400.00</td>
+								<td><h5></h5></td>
+								<td></td>
 							</tr>
 						</table>
-						<center><a href="#" class="btn btn-1">去下单</a></center>
-					</div>
+				</div>
+				<div class="col-md-6" style="margin-bottom: 30px;">
+					<table>
+							<tr>
+								<td><h5>用户名：</h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
+								<td><a href="#" class="btn btn-2">修改用户名</a></td>
+								
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>用户积分： </h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
+								<td><a href="#" class="btn btn-2">申请会员</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>用户地址:<h5/></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 仲恺农业工程学院<h4/></td>
+								<td><a href="#" class="btn btn-2">修改地址</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr style="border-top: 1px solid #333">
+								<td><h5></h5></td>
+								<td></td>
+							</tr>
+						</table>
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 	<footer>
 		<div class="container">
 			<div class="wrap-footer">
@@ -254,7 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="heading"><h4>用户服务</h4></div>
 						<ul>
 							<li><a href="#">关于我们</a></li>
-							<li><a href="#">物理信息</a></li>
+							<li><a href="#">物流信息</a></li>
 							<li><a href="#">隐私策略</a></li>
 							<li><a href="#">购物须知</a></li>
 							<li><a href="#">联系我们</a></li>
@@ -274,7 +283,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="heading"><h4>联系我们</h4></div>
 						<ul>
 							<li><span class="glyphicon glyphicon-home"></span>仲恺农业工程学院</li>
-							<li><span class="glyphicon glyphicon-earphone"></span>+91 8866888111</li>
+							<li><span class="glyphicon glyphicon-earphone"></span>+86 8866888111</li>
 							<li><span class="glyphicon glyphicon-envelope"></span>infor@yoursite.com</li>
 						</ul>
 					</div>
@@ -303,4 +312,3 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</footer>
 </body>
 </html>
-
