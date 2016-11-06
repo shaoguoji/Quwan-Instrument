@@ -9,7 +9,7 @@ public class DBAdmin {
 		private static final String driver="com.mysql.jdbc.Driver";
 		private static final String url="jdbc:mysql://localhost:3306/instrument?useUnicode=true&characterEncoding=UTF-8";
 		private static final String username="root";
-		private static final String password="123456";
+		private static final String password="";
 		private static Connection conn=null;
 		//静态代码块负责加载驱动
 		static{
