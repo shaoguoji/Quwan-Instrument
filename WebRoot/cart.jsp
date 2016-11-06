@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="author" content="">
 	
     <title>购物车</title>
+
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -51,19 +52,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
 						</ul>
 					</div>
-					
-			<!--		<select class="language">
-						<option value="English" selected>English</option>
-						<option value="France">France</option>
-						<option value="Germany">Germany</option>
-					</select>
-					<select class="currency">
-						<option value="USD" selected>USD</option>
-						<option value="EUR">EUR</option>
-						<option value="DDD">DDD</option>
-					</select>
-			-->	</div>
-			
+
+				</div>
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
@@ -86,19 +76,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form>
 			</div>
 			<div class="col-md-4">
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>CART : 0 ITEM</a></div>
+
+				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 </a></div>
 			</div>
 		</div>
 	</header>
 	<!--Navigation-->
     <nav id="menu" class="navbar">
 		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
+			<div class="navbar-header"><span id="heading" class="visible-xs">分类</span>
 			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.jsp">Home</a></li>
+
+					<li><a href="index.jsp">首页</a></li>
+					
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
@@ -162,8 +155,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="breadcrumb">
-						<li><a href="index.jsp">Home</a></li>
-						<li><a href="cart.jsp">Cart</a></li>
+
+						<li><a href="index.jsp">首页</a></li>
+						<li><a href="cart.jsp">购物车</a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -175,18 +170,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="col-md-9">
-						<div class="caption">
-							<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
-							<div class="info">	
-								<ul>
-									<li>Brand: text</li>
-									<li>ID: 0122222</li>
-								</ul>
-							</div>
-							<div class="price">$122<span>$98</span></div>
-							<label>Qty: </label> <input class="form-inline quantity" type="text" value="1"><a href="#" class="btn btn-2 ">Update</a>
-							<hr>
-							<a href="#" class="btn btn-default pull-right">REMOVE</a>
+
+						<div class="caption"> 
+							<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div> 
+							<div class="info">	 
+								<ul> 
+									<li>商品描述: text</li> 
+									<li>ID: 0122222</li> 
+								</ul> 
+							</div> 
+							<div class="price">$122<span>$98</span></div> 
+							<label>数量: </label> <input type="text" class="form-inline quantity" value="1"><a href="#" class="btn btn-2">确定</a> 
+							<hr> 
+							<a href="#" class="btn btn-default pull-right">删除</a> 
+							
 						</div>
 					</div>
 					<div class="clear"></div>
@@ -204,14 +201,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 							<div class="info">
 								<ul>
-									<li>Brand: text</li>
+									<li>商品描述: text</li>
 									<li>ID: 0122222</li>
 								</ul>
 							</div>
 							<div class="price">$122<span>$98</span></div>
-							<label>Qty: </label> <input class="form-inline quantity" type="text" value="1"><a href="#" class="btn btn-2 ">Update</a>
+							<label>数量: </label> <input class="form-inline quantity" type="text" value="1"><a href="#" class="btn btn-2 ">确定</a>
 							<hr>
-							<a href="#" class="btn btn-default pull-right">REMOVE</a>
+							<a href="#" class="btn btn-default pull-right">删除</a>
 						</div>
 					</div>
 					<div class="clear"></div>
@@ -219,32 +216,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-8 ">
-					<center><a href="#" class="btn btn-1">Continue To Shopping</a></center>
+					<center><a href="#" class="btn btn-1">继续购物</a></center>
 				</div>
 			</div>
 			<div class="row">
 				<div class="pricedetails">
 					<div class="col-md-4 col-md-offset-8">
 						<table>
-							<h6>Price Details</h6>
+							<h6>价格详情</h6>
 							<tr>
-								<td>Total</td>
+								<td>商品总价</td>
 								<td>350.00</td>
 							</tr>
 							<tr>
-								<td>Discount</td>
+								<td>折扣</td>
 								<td>-----</td>
 							</tr>
 							<tr>
-								<td>Delivery Charges</td>
+								<td>派送费</td>
 								<td>100.00</td>
 							</tr>
 							<tr style="border-top: 1px solid #333">
-								<td><h5>TOTAL</h5></td>
+								<td><h5>总价格</h5></td>
 								<td>400.00</td>
 							</tr>
 						</table>
-						<center><a href="#" class="btn btn-1">Checkout</a></center>
+						<center><a href="#" class="btn btn-1">去下单</a></center>
 					</div>
 				</div>
 			</div>
@@ -259,29 +256,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 					</div>
 					<div class="col-md-3 col-footer footer-2">
-						<div class="heading"><h4>Customer Service</h4></div>
+						<div class="heading"><h4>用户服务</h4></div>
 						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Delivery Information</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Terms & Conditions</a></li>
-							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">关于我们</a></li>
+							<li><a href="#">物理信息</a></li>
+							<li><a href="#">隐私策略</a></li>
+							<li><a href="#">购物须知</a></li>
+							<li><a href="#">联系我们</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-3">
-						<div class="heading"><h4>My Account</h4></div>
+						<div class="heading"><h4>我的账户</h4></div>
 						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Brands</a></li>
-							<li><a href="#">Gift Vouchers</a></li>
-							<li><a href="#">Specials</a></li>
-							<li><a href="#">Site Map</a></li>
+							<li><a href="#">我的账户</a></li>
+							<li><a href="#">品牌</a></li>
+							<li><a href="#">优惠卷</a></li>
+							<li><a href="#">特价</a></li>
+							<li><a href="#">网站导航</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-4">
-						<div class="heading"><h4>Contact Us</h4></div>
+						<div class="heading"><h4>联系我们</h4></div>
 						<ul>
-							<li><span class="glyphicon glyphicon-home"></span>California, United States 3000009</li>
+							<li><span class="glyphicon glyphicon-home"></span>仲恺农业工程学院</li>
 							<li><span class="glyphicon glyphicon-earphone"></span>+91 8866888111</li>
 							<li><span class="glyphicon glyphicon-envelope"></span>infor@yoursite.com</li>
 						</ul>

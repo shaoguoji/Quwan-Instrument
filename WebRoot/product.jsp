@@ -12,9 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="">
     <meta name="author" content="">
-	
     <title>产品详情</title>
-	
+
+
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
 	
@@ -48,30 +48,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 			
 				<div class="col-xs-6">
+
 					<div class="col-xs-6">
 						<ul class="top-link">
 							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
 						</ul>
 					</div>
-					
-			<!--		<select class="language">
-						<option value="English" selected>English</option>
-						<option value="France">France</option>
-						<option value="Germany">Germany</option>
-					</select>
-					<select class="currency">
-						<option value="USD" selected>USD</option>
-						<option value="EUR">EUR</option>
-						<option value="DDD">DDD</option>
-					</select>
-			-->	</div>
-			
+
+				</div>
+
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
 						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
 					</ul>
 				</div>
+				
 			</div>
 		</div>
 	</nav>
@@ -88,7 +80,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form>
 			</div>
 			<div class="col-md-4">
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>CART : 0 ITEM</a></div>
+
+				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 </a></div>
 			</div>
 		</div>
 	</header>
@@ -164,9 +157,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="breadcrumb">
-						<li><a href="index.jsp">Home</a></li>
-						<li><a href="category.jsp">Category</a></li>
-						<li><a href="#">Samsung Galaxy</a></li>
+
+						<li><a href="index.jsp">首页</a></li>
+						<li><a href="category.jsp">分类</a></li>
+						<li><a href="#">三星 盖乐世</a></li>
+
 					</ul>
 				</div>
 			</div>
@@ -199,23 +194,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="name"><h3>Aliquam erat volutpat</h3></div>
 								<div class="info">
 									<ul>
-										<li>Brand: text</li>
+										<li>品牌: text</li>
 										<li>ID: 0122222</li>
 									</ul>
 								</div>
 								<div class="price">$122<span>$98</span></div>
 								<div class="options">
-									AVAILABLE OPTIONS
+									可用选项
 									<select>
-										<option value="" selected>----Please Select----</option>
+										<option value="" selected>----请选择----</option>
 										<option value="red">RED</option>
 										<option value="black">BLACK</option>
 									</select>
 								</div>
 								<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-								<div class="well"><label>Qty: </label> <input class="form-inline quantity" type="text" value="1"><a href="#" class="btn btn-2 ">ADD</a></div>
+								<div class="well"><label>数量: </label> <input class="form-inline quantity" type="text" value="1"><a href="#" class="btn btn-2 ">添加</a></div>
 								<div class="share well">
-									<strong style="margin-right: 13px;">Share :</strong>
+									<strong style="margin-right: 13px;">分享 :</strong>
 									<a href="#" class="share-btn" target="_blank">
 										<i class="fa fa-twitter"></i>
 									</a>
@@ -232,8 +227,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>	
 					<div class="product-desc">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#description">Description</a></li>
-							<li><a href="#review">Review</a></li>
+							<li class="active"><a href="#description">描述</a></li>
+							<li><a href="#review">评论</a></li>
 						</ul>
 						<div class="tab-content">
 							<div id="description" class="tab-pane fade in active">
@@ -267,7 +262,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="product-related">
-						<div class="heading"><h2>RELATED PRODUCTS</h2></div>
+						<div class="heading"><h2>相关产品</h2></div>
 						<div class="products">
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="product">
@@ -320,7 +315,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div id="sidebar" class="col-md-4">
 					<div class="widget wid-categories">
-						<div class="heading"><h4>CATEGORIES</h4></div>
+						<div class="heading"><h4>分类</h4></div>
 						<div class="content">
 							<ul>
 								<li><a href="#">PC Computers</a></li>
@@ -331,7 +326,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="widget wid-type">
-						<div class="heading"><h4>TYPE</h4></div>
+						<div class="heading"><h4>种类</h4></div>
 						<div class="content">
 							<select>
 								<option value="EL" selected>Electronics</option>
@@ -343,7 +338,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="widget wid-discouts">
-						<div class="heading"><h4>DISCOUNTS</h4></div>
+						<div class="heading"><h4>折扣</h4></div>
 						<div class="content">
 							<label class="checkbox"><input type="checkbox" name="discount" checked="">Upto - 10% (20)</label>
 							<label class="checkbox"><input type="checkbox" name="discount">40% - 50% (5)</label>
@@ -353,7 +348,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="widget wid-brand">
-						<div class="heading"><h4>BRAND</h4></div>
+						<div class="heading"><h4>品牌</h4></div>
 						<div class="content">
 							<label class="checkbox"><input type="checkbox" name="brand">Nokia</label>
 							<label class="checkbox"><input type="checkbox" name="brand">Samsung</label>
@@ -365,7 +360,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="widget wid-product">
-						<div class="heading"><h4>LATEST</h4></div>
+						<div class="heading"><h4>新品</h4></div>
 						<div class="content">
 							<div class="product">
 								<a href="#"><img src="images/galaxy-note.jpg" /></a>
@@ -397,7 +392,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>	
-	<footer>
+		<footer>
 		<div class="container">
 			<div class="wrap-footer">
 				<div class="row">
@@ -406,30 +401,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 					</div>
 					<div class="col-md-3 col-footer footer-2">
-						<div class="heading"><h4>Customer Service</h4></div>
+						<div class="heading"><h4>用户服务</h4></div>
 						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Delivery Information</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Terms & Conditions</a></li>
-							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">关于我们</a></li>
+							<li><a href="#">物流信息</a></li>
+							<li><a href="#">隐私策略</a></li>
+							<li><a href="#">购物须知</a></li>
+							<li><a href="#">联系我们</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-3">
-						<div class="heading"><h4>My Account</h4></div>
+						<div class="heading"><h4>我的账户</h4></div>
 						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Brands</a></li>
-							<li><a href="#">Gift Vouchers</a></li>
-							<li><a href="#">Specials</a></li>
-							<li><a href="#">Site Map</a></li>
+							<li><a href="#">我的账户</a></li>
+							<li><a href="#">品牌</a></li>
+							<li><a href="#">优惠卷</a></li>
+							<li><a href="#">特价</a></li>
+							<li><a href="#">网站导航</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-4">
-						<div class="heading"><h4>Contact Us</h4></div>
+						<div class="heading"><h4>联系我们</h4></div>
 						<ul>
-							<li><span class="glyphicon glyphicon-home"></span>California, United States 3000009</li>
-							<li><span class="glyphicon glyphicon-earphone"></span>+91 8866888111</li>
+							<li><span class="glyphicon glyphicon-home"></span>仲恺农业工程学院</li>
+							<li><span class="glyphicon glyphicon-earphone"></span>+86 8866888111</li>
 							<li><span class="glyphicon glyphicon-envelope"></span>infor@yoursite.com</li>
 						</ul>
 					</div>

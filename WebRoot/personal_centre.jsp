@@ -12,8 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>用户中心</title>
-
+	
+    <title>个人中心</title>
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -45,22 +45,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<nav id="top">
 		<div class="container">
 			<div class="row">
-			
 				<div class="col-xs-6">
-					<div class="col-xs-6">
-						<ul class="top-link">
-							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
-						</ul>
-					</div>
+			<!--		<select class="language">
+						<option value="English" selected>English</option>
+						<option value="France">France</option>
+						<option value="Germany">Germany</option>
+					</select>
+					<select class="currency">
+						<option value="USD" selected>USD</option>
+						<option value="EUR">EUR</option>
+						<option value="DDD">DDD</option>
+			-->		</select>
 				</div>
-				
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
 						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
 					</ul>
 				</div>
-				
 			</div>
 		</div>
 	</nav>
@@ -77,22 +79,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form>
 			</div>
 			<div class="col-md-4">
-
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 </a></div>
+				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 : 0 件商品</a></div>
 			</div>
 		</div>
 	</header>
 	<!--Navigation-->
     <nav id="menu" class="navbar">
 		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">分类</span>
+			<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
 			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-
-					<li><a href="index.jsp">首页</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC 计算机</a>
+					<li><a href="index.jsp">Home</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 笔记本</a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Laptops &amp; Notebooks</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -115,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div> 
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">手机 &amp; 平板电脑</a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Mobiles &amp; Tablet</a>
 						<div class="dropdown-menu" style="margin-left: -203.625px;">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -142,15 +142,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 					</li>
-
-					<li><a href="category.jsp">软件</a></li>
-
+					<li><a href="category.jsp">Software</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<!--//////////////////////////////////////////////////-->
-	<!--///////////////////Account Page///////////////////-->
+	<!--///////////////////Contact Page///////////////////-->
 	<!--//////////////////////////////////////////////////-->
 	<div id="page-content" class="single-page">
 		<div class="container">
@@ -158,53 +156,97 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="col-lg-12">
 					<ul class="breadcrumb">
 						<li><a href="index.jsp">首页</a></li>
-						<li><a href="account.jsp">我的账号</a></li>
+						<li><a href="contact.jsp">联系我们</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					<div class="heading"><h2>登录</h2></div>
-					<form name="form1" id="ff1" method="post" action="login.php">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="用户名 :" name="username" id="username" required>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="email" id="email" required>
-						</div>
-						<button type="submit" class="btn btn-1" name="login" id="login">登录</button>
-						<a href="#">忘记密码 ?</a>
-					</form>
+				<div class="col-lg-12">
+					<div class="heading"><h1>个人信息&账户安全</h1></div>
 				</div>
-				<div class="col-md-6">
-					<div class="heading"><h2>新用户 ?  注册账号</h2></div>
-					<form name="form2" id="ff2" method="post" action="register.php">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="用户名 :" name="firstname" id="firstname" required>
-						</div>
-						<div class="form-group">
-							<input type="email" class="form-control" placeholder="Last Name :" name="lastname" id="lastname" required>
-						</div>
-						<div class="form-group">
-							<input type="tel" class="form-control" placeholder="邮箱 :" name="email" id="email" required>
-						</div>
-						<div class="form-group">
-							<input type="tel" class="form-control" placeholder="手机号 :" name="phone" id="phone" required>
-						</div>
-						<div class="form-group">
-							<input name="gender" id="gender" type="radio"> 男<input name="gender" id="gender" type="radio"> 女  
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="确认密码 :" name="repassword" id="repassword" required>
-						</div>
-						<div class="form-group">
-							<input name="agree" id="agree" type="checkbox" > 同意协议
-						</div>
-						<button type="submit" class="btn btn-1">注册</button>
-					</form>
+				<div class="col-md-6" style="margin-bottom: 30px;">
+					<table>
+							<tr>
+								<td><h5>用户名：</h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
+								<td><a href="#" class="btn btn-2">修改用户名</a></td>
+								
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>用户积分： </h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
+								<td><a href="#" class="btn btn-2">申请会员</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>用户地址:<h5/></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 仲恺农业工程学院<h4/></td>
+								<td><a href="#" class="btn btn-2">修改地址</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr style="border-top: 1px solid #333">
+								<td><h5></h5></td>
+								<td></td>
+							</tr>
+						</table>
+				</div>
+				<div class="col-md-6" style="margin-bottom: 30px;">
+					<table>
+							<tr>
+								<td><h5>用户名：</h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
+								<td><a href="#" class="btn btn-2">修改用户名</a></td>
+								
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+								<td><h5>用户积分： </h5></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
+								<td><a href="#" class="btn btn-2">申请会员</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>用户地址:<h5/></td>
+								<td><h4>&nbsp&nbsp&nbsp&nbsp 仲恺农业工程学院<h4/></td>
+								<td><a href="#" class="btn btn-2">修改地址</a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr style="border-top: 1px solid #333">
+								<td><h5></h5></td>
+								<td></td>
+							</tr>
+						</table>
 				</div>
 			</div>
 		</div>
