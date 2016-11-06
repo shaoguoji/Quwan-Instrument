@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>Mobile Shop</title>
+    <title>用户中心</title>
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -45,7 +45,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<nav id="top">
 		<div class="container">
 			<div class="row">
+			
 				<div class="col-xs-6">
+					<div class="col-xs-6">
+						<ul class="top-link">
+							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
+						</ul>
+					</div>
+					
 			<!--		<select class="language">
 						<option value="English" selected>English</option>
 						<option value="France">France</option>
@@ -55,12 +62,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<option value="USD" selected>USD</option>
 						<option value="EUR">EUR</option>
 						<option value="DDD">DDD</option>
-			-->		</select>
-				</div>
+					</select>
+			-->	</div>
+			
 				<div class="col-xs-6">
 					<ul class="top-link">
-						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
-						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
+						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
 					</ul>
 				</div>
 			</div>

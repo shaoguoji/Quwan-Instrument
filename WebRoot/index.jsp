@@ -47,6 +47,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 			
 				<div class="col-xs-6">
+					<div class="col-xs-6">
+						<ul class="top-link">
+							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
+						</ul>
+					</div>
+					
 			<!--		<select class="language">
 						<option value="English" selected>English</option>
 						<option value="France">France</option>
@@ -56,8 +62,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<option value="USD" selected>USD</option>
 						<option value="EUR">EUR</option>
 						<option value="DDD">DDD</option>
-			-->		</select>
-				</div>
+					</select>
+			-->	</div>
 			
 				<div class="col-xs-6">
 					<ul class="top-link">
