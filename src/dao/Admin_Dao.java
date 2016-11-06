@@ -12,7 +12,7 @@ import entity.Admin;
 
 public class Admin_Dao {
 	public static List<Admin>  depts;
-	public List<Admin> findDepts() throws SQLException {
+	public List<Admin> findDepts() throws SQLException  {
 		// TODO Auto-generated method stub
 		PreparedStatement ps = null;
 		Connection con = null;

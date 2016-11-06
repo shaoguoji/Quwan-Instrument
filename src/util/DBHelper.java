@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class DBAdmin {
+public class DBHelper {
 		private static final String driver="com.mysql.jdbc.Driver";
 		private static final String url="jdbc:mysql://localhost:3306/instrument?useUnicode=true&characterEncoding=UTF-8";
 		private static final String username="root";
-		private static final String password="123456";
+		private static final String password="";
 		private static Connection conn=null;
 		//静态代码块负责加载驱动
 		static{
@@ -32,17 +32,12 @@ public class DBAdmin {
 			 }
 			 return conn;
 		}
-//		public static void main(String[] args) {
-//			try {
-//				Connection conn = DBHelper.getConnection();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			 if(conn!=null){
-//				 System.out.println("数据库连接正常");
-//			 }else{
-//				 System.out.println("数据库连接异常");
-//			 }
-//		}
+		public static void main(String[] args) {
+			Connection conn = DBHelper.getConnection();
+			 if(conn!=null){
+				 System.out.println("数据库连接正常");
+			 }else{
+				 System.out.println("数据库连接异常");
+			 }
+		}
 }

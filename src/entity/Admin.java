@@ -10,6 +10,13 @@ public class Admin {
 		public Admin(){
 			
 		}
+		public Admin(int adminId,String adminUsername,String adminPassword,String adminDep,int adminLevel ){
+			this.adminId=adminId;
+			this.adminUsername=adminUsername;
+			this.adminPassword=adminPassword;
+			this.adminDep=adminDep;
+			this.adminLevel=adminLevel;
+		}
 		
 		public int getAdminId() {
 			return adminId;
