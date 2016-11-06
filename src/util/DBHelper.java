@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class DBAdmin {
+public class DBHelper {
 		private static final String driver="com.mysql.jdbc.Driver";
 		private static final String url="jdbc:mysql://localhost:3306/instrument?useUnicode=true&characterEncoding=UTF-8";
 		private static final String username="root";
