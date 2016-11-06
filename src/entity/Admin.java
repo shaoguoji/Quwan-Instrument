@@ -1,11 +1,11 @@
 package entity;
 
 public class Admin {
-		private int adminId;
-		private String adminUsername;
-		private String adminPassword;
-		private String adminDep;
-		private int adminLevel;
+		private int adminId; //管理员id
+		private String adminUsername;//管理员名字
+		private String adminPassword;//管理员密码
+		private String adminDep;//管理员部门
+		private int adminLevel;//管理员的级别
 		
 		public Admin(){
 			
