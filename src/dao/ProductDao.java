@@ -15,7 +15,6 @@ import entity.Product;
 
 public class ProductDao {
 	
-	
 	// 查找商品
 	public List<Product> findProduct(Properties pro) {
 		List<Product> products = new ArrayList<Product>();
@@ -31,7 +30,10 @@ public class ProductDao {
 				Set keys = pro.keySet();
 				for (Object key : keys)
 				{
-					sql.append(key + "='" + pro.getProperty((String) key) + "' and ");
+					if (key.equals("product_name")) // 模糊搜索				
+						sql.append(key + " like '%" + pro.getProperty((String) key) + "%' and ");
+					else
+						sql.append(key + "='" + pro.getProperty((String) key) + "' and ");
 				}
 				sql.delete(sql.length() - 5, sql.length());
 			}
@@ -87,6 +89,7 @@ public class ProductDao {
 		return products;
 	}
 	
+	// 增加、修改商品
 	public void saveProduct(Product product, short sht)
 	{
 		Connection conn = null;
@@ -151,6 +154,7 @@ public class ProductDao {
 				stmt2.setDate(12, product.getProduct_show_date());
 				stmt2.setInt(13, product.getProduct_id());
 				
+				stmt2.executeUpdate();
 			}catch (Exception ex) {
 				ex.printStackTrace();
 			} finally {
@@ -207,12 +211,12 @@ public class ProductDao {
 	}
 	
 	// 获取所有商品
-	public ArrayList<Product> findAllProduct()
+	public List<Product> findAllProduct()
 	{
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		ArrayList<Product> list = new ArrayList<Product>(); // 商品集合
+		List<Product> list = new ArrayList<Product>(); // 商品集合
 		try {
 			conn = DBHelper.getConnection();
 			String sql = "select * from product;"; // SQL语句
@@ -264,5 +268,28 @@ public class ProductDao {
 
 	}
 	
+	
+	
+	// 测试用main方法
+//	public static void main(String[] args) {
+//		ProductDao pd = new ProductDao();
+//		List<Product> p = new ArrayList<Product>();
+//		
+//		Properties pro = new Properties();
+//		pro.setProperty("product_name", "雅马哈");
+//		pro.setProperty("product_color", "原木色");
+//		p = pd.findProduct(pro);
+//		//pd.saveProduct(test, Constants.CHANGE_PRODUCT);
+//		
+////		int [] ids = {5};
+////		pd.deleteProductById(ids);
+////		
+////		p = pd.findAllProduct();
+//		for (Product obj : p)
+//		{
+//			System.out.println(obj);
+//		}
+//		
+//	}
 
 }
