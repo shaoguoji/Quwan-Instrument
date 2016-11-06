@@ -12,8 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="">
     <meta name="author" content="">
-	
     <title>用户中心</title>
+
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -52,25 +52,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
 						</ul>
 					</div>
-					
-			<!--		<select class="language">
-						<option value="English" selected>English</option>
-						<option value="France">France</option>
-						<option value="Germany">Germany</option>
-					</select>
-					<select class="currency">
-						<option value="USD" selected>USD</option>
-						<option value="EUR">EUR</option>
-						<option value="DDD">DDD</option>
-					</select>
-			-->	</div>
-			
+				</div>
+				
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
 						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
 					</ul>
 				</div>
+				
 			</div>
 		</div>
 	</nav>
@@ -81,26 +71,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
-				<form class="form-search">  
+				<form class="form-search" action="search.jsp">  
 					<input type="text" class="input-medium search-query">  
 					<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>  
 				</form>
 			</div>
 			<div class="col-md-4">
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>CART : 0 ITEM</a></div>
+
+				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 </a></div>
 			</div>
 		</div>
 	</header>
 	<!--Navigation-->
     <nav id="menu" class="navbar">
 		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
+			<div class="navbar-header"><span id="heading" class="visible-xs">分类</span>
 			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.jsp">Home</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
+
+					<li><a href="index.jsp">首页</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC 计算机</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -110,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Laptops &amp; Notebooks</a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 笔记本</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -123,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div> 
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Mobiles &amp; Tablet</a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">手机 &amp; 平板电脑</a>
 						<div class="dropdown-menu" style="margin-left: -203.625px;">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -150,7 +142,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 					</li>
-					<li><a href="category.jsp">Software</a></li>
+
+					<li><a href="category.jsp">软件</a></li>
+
 				</ul>
 			</div>
 		</div>
@@ -163,53 +157,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="breadcrumb">
-						<li><a href="index.jsp">Home</a></li>
-						<li><a href="account.jsp">Account</a></li>
+						<li><a href="index.jsp">首页</a></li>
+						<li><a href="account.jsp">我的账号</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<div class="heading"><h2>Login</h2></div>
+					<div class="heading"><h2>登录</h2></div>
 					<form name="form1" id="ff1" method="post" action="login.php">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Username :" name="username" id="username" required>
+							<input type="text" class="form-control" placeholder="用户名 :" name="username" id="username" required>
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="Password :" name="email" id="email" required>
+							<input type="password" class="form-control" placeholder="密码 :" name="email" id="email" required>
 						</div>
-						<button type="submit" class="btn btn-1" name="login" id="login">Login</button>
-						<a href="#">Forgot Your Password ?</a>
+						<button type="submit" class="btn btn-1" name="login" id="login">登录</button>
+						<a href="#">忘记密码 ?</a>
 					</form>
 				</div>
 				<div class="col-md-6">
-					<div class="heading"><h2>New User ? Create An Account.</h2></div>
+					<div class="heading"><h2>新用户 ?  注册账号</h2></div>
 					<form name="form2" id="ff2" method="post" action="register.php">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="First Name :" name="firstname" id="firstname" required>
+							<input type="text" class="form-control" placeholder="用户名 :" name="firstname" id="firstname" required>
 						</div>
 						<div class="form-group">
 							<input type="email" class="form-control" placeholder="Last Name :" name="lastname" id="lastname" required>
 						</div>
 						<div class="form-group">
-							<input type="tel" class="form-control" placeholder="Email Address :" name="email" id="email" required>
+							<input type="tel" class="form-control" placeholder="邮箱 :" name="email" id="email" required>
 						</div>
 						<div class="form-group">
-							<input type="tel" class="form-control" placeholder="Mobile :" name="phone" id="phone" required>
+							<input type="tel" class="form-control" placeholder="手机号 :" name="phone" id="phone" required>
 						</div>
 						<div class="form-group">
-							<input name="gender" id="gender" type="radio"> Male <input name="gender" id="gender" type="radio"> Female 
+							<input name="gender" id="gender" type="radio"> 男<input name="gender" id="gender" type="radio"> 女  
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="Password :" name="password" id="password" required>
+							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required>
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="Retype Password :" name="repassword" id="repassword" required>
+							<input type="password" class="form-control" placeholder="确认密码 :" name="repassword" id="repassword" required>
 						</div>
 						<div class="form-group">
-							<input name="agree" id="agree" type="checkbox" > I agree to your website.
+							<input name="agree" id="agree" type="checkbox" > 同意协议
 						</div>
-						<button type="submit" class="btn btn-1">Create</button>
+						<button type="submit" class="btn btn-1">注册</button>
 					</form>
 				</div>
 			</div>
@@ -224,30 +218,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 					</div>
 					<div class="col-md-3 col-footer footer-2">
-						<div class="heading"><h4>Customer Service</h4></div>
+						<div class="heading"><h4>用户服务</h4></div>
 						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Delivery Information</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Terms & Conditions</a></li>
-							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">关于我们</a></li>
+							<li><a href="#">物流信息</a></li>
+							<li><a href="#">隐私策略</a></li>
+							<li><a href="#">购物须知</a></li>
+							<li><a href="#">联系我们</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-3">
-						<div class="heading"><h4>My Account</h4></div>
+						<div class="heading"><h4>我的账户</h4></div>
 						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Brands</a></li>
-							<li><a href="#">Gift Vouchers</a></li>
-							<li><a href="#">Specials</a></li>
-							<li><a href="#">Site Map</a></li>
+							<li><a href="#">我的账户</a></li>
+							<li><a href="#">品牌</a></li>
+							<li><a href="#">优惠卷</a></li>
+							<li><a href="#">特价</a></li>
+							<li><a href="#">网站导航</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-4">
-						<div class="heading"><h4>Contact Us</h4></div>
+						<div class="heading"><h4>联系我们</h4></div>
 						<ul>
-							<li><span class="glyphicon glyphicon-home"></span>California, United States 3000009</li>
-							<li><span class="glyphicon glyphicon-earphone"></span>+91 8866888111</li>
+							<li><span class="glyphicon glyphicon-home"></span>仲恺农业工程学院</li>
+							<li><span class="glyphicon glyphicon-earphone"></span>+86 8866888111</li>
 							<li><span class="glyphicon glyphicon-envelope"></span>infor@yoursite.com</li>
 						</ul>
 					</div>
