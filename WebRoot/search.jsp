@@ -219,38 +219,28 @@ String search = request.getParameter("search");
 									pro.setProperty("product_name", search);
 									products = productDao.findProduct(pro);
 									
-									if (products.size() > 0 )
-									{
-										for(Product p : products)
-										{
+									//for (Product obj : products)
+									//{
+									//	System.out.println(obj);
+									//}
+									
+									//if (products.size() > 0)
+									//{
+									//	for(Product p : products)
+									//	{
 							 %>
-											<div class="col-lg-3 col-md-3 col-xs-12">
-												<div class="product">
-													<div class="image"><a href="product.jsp?product_id=<%=p.getProduct_id() %>"><img src="<%=p.getProduct_image() %>" /></a></div>
-													<div class="buttons">
-														<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-														<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
-														<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
-													</div>
-													<div class="caption">
-														<div class="name"><h3><a href="product.jsp?product_id=<%=p.getProduct_id() %>"><%=p.getProduct_name() %></a></h3></div>
-														<div class="price">¥<%=p.getProduct_price() %><span>¥<%=p.getProduct_price()+200 %></span></div>
-														<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-													</div>
-												</div>
-											</div>
 								
 							<%
-										}
-									}
-									else
-									{
+									//	}
+									//}
+									//else
+									//{
 							%>
 										<div class="col-lg-12">																													
 											<div class="alert alert-info">没有找到相关的商品</div>
 										</div>
 							<%			
-									}																	
+									//}																	
 								}
 								else
 								{																
