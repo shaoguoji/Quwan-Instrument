@@ -2,9 +2,11 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import dao.Adminjudge;
 import entity.Admin;
 
 public class AdminServlet extends HttpServlet{
+	
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,9 +28,9 @@ public class AdminServlet extends HttpServlet{
 	}
 
 	@Override
+	//根据管理员账号密码跳转响应界面
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 			try {
 				if(Adminjudge.judge_accountpassword(request.getParameter("username"), request.getParameter("password"))){
 		
@@ -61,18 +64,25 @@ public class AdminServlet extends HttpServlet{
 							}
 						}
 					}	
+			
+				}
+				else{
 					
-					//response.sendRedirect("../index.jsp");
-						
-					
+					//request.getRequestDispatcher("../admin_accountagain.jsp").forward(request, response); 
+					//request.setAttribute("username", request.getParameter("username"));
+					response.sendRedirect("../admin_accountagain.jsp");
 				}
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
 
-		//request.getRequestDispatcher("../account.jsp").forward(request, response);
+		
 	}
+
 	
 }
