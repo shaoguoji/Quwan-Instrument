@@ -68,7 +68,7 @@ public class UserLoginServlet extends HttpServlet {
 			}else{
 				String oldPassword =user.getUserPassword();
 				if(newPassword.equals(oldPassword)){
-					response.sendRedirect("/category.jsp");
+					response.sendRedirect("../category.jsp");
 				}else{
 					//ÌáÊ¾ÃÜÂë´íÎó
 				}
