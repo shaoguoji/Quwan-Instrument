@@ -8,12 +8,32 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
 request.setCharacterEncoding("utf-8");
+
+/*
 String search = request.getParameter("search");
+
+if(request.getSession().getAttribute("pro") == null)
+{
+	Properties pro = new Properties();
+	request.getSession().setAttribute("pro",pro);			
+}
+		
+Properties pro = (Properties)request.getSession().getAttribute("pro");
+pro.setProperty("product_name", search);
+request.getSession().setAttribute("pro",pro);
+*/
+if (request.getSession().getAttribute("pro") == null)
+{
+	response.sendRedirect("index.jsp");
+}
+Properties pro = (Properties)request.getSession().getAttribute("pro");
+String search = pro.getProperty("product_name"); // 请确保search不为空，不然空指针异常搞死你
 %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<base href="<%=basePath%>">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -107,8 +127,9 @@ String search = request.getParameter("search");
 				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
-				<form action="search.jsp"  class="form-search" method="post">  
+				<form action="servlet/ProductFilterServlet"  class="form-search" method="post">  
 					<input name="search" type="text" class="input-medium search-query">  
+					<input name="action" type="hidden" value="query">
 					<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>  
 				</form>
 			</div>
@@ -139,13 +160,13 @@ String search = request.getParameter("search");
 					<div class="col-lg-2 col-md-2 classify ">分类</div>
 					<div class="col-lg-10 col-md-10" style="padding-left: 0px">
 						<ul class="breadcrumb">
-							<li><a href="#">所有分类</a></li>
-							<li><a href="#">民谣吉他</a></li>
-							<li><a href="#">古典吉他</a></li>
-							<li><a href="#">电吉他</a></li>
-							<li><a href="#">电箱吉他</a></li>
-							<li><a href="#">尤克里里</a></li>
-							<li><a href="#">其他吉他</a></li>
+							<li><a href="servlet/ProductFilterServlet?type=all&action=filter">所有分类</a></li>
+							<li><a href="servlet/ProductFilterServlet?type=民谣吉他&action=filter">民谣吉他</a></li>
+							<li><a href="servlet/ProductFilterServlet?type=古典吉他&action=filter">古典吉他</a></li>
+							<li><a href="servlet/ProductFilterServlet?type=电吉他&action=filter">电吉他</a></li>
+							<li><a href="servlet/ProductFilterServlet?type=电箱吉他Box&action=filter">电箱吉他</a></li>
+							<li><a href="servlet/ProductFilterServlet?type=尤克里里&action=filter">尤克里里</a></li>
+							<li><a href="servlet/ProductFilterServlet?type=其他吉他&action=filter">其他吉他</a></li>
 						</ul>
 					</div>
 				</div>
@@ -159,14 +180,14 @@ String search = request.getParameter("search");
 					<div class="col-lg-10 col-md-10" style="padding-left: 0px">
 					
 						<ul class="breadcrumb">
-							<li><a href="#">所有尺寸</a></li>
-							<li><a href="#">41英寸</a></li>
-							<li><a href="#">40英寸</a></li>
-							<li><a href="#">39英寸</a></li>
-							<li><a href="#">38英寸</a></li>
-							<li><a href="#">36英寸</a></li>
-							<li><a href="#">34英寸</a></li>
-							<li><a href="#">23英寸</a></li>
+							<li><a href="servlet/ProductFilterServlet?size=all&action=filter">所有尺寸</a></li>
+							<li><a href="servlet/ProductFilterServlet?size=41英寸&action=filter">41英寸</a></li>
+							<li><a href="servlet/ProductFilterServlet?size=40英寸&action=filter">40英寸</a></li>
+							<li><a href="servlet/ProductFilterServlet?size=39英寸&action=filter">39英寸</a></li>
+							<li><a href="servlet/ProductFilterServlet?size=38英寸&action=filter">38英寸</a></li>
+							<li><a href="servlet/ProductFilterServlet?size=26英寸&action=filter">36英寸</a></li>
+							<li><a href="servlet/ProductFilterServlet?size=24英寸&action=filter">34英寸</a></li>
+							<li><a href="servlet/ProductFilterServlet?size=23英寸&action=filter">23英寸</a></li>
 						</ul>
 					</div>
 				</div>
@@ -175,17 +196,18 @@ String search = request.getParameter("search");
 					<div class="col-lg-2 col-md-2 classify ">适用对象</div>
 						<div class="col-lg-10 col-md-10" style="padding-left: 0px">
 							<ul class="breadcrumb">
-								<li><a href="#">所有对象</a></li>
-								<li><a href="#">初学者</a></li>
-								<li><a href="#">熟悉者</a></li>
-								<li><a href="#">专业者</a></li>
+								<li><a href="servlet/ProductFilterServlet?level=all&action=filter">所有对象</a></li>
+								<li><a href="servlet/ProductFilterServlet?level=初学者&action=filter">初学者</a></li>
+								<li><a href="servlet/ProductFilterServlet?level=熟悉者&action=filter">熟悉者</a></li>
+								<li><a href="servlet/ProductFilterServlet?level=专业者&action=filter">专业者</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 
 			</div>	
-			
+
+<!-- 			
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -202,7 +224,7 @@ String search = request.getParameter("search");
 				</div>	
 			</div>
 		</div>
-
+ -->
 
 
 
@@ -218,8 +240,8 @@ String search = request.getParameter("search");
 								
 									List<Product> products = new ArrayList<Product>();
 								
-									Properties pro = new Properties();
-									pro.setProperty("product_name", search);
+									//Properties pro = new Properties();
+									//pro.setProperty("product_name", search);
 									products = productDao.findProduct(pro);
 									
 									if (products.size() > 0)
@@ -252,7 +274,7 @@ String search = request.getParameter("search");
 										<div class="col-lg-12">																													
 											<div class="alert alert-info">没有找到相关的商品</div>
 										</div>
-							<%			
+							<%										
 									}																	
 								}
 								else

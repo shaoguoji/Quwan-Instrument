@@ -28,6 +28,7 @@
     <servlet-name>UserRegServlet</servlet-name>
     <servlet-class>servlet.UserRegServlet</servlet-class>
   </servlet>
+
 	<servlet>
     <servlet-name>CommentServlet</servlet-name>
     <servlet-class>servlet.CommentServlet</servlet-class>
@@ -38,6 +39,15 @@
     <servlet-name>AdminProductChargeServlet</servlet-name>
     <servlet-class>servlet.AdminProductChargeServlet</servlet-class>
   </servlet>
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ProductFilterServlet</servlet-name>
+    <servlet-class>servlet.ProductFilterServlet</servlet-class>
+  </servlet>
+
+
 
   	<servlet-mapping>
   	<servlet-name>AdminServlet</servlet-name>
@@ -64,6 +74,10 @@
     <servlet-name>AdminProductChargeServlet</servlet-name>
     <url-pattern>/servlet/AdminProductChargeServlet</url-pattern>
 
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProductFilterServlet</servlet-name>
+    <url-pattern>/servlet/ProductFilterServlet</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
