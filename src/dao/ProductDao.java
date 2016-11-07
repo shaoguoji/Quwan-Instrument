@@ -94,7 +94,7 @@ public class ProductDao {
 	{
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		if(sht == Constants.ADD_PRODUCT)
+		if(sht == Constants.ADD_ADMIN)
 		{
 			try {				
 				conn = DBHelper.getConnection();
@@ -130,7 +130,7 @@ public class ProductDao {
 			}
 		}
 		
-		if(sht==Constants.CHANGE_PRODUCT)
+		if(sht==Constants.CHANGE_ADMIN)
 		{
 			Connection conn2 = null;
 			PreparedStatement stmt2 = null;

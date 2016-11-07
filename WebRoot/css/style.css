@@ -142,7 +142,7 @@ header .form-search button:hover {color: #eee;}
 .product .name h3{font-weight: 500;font-size: 20px;color: #666;margin-top: 10px;}
 .product .info ul li{margin: 10px 0;}
 .product .price {font-size: 22px;margin: 10px 0;}
-.product .price span{color: #aaa;margin-left: 10px;text-decoration: line-through;} 
+.product .price div{color: #aaa;margin-left: 10px;text-decoration: line-through;} 
 .product .rating{margin: 10px 0;}
 .product .rating span {margin-right: 5px;}
 .product .options {margin: 10px 0;}

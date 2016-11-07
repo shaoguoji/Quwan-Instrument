@@ -11,26 +11,23 @@ import entity.Comment;
 import entity.Deal;
 import entity.DealShopping;
 
-public class DealshoppingDao {
+public class DealShoppingDao {
 
 	public static void main(String[] args) {
-		String shopping_number = "456345423467892345";
-		DealshoppingDao dao = new DealshoppingDao();
+		String shopping_number = "44152219960108";
+		DealShoppingDao dao = new DealShoppingDao();
 		ArrayList<ArrayList<DealShopping>> lists = dao
-				.getDealsByUsername("邵国际");
+				.getDealsByUsername("钟志坚");
 		if (lists != null && lists.size() > 0) {
-			System.out.println("lists.size=" + lists.size());
 			for (ArrayList<DealShopping> list : lists) {
 				if (list != null && list.size() > 0) {
-					System.out.println("list.size=" + list.size());
 					for (DealShopping deal : list) {
 						System.out.println(deal.getDeal_price_());
-						System.out.println(deal.getProduct_count());
 					}
 				}
 			}
 		}
-		ArrayList<DealShopping> list2 = dao.getDealsByUsernameAndShopnum("邵国际",
+		ArrayList<DealShopping> list2 = dao.getDealsByUsernameAndShopnum("钟志坚",
 				shopping_number);
 		if (list2 != null && list2.size() > 0) {
 			System.out.println("list2.size=" + list2.size());
@@ -45,7 +42,7 @@ public class DealshoppingDao {
 		comment.setComment_degree("5");
 		Date date = new Date();
 		comment.setComment_date(date);
-		dao.DealComment("钟志坚", "TAKAMINE D5D 单板民谣吉他", comment);
+		//dao.DealComment("钟志坚", "TAKAMINE D5D 单板民谣吉他", comment);
 
 		ArrayList<DealShopping> list3 = new ArrayList<DealShopping>();
 		DealShopping deal = new DealShopping();
@@ -55,13 +52,19 @@ public class DealshoppingDao {
 		deal.setProduct_count(2);
 		list3.add(deal);
 		DealShopping deal2 = new DealShopping();
-		deal2.setDeal_price_(200);
+		deal2.setDeal_price_(1650);
 		deal2.setUser_id(3);
 		deal2.setProduct_id(3);
-		deal2.setProduct_count(3);
+		deal2.setProduct_count(5);
 		list3.add(deal2);
-		dao.AddDeal(list3);
-		dao.DeleteDeal(8);
+		DealShopping deal3 = new DealShopping();
+		deal3.setDeal_price_(550);
+		deal3.setUser_id(3);
+		deal3.setProduct_id(3);
+		deal3.setProduct_count(1);
+		list3.add(deal3);
+		//dao.AddDeal(list3);
+		//	dao.DeleteDeal(8);
 	}
 
 	// 添加订单
@@ -70,19 +73,12 @@ public class DealshoppingDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int key = 0;
-		// DECLARE @classId AS INT;
-		// SELECT @deal_id=@@IDENTITY
 		try {
 			conn = DBHelper.getConnection();
 			String sql = "insert into deal ( deal_state, deal_create_date,deal_isdelete) VALUES ('Notpay',?,0);"; // SQL语句
 			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setDate(1, new java.sql.Date(new Date().getTime()));
 			stmt.executeUpdate();
-			// 返回自动生成的主键
-			// int key = stmt.executeUpdate(sql,
-			// Statement.RETURN_GENERATED_KEYS);
-			// @deal_id
-			// 检索由于执行此 Statement 对象而创建的所有自动生成的键
 			rs = stmt.getGeneratedKeys();
 			if (rs.next()) {
 				key = rs.getInt(1);
@@ -132,9 +128,6 @@ public class DealshoppingDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		int key = 0;
-		// DECLARE @classId AS INT;
-		// SELECT @deal_id=@@IDENTITY
 		try {
 			conn = DBHelper.getConnection();
 			String sql = "update deal set deal_isdelete=1 where deal_id=?;"; // SQL语句
@@ -205,7 +198,7 @@ public class DealshoppingDao {
 						list.add(deal);// 加入订单集合
 					} else {
 						lists.add(list);// 加入全部订单集合
-						list.clear();
+						list = new ArrayList<DealShopping>();
 						deal_id = d.getDeal_id();
 						list.add(deal);// 加入订单集合
 					}
@@ -315,6 +308,7 @@ public class DealshoppingDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		short isDelete=0;
 		try {
 			conn = DBHelper.getConnection();
 			String sql = "select * from deal where deal_id=?;"; // SQL语句
@@ -328,7 +322,9 @@ public class DealshoppingDao {
 				deal.setDeal_create_date(rs.getDate("deal_create_date"));
 				deal.setDeal_send_date(rs.getDate("deal_send_date"));
 				deal.setDeal_recieve_date(rs.getDate("deal_receive_date"));
-				deal.setIs_delete(rs.getBoolean("deal_isdelete"));
+				if(rs.getBoolean("deal_isdelete"))
+					isDelete = 1;
+				deal.setIs_delete(isDelete);
 				return deal; // 返回订单属性对象。
 
 			} else {
@@ -419,4 +415,5 @@ public class DealshoppingDao {
 		}
 		return false;
 	}
+
 }
