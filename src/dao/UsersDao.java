@@ -18,7 +18,7 @@ public class UsersDao {
 			ResultSet rs = null;
 			try {
 				conn = DBHelper.getConnection();
-				String sql = "select * from items where user_account=?"; // SQLÓï¾ä
+				String sql = "select * from user where user_account=?"; // SQLÓï¾ä
 				stmt = conn.prepareStatement(sql);
 				stmt.setString(1, user_account);
 				rs = stmt.executeQuery();
@@ -31,6 +31,7 @@ public class UsersDao {
 					user.setUserImage(rs.getString("user_image"));
 					user.setUserPhone(rs.getString("user_phone"));
 					user.setUserEmail(rs.getString("user_email"));
+					user.setUserAddress("user_address");
 					user.setUserPoint(rs.getInt("user_point"));
 					user.setUserVip(rs.getBoolean("user_vip"));
 					return user;
@@ -67,20 +68,20 @@ public class UsersDao {
 		public void addUser(Users user){
 				PreparedStatement stmt = null;
 				Connection conn = null;
-				String sql = " insert into user values(?,?,?,?,?,?,?,?,?,?)";
+				String sql = "insert into user(user_account,user_password,user_name,user_image,user_phone,user_email,user_address,user_point,user_vip) values(?,?,?,?,?,?,?,?,?)";
 				try {
 					conn = DBHelper.getConnection();
 					stmt = conn.prepareStatement(sql);
-					stmt.setInt(1, user.getUserId());
-					stmt.setString(2, user.getUserAccount());
-					stmt.setString(3, user.getUserPassword());
-					stmt.setString(4, user.getUserName());
-					stmt.setString(5, user.getUserImage());
-					stmt.setString(6, user.getUserPhone());
-					stmt.setString(7, user.getUserEmail());
-					stmt.setString(8, user.getUserAddress());
-					stmt.setInt(9, user.getUserPoint());
-					stmt.setBoolean(10, user.isUserVip());
+					stmt.setString(1, user.getUserAccount());
+					stmt.setString(2, user.getUserPassword());
+					stmt.setString(3, user.getUserName());
+					stmt.setString(4, user.getUserImage());
+					stmt.setString(5, user.getUserPhone());
+					stmt.setString(6, user.getUserEmail());
+					stmt.setString(7, user.getUserAddress());
+					stmt.setInt(8, user.getUserPoint());
+					stmt.setBoolean(9, user.isUserVip());
+					stmt.executeUpdate();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

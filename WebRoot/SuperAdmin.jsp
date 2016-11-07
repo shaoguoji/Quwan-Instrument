@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>用户中心</title>
+    <title>超级管理员</title>
 
 	
     <!-- Bootstrap Core CSS -->
@@ -56,8 +56,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<div class="col-xs-6">
 					<ul class="top-link">
-						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
-						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
+						<li><a href="admin_account.jsp"><span class="glyphicon glyphicon-user"></span> 退出</a></li>
+						
 					</ul>
 				</div>
 				
@@ -71,80 +71,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
-				<form action="search.jsp"  class="form-search" method="post">  
-					<input name="search" type="text" class="input-medium search-query">  
+				<form class="form-search" action="search.jsp">  
+					<input type="text" class="input-medium search-query">  
 					<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>  
 				</form>
-			</div>
-			<div class="col-md-4">
-
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 </a></div>
 			</div>
 		</div>
 	</header>
 	<!--Navigation-->
     <nav id="menu" class="navbar">
 		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">分类</span>
-			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
-			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-
-					<li><a href="index.jsp">首页</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC 计算机</a>
-						<div class="dropdown-menu">
-							<div class="dropdown-inner">
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">Window</a></li>
-									<li><a href="category.jsp">MacBook</a></li>
-								</ul>
-							</div>
-						</div>
-					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 笔记本</a>
-						<div class="dropdown-menu">
-							<div class="dropdown-inner">
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">Dell</a></li>
-									<li><a href="category.jsp">Asus</a></li>
-									<li><a href="category.jsp">Samsung</a></li>
-									<li><a href="category.jsp">Lenovo</a></li>
-									<li><a href="category.jsp">Acer</a></li>
-								</ul>
-							</div> 
-						</div>
-					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">手机 &amp; 平板电脑</a>
-						<div class="dropdown-menu" style="margin-left: -203.625px;">
-							<div class="dropdown-inner">
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">Iphone</a></li>
-									<li><a href="category.jsp">Samsung</a></li>
-									<li><a href="category.jsp">Nokia</a></li>
-									<li><a href="category.jsp">Lenovo</a></li>
-									<li><a href="category.jsp">Google</a></li>
-								</ul>
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">Nexus</a></li>
-									<li><a href="category.jsp">Dell</a></li>
-									<li><a href="category.jsp">Oppo</a></li>
-									<li><a href="category.jsp">Blackberry</a></li>
-									<li><a href="category.jsp">HTC</a></li>
-								</ul>
-								<ul class="list-unstyled">
-									<li><a href="category.jsp">LG</a></li>
-									<li><a href="category.jsp">Q-Mobiles</a></li>
-									<li><a href="category.jsp">Sony</a></li>
-									<li><a href="category.jsp">Wiko</a></li>
-									<li><a href="category.jsp">T&T</a></li>
-								</ul>
-							</div>
-						</div>
-					</li>
-
-					<li><a href="category.jsp">软件</a></li>
-
+					<button type="submit" class="btn btn-1" name="humanmanage" id="login">人员信息管理</button>
+					<button type="submit" class="btn btn-1" name="powermanage" id="login">权限管理</button>
 				</ul>
 			</div>
 		</div>
@@ -155,22 +95,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="page-content" class="single-page">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-2">
 					<ul class="breadcrumb">
-						<li><a href="index.jsp">首页</a></li>
-						<li><a href="account.jsp">我的账号</a></li>
+						<li>姓名 </li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="breadcrumb">
+						<li>角色</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="breadcrumb">
+						<li>职务</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="breadcrumb">
+						<li>在线</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="breadcrumb">
+						<li>入职时间</li>
 					</ul>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="heading"><h2>登录</h2></div>
-					<form name="form1" id="ff1" method="post" action="servlet/UserLoginServlet">
+					<form name="form1" id="ff1" method="post" action="login.php">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="用户名 :" name="username" id="username" required>
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required>
+							<input type="password" class="form-control" placeholder="密码 :" name="email" id="email" required>
 						</div>
 						<button type="submit" class="btn btn-1" name="login" id="login">登录</button>
 						<a href="#">忘记密码 ?</a>
@@ -178,15 +137,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="col-md-6">
 					<div class="heading"><h2>新用户 ?  注册账号</h2></div>
-					<form name="form2" id="ff2" method="post" action="servlet/UserRegServlet">
+					<form name="form2" id="ff2" method="post" action="register.php">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="用户名 :" name="firstname" id="firstname" required>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Last Name :" name="lastname" id="lastname" required>
+							<input type="email" class="form-control" placeholder="Last Name :" name="lastname" id="lastname" required>
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control" placeholder="邮箱 :" name="email" id="email" required>
+							<input type="tel" class="form-control" placeholder="邮箱 :" name="email" id="email" required>
 						</div>
 						<div class="form-group">
 							<input type="tel" class="form-control" placeholder="手机号 :" name="phone" id="phone" required>
@@ -270,3 +229,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</footer>
 </body>
 </html>
+

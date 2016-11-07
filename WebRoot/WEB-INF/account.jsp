@@ -71,8 +71,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
-				<form action="search.jsp"  class="form-search" method="post">  
-					<input name="search" type="text" class="input-medium search-query">  
+				<form class="form-search" action="search.jsp">  
+					<input type="text" class="input-medium search-query">  
 					<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>  
 				</form>
 			</div>
@@ -165,12 +165,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 				<div class="col-md-6">
 					<div class="heading"><h2>登录</h2></div>
-					<form name="form1" id="ff1" method="post" action="servlet/UserLoginServlet">
+					<form name="form1" id="ff1" method="post" action="login.php">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="用户名 :" name="username" id="username" required>
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required>
+							<input type="password" class="form-control" placeholder="密码 :" name="email" id="email" required>
 						</div>
 						<button type="submit" class="btn btn-1" name="login" id="login">登录</button>
 						<a href="#">忘记密码 ?</a>
@@ -178,15 +178,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="col-md-6">
 					<div class="heading"><h2>新用户 ?  注册账号</h2></div>
-					<form name="form2" id="ff2" method="post" action="servlet/UserRegServlet">
+					<form name="form2" id="ff2" method="post" action="register.php">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="用户名 :" name="firstname" id="firstname" required>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Last Name :" name="lastname" id="lastname" required>
+							<input type="email" class="form-control" placeholder="Last Name :" name="lastname" id="lastname" required>
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control" placeholder="邮箱 :" name="email" id="email" required>
+							<input type="tel" class="form-control" placeholder="邮箱 :" name="email" id="email" required>
 						</div>
 						<div class="form-group">
 							<input type="tel" class="form-control" placeholder="手机号 :" name="phone" id="phone" required>

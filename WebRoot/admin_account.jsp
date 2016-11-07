@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>用户中心</title>
+    <title>管理员登录中心</title>
 
 	
     <!-- Bootstrap Core CSS -->
@@ -53,14 +53,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</ul>
 					</div>
 				</div>
-				
-				<div class="col-xs-6">
-					<ul class="top-link">
-						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
-						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
-					</ul>
-				</div>
-				
 			</div>
 		</div>
 	</nav>
@@ -71,15 +63,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
-				<form action="search.jsp"  class="form-search" method="post">  
-					<input name="search" type="text" class="input-medium search-query">  
+				<form class="form-search" action="search.jsp">  
+					<input type="text" class="input-medium search-query">  
 					<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>  
 				</form>
 			</div>
-			<div class="col-md-4">
-
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 </a></div>
-			</div>
+	
 		</div>
 	</header>
 	<!--Navigation-->
@@ -155,17 +144,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="page-content" class="single-page">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12">
-					<ul class="breadcrumb">
-						<li><a href="index.jsp">首页</a></li>
-						<li><a href="account.jsp">我的账号</a></li>
-					</ul>
+				<div class="col-sm-6">
+					<img src="images/sub-banner1.png" alt="First slide" width="593" height="310">
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-3 col-md-offset-2">
 					<div class="heading"><h2>登录</h2></div>
-					<form name="form1" id="ff1" method="post" action="servlet/UserLoginServlet">
+					<form name="form1" id="ff1" method="post" action="servlet/AdminServlet">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="用户名 :" name="username" id="username" required>
 						</div>
@@ -173,37 +157,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required>
 						</div>
 						<button type="submit" class="btn btn-1" name="login" id="login">登录</button>
-						<a href="#">忘记密码 ?</a>
-					</form>
-				</div>
-				<div class="col-md-6">
-					<div class="heading"><h2>新用户 ?  注册账号</h2></div>
-					<form name="form2" id="ff2" method="post" action="servlet/UserRegServlet">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="用户名 :" name="firstname" id="firstname" required>
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Last Name :" name="lastname" id="lastname" required>
-						</div>
-						<div class="form-group">
-							<input type="email" class="form-control" placeholder="邮箱 :" name="email" id="email" required>
-						</div>
-						<div class="form-group">
-							<input type="tel" class="form-control" placeholder="手机号 :" name="phone" id="phone" required>
-						</div>
-						<div class="form-group">
-							<input name="gender" id="gender" type="radio"> 男<input name="gender" id="gender" type="radio"> 女  
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="确认密码 :" name="repassword" id="repassword" required>
-						</div>
-						<div class="form-group">
-							<input name="agree" id="agree" type="checkbox" > 同意协议
-						</div>
-						<button type="submit" class="btn btn-1">注册</button>
 					</form>
 				</div>
 			</div>
