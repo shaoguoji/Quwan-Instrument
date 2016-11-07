@@ -10,7 +10,7 @@ public class Deal {
 	private Date deal_create_date; // 创建时间
 	private Date deal_send_date; // 发货时间
 	private Date deal_recieve_date; // 确认收货时间
-	private boolean is_delete; // 是否删除
+	private short is_delete; // 是否删除
 	
 	
 	
@@ -21,7 +21,7 @@ public class Deal {
 	}
 	
 	public Deal(int deal_id, String dear_state, Date deal_create_date,
-			Date deal_send_date, Date deal_recieve_date, boolean is_delete) {
+			Date deal_send_date, Date deal_recieve_date, short is_delete) {
 		super();
 		this.deal_id = deal_id;
 		this.deal_state = dear_state;
@@ -93,13 +93,13 @@ public class Deal {
 
 
 
-	public boolean isIs_delete() {
+	public short getIs_delete() {
 		return is_delete;
 	}
 
 
 
-	public void setIs_delete(boolean is_delete) {
+	public void setIs_delete(short is_delete) {
 		this.is_delete = is_delete;
 	}
 
