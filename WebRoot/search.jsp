@@ -139,10 +139,12 @@ String search = request.getParameter("search");
 					<div class="col-lg-2 col-md-2 classify ">分类</div>
 					<div class="col-lg-10 col-md-10" style="padding-left: 0px">
 						<ul class="breadcrumb">
+							<li><a href="#">所有分类</a></li>
 							<li><a href="#">民谣吉他</a></li>
 							<li><a href="#">古典吉他</a></li>
 							<li><a href="#">电吉他</a></li>
 							<li><a href="#">电箱吉他</a></li>
+							<li><a href="#">尤克里里</a></li>
 							<li><a href="#">其他吉他</a></li>
 						</ul>
 					</div>
@@ -157,14 +159,14 @@ String search = request.getParameter("search");
 					<div class="col-lg-10 col-md-10" style="padding-left: 0px">
 					
 						<ul class="breadcrumb">
-							<li><a href="#">42英寸</a></li>
+							<li><a href="#">所有尺寸</a></li>
 							<li><a href="#">41英寸</a></li>
 							<li><a href="#">40英寸</a></li>
 							<li><a href="#">39英寸</a></li>
 							<li><a href="#">38英寸</a></li>
 							<li><a href="#">36英寸</a></li>
 							<li><a href="#">34英寸</a></li>
-							<li><a href="#">26英寸</a></li>
+							<li><a href="#">23英寸</a></li>
 						</ul>
 					</div>
 				</div>
@@ -173,7 +175,8 @@ String search = request.getParameter("search");
 					<div class="col-lg-2 col-md-2 classify ">适用对象</div>
 						<div class="col-lg-10 col-md-10" style="padding-left: 0px">
 							<ul class="breadcrumb">
-								<li><a href="#">初学者</li>
+								<li><a href="#">所有对象</a></li>
+								<li><a href="#">初学者</a></li>
 								<li><a href="#">熟悉者</a></li>
 								<li><a href="#">专业者</a></li>
 							</ul>
@@ -219,28 +222,38 @@ String search = request.getParameter("search");
 									pro.setProperty("product_name", search);
 									products = productDao.findProduct(pro);
 									
-									//for (Product obj : products)
-									//{
-									//	System.out.println(obj);
-									//}
-									
-									//if (products.size() > 0)
-									//{
-									//	for(Product p : products)
-									//	{
+									if (products.size() > 0)
+									{
+										for(Product p : products)
+										{
 							 %>
+											<div class="col-lg-3 col-md-3 col-xs-12">
+												<div class="product">
+													<div class="image"><a href="product.jsp?product_id=<%=p.getProduct_id() %>"><img style="height:300px;width:auto" src="<%=p.getProduct_image() %>" /></a></div>
+													<div class="buttons">
+														<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+														<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
+														<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
+													</div>
+													<div class="caption">
+														<div class="name"><h3><a href="product.jsp?product_id=<%=p.getProduct_id() %>"><%=p.getProduct_name() %></a></h3></div>
+														<div class="price">¥<%=p.getProduct_price() %><span>¥<%=p.getProduct_price()+200 %></span></div>
+														<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+													</div>
+												</div>
+											</div>
 								
 							<%
-									//	}
-									//}
-									//else
-									//{
+										}
+									}
+									else
+									{
 							%>
 										<div class="col-lg-12">																													
 											<div class="alert alert-info">没有找到相关的商品</div>
 										</div>
 							<%			
-									//}																	
+									}																	
 								}
 								else
 								{																
