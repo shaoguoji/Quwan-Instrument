@@ -32,17 +32,12 @@ public class DBHelper {
 			 }
 			 return conn;
 		}
-//		public static void main(String[] args) {
-//			try {
-//				Connection conn = DBHelper.getConnection();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			 if(conn!=null){
-//				 System.out.println("数据库连接正常");
-//			 }else{
-//				 System.out.println("数据库连接异常");
-//			 }
-//		}
+		public static void main(String[] args) {
+			Connection conn = DBHelper.getConnection();
+			 if(conn!=null){
+				 System.out.println("数据库连接正常");
+			 }else{
+				 System.out.println("数据库连接异常");
+			 }
+		}
 }
