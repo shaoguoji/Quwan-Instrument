@@ -13,9 +13,42 @@
   	<servlet-name>helloservlet</servlet-name>
   	<servlet-class>servlet.AdminServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DealShoppingServlet</servlet-name>
+    <servlet-class>servlet.DealShoppingServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CommentServlet</servlet-name>
+    <servlet-class>servlet.CommentServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminProductChargeServlet</servlet-name>
+    <servlet-class>servlet.AdminProductChargeServlet</servlet-class>
+  </servlet>
+
+
+
   	<servlet-mapping>
   	<servlet-name>helloservlet</servlet-name>
   	<url-pattern>/servlet/AdminServlet</url-pattern>
   	 </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DealShoppingServlet</servlet-name>
+    <url-pattern>/servlet/DealShoppingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CommentServlet</servlet-name>
+    <url-pattern>/servlet/CommentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminProductChargeServlet</servlet-name>
+    <url-pattern>/servlet/AdminProductChargeServlet</url-pattern>
+  </servlet-mapping>
   
 </web-app>
