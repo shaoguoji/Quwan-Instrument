@@ -139,45 +139,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</nav>
-	
-
 	<!--//////////////////////////////////////////////////-->
 	<!--///////////////////Account Page///////////////////-->
 	<!--//////////////////////////////////////////////////-->
-	<%
-	String username="";
-	String password="";
-	Cookie[] cookie = request.getCookies();
-	if(cookie!=null && cookie.length>0){
-		for (Cookie c :cookie ){
-			if(c.getName().equals("username")){
-				username = c.getValue();
-			
-			}
-			if(c.getName().equals("password")){
-				password = c.getValue();
-			}
-		}
-	}
-	//request.setAttribute("username", username);
-	//request.setAttribute("password", password);
-	
-	 %>
-	<%
-		String c1=request.getParameter("username");
-		String c2=request.getParameter("password");
-		Cookie cookieusername =new Cookie("username",c1);
-		Cookie cookiepassword =new Cookie("password",c2);
-			        
-		//设置过期时间
-		cookieusername.setMaxAge(48600);
-		cookiepassword.setMaxAge(48600);
-			        
-		//存储
-		response.addCookie(cookieusername);
-		response.addCookie(cookiepassword); 
-	 %>
-
 	<div id="page-content" class="single-page">
 		<div class="container">
 			<div class="row">
@@ -185,13 +149,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<img src="images/sub-banner1.png" alt="First slide" width="593" height="310">
 				</div>
 				<div class="col-md-3 col-md-offset-2">
-					<div class="heading"><h2>登录</h2></div>
+					<div class="heading"><h6>账号或密码错误，请重新登录</h6></div>
 					<form name="form1" id="ff1" method="post" action="servlet/AdminServlet"  >
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="用户名 :" name="username" value="<%=username %>" required/>
+							<input type="text" class="form-control" placeholder="用户名 :" name="username"  id="username" required>
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="password" value="<%=password %>" required/>
+							<input type="password" class="form-control" placeholder="密码 :" name="password"  id="password" required>
 						</div>
 						<button type="submit" class="btn btn-1" name="login" id="login">登录</button>
 					</form>
