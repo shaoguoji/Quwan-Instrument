@@ -18,7 +18,7 @@ public class UsersDao {
 			ResultSet rs = null;
 			try {
 				conn = DBHelper.getConnection();
-				String sql = "select * from items where user_account=?"; // SQLÓï¾ä
+				String sql = "select * from user where user_account=?"; // SQLÓï¾ä
 				stmt = conn.prepareStatement(sql);
 				stmt.setString(1, user_account);
 				rs = stmt.executeQuery();

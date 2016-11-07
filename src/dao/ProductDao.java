@@ -270,7 +270,7 @@ public class ProductDao {
 	
 	
 	
-	// 测试用main方法
+//	 测试用main方法
 //	public static void main(String[] args) {
 //		ProductDao pd = new ProductDao();
 //		List<Product> p = new ArrayList<Product>();
