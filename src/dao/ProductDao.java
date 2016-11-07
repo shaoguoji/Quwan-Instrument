@@ -30,10 +30,10 @@ public class ProductDao {
 				Set keys = pro.keySet();
 				for (Object key : keys)
 				{
-					if (key.equals("product_name")) // Ä£ºýËÑË÷				
+					//if (key.equals("product_name")) // Ä£ºýËÑË÷				
 						sql.append(key + " like '%" + pro.getProperty((String) key) + "%' and ");
-					else
-						sql.append(key + "='" + pro.getProperty((String) key) + "' and ");
+					//else
+					//	sql.append(key + "='" + pro.getProperty((String) key) + "' and ");
 				}
 				sql.delete(sql.length() - 5, sql.length());
 			}
