@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
@@ -42,7 +43,29 @@ public class UserRegServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			doPost(request, response);
+			response.setContentType("text/html;charset=utf-8");
+			if(request.getParameter("user_account")!=null){
+				Users user =null;
+				UsersDao usersDao =new UsersDao();
+				user = usersDao.getItemsByUsersAccount(request.getParameter("user_account"));
+				int isExist;
+				if(user!=null){
+					isExist = 1;
+				}else{
+					isExist=0;
+				}
+				response.getWriter().print(isExist);
+			}else{
+				int isEqual;
+				if(request.getParameter("user_password").length()==0){
+					isEqual=0;
+				}else if(request.getParameter("user_repassword").equals(request.getParameter("user_password"))){
+					isEqual=1;
+				}else{
+					isEqual=2;
+				}
+				response.getWriter().print(isEqual);
+			}
 	}
 
 	/**
@@ -59,50 +82,30 @@ public class UserRegServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
+		request.setCharacterEncoding("utf-8");
 		Users user =null;
 		UsersDao usersDao =new UsersDao();
-		user = usersDao.getItemsByUsersAccount(request.getParameter("fistname"));
-		if(user!=null){
-			//弹出对话框，此用户名已存在
-			out.print("此用户名已存在");
-			
-		}else if(!(request.getParameter("password").equals(request.getParameter("repassword")))){
-			//弹出对话框,两次密码不一致
-			out.print("两次密码不一致");
-		}else{
+		user = usersDao.getItemsByUsersAccount(request.getParameter("user_account"));
+		
 			String password=null;
 			try {
-				password = EncryptionForPassword.EncoderByMd5(request.getParameter("password"));
+				password = EncryptionForPassword.EncoderByMd5(request.getParameter("user_password"));
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			user = new Users();
-			user.setUserAccount(request.getParameter("firstname"));
-			user.setUserName(request.getParameter("lastname"));
-			user.setUserEmail(request.getParameter("email"));
-			user.setUserPhone(request.getParameter("phone"));
+			user.setUserAccount(request.getParameter("user_account"));
+			user.setUserName(request.getParameter("user_name"));
+			user.setUserEmail(request.getParameter("user_email"));
+			user.setUserPhone(request.getParameter("user_phone"));
 			user.setUserPassword(password);
 			user.setUserPoint(0);
 			user.setUserVip(false);
 			usersDao.addUser(user);
-			//提示注册成功，弹出按扭，点击按扭返回登陆界面。
-			
 			
 		}
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
-	}
+	
 
 	/**
 	 * Initialization of the servlet. <br>

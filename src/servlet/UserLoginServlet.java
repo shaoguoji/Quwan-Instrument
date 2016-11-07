@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
@@ -59,18 +60,24 @@ public class UserLoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		int type=0;
 		UsersDao usersDao = new UsersDao();
 		try {
-			String newPassword = EncryptionForPassword.EncoderByMd5(request.getParameter("email"));
-			Users user = usersDao.getItemsByUsersAccount(request.getParameter("username"));
+			String newPassword = EncryptionForPassword.EncoderByMd5(request.getParameter("user_password"));
+			Users user = usersDao.getItemsByUsersAccount(request.getParameter("user_account"));
 			if(user==null){
-				//提示用户名有误
+					type=1;
+					out.print(type);
 			}else{
 				String oldPassword =user.getUserPassword();
 				if(newPassword.equals(oldPassword)){
+					request.getSession().setAttribute("user_name", user.getUserAccount());
+					request.getSession().setAttribute("user_id", user.getUserId());
 					response.sendRedirect("../category.jsp");
 				}else{
-					//提示密码错误
+					type=2;
+					out.print(type);
 				}
 			}
 		} catch (NoSuchAlgorithmException e) {
