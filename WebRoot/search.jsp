@@ -164,7 +164,8 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
 							<li><a href="servlet/ProductFilterServlet?type=民谣吉他&action=filter">民谣吉他</a></li>
 							<li><a href="servlet/ProductFilterServlet?type=古典吉他&action=filter">古典吉他</a></li>
 							<li><a href="servlet/ProductFilterServlet?type=电吉他&action=filter">电吉他</a></li>
-							<li><a href="servlet/ProductFilterServlet?type=电箱吉他Box&action=filter">电箱吉他</a></li>
+							<li><a href="servlet/ProductFilterServlet?type=电箱吉他&action=filter">电箱吉他</a></li>
+							<li><a href="servlet/ProductFilterServlet?type=单板吉他&action=filter">单板吉他</a></li>
 							<li><a href="servlet/ProductFilterServlet?type=尤克里里&action=filter">尤克里里</a></li>
 							<li><a href="servlet/ProductFilterServlet?type=其他吉他&action=filter">其他吉他</a></li>
 						</ul>
