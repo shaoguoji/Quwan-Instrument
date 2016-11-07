@@ -41,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
+<% request.setCharacterEncoding("utf-8"); %>
 	<!--Top-->
 	<nav id="top">
 		<div class="container">
@@ -166,15 +167,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row">
 				<div class="col-md-6">
 					<div class="heading"><h2>登录</h2></div>
-					<form name="form1" id="ff1" method="post" action="servlet/UserLoginServlet">
+					<form name="form1" id="ff1" method="post" action="">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="用户名 :" name="username" id="username" required>
 						</div>
 						<div class="form-group">
 							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required>
 						</div>
-						<button type="submit" class="btn btn-1" name="login" id="login">登录</button>
-						<a href="#">忘记密码 ?</a>
+						<button type="button" class="btn btn-1" name="login" id="login">登录</button>
+						<a href="#">忘记密码 ?</a><span id="errorinfo" style="margin-left:80px"></span>
 					</form>
 				</div>
 				<div class="col-md-6">
@@ -193,18 +194,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="tel" class="form-control" placeholder="手机号 :" name="phone" id="phone" required>
 						</div>
 						<div class="form-group">
-							<input name="gender" id="gender" type="radio"> 男<input name="gender" id="gender" type="radio"> 女  
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required>
+							<input type="password" class="form-control" placeholder="密码 :" name="reg_password" id="reg_password" required>
 						</div>
 						<div class="form-group">
 							<input type="password" class="form-control" placeholder="确认密码 :" name="repassword" id="repassword" required>
 						</div>
 						<div class="form-group">
-							<input name="agree" id="agree" type="checkbox" > 同意协议
+							<input name="agree" id="agree" type="checkbox" value="agree"> 同意协议
 						</div>
-						<button type="submit" class="btn btn-1">注册</button>
+						<button type="button" class="btn btn-1" name="register"  id="register">注册</button>
 					</form>
 				</div>
 			</div>
@@ -270,4 +268,116 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</footer>
 </body>
+
+<script type="text/javascript">
+//初始化整个页面后才运行js代码
+	$(function(){
+			$("#login").click(function(){
+			    var  username  = $('#username').val();
+				var password = $('#password').val(); 
+				$.ajax({
+				 data: {method:"doPost", user_account:username,user_password:password},
+	             type: "POST",
+	             url: "servlet/UserLoginServlet",
+	             success: function(data){
+		                     if(data==1){
+		                     		$("#errorinfo").html("用户名错误");
+		                     }else if(data==2){
+		                     		$("#errorinfo").html("密码不正确");
+		                     }else {
+		                     		window.location.href ="category.jsp";
+		                     }
+	                    }
+       			  }); 
+			
+			});
+			$('#firstname').blur(function(){
+				var useraccount = $('#firstname').val();
+				if(useraccount.length==0){
+						alert("用户名不能为空");
+					}else{
+						$.ajax({
+						 data: {method:"doGet", user_account:useraccount},
+			             type: "GET",
+			             url: "servlet/UserRegServlet",
+			             success: function(isExist){
+			             			if(isExist==1){
+			             				alert("用户名已存在！");
+			             				}
+			                    }
+		       			  }); 
+					}
+			});
+			$('#lastname').blur(function(){
+					var user_name = $('#lastname').val();
+					if(user_name.length==0){
+						alert("姓名不能为空");
+					}
+			});
+			$('#email').blur(function(){
+					var user_email = $('#email').val();
+					if(user_email.length==0){
+						alert("邮箱不能为空");
+					}
+			});
+			$('#phone').blur(function(){
+					var user_phone = $('#phone').val();
+					if(user_phone.length==0){
+						alert("手机号不能为空");
+					}
+			});
+			$('#reg_password').blur(function(){
+					var userPassword = $('#reg_password').val();
+					if(userPassword.length==0){
+						alert("密码不能为空");
+					}
+			});
+			$('#repassword').blur(function(){
+					var userPassword = $('#reg_password').val();
+					var useRrepassword = $('#repassword').val();
+					if(useRrepassword.length==0){
+						alert("确认密码不能为空");
+					}else{
+						$.ajax({
+							 data: {method:"doGet", user_repassword:useRrepassword,user_password:userPassword},
+				             type: "GET",
+				             url: "servlet/UserRegServlet",
+				             success: function(isEqual){
+				             			if(isEqual==0){
+				             				alert("上层密码不能为空");
+				             			}else if(isEqual==2){
+				             				alert("两次密码不一致");
+				             			}
+				                    }
+			       			  }); 
+					}
+			});
+			$('#register').click(function(){
+				var userAccount = $('#firstname').val();
+				var userName = $('#lastname').val();
+				var userEmail = $('#email').val();
+				var userPhone = $('#phone').val();
+				var userPassword = $('#reg_password').val();
+				var userRepassword = $('#repassword').val();
+				var isAgree = $('#agree').val();
+				if(userAccount.length==0||userName.length==0||userEmail.length==0||userPhone.length==0||userPassword.length==0||userRepassword.length==0||isAgree.length==0){
+					alert("不能留空");
+				}else if(!($('[name=agree]:eq(0)').is(':checked'))){
+					alert("未同意协议！");
+				}else{
+					$.ajax({
+					 data: {method:"doPost", user_account:userAccount,user_name:userName,user_email:userEmail,user_phone:userPhone,user_password:userPassword,user_repassword:userRepassword,is_agree:isAgree},
+		             type: "POST",
+		             url: "servlet/UserRegServlet",
+		             success: function(isExist){
+		             				alert("注册成功！");
+		                    }
+	       			  }); 
+				}
+			});
+	});	
+	
+//在这外部定义函数 function
+</script>
+
 </html>

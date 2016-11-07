@@ -14,22 +14,22 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
+<<<<<<< HEAD
     <servlet-name>UserLoginServlet</servlet-name>
     <servlet-class>servlet.UserLoginServlet</servlet-class>
-  </servlet>
-  <servlet>
+=======
     <servlet-name>DealShoppingServlet</servlet-name>
     <servlet-class>servlet.DealShoppingServlet</servlet-class>
+>>>>>>> Jigiang
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-
+<<<<<<< HEAD
     <servlet-name>UserRegServlet</servlet-name>
     <servlet-class>servlet.UserRegServlet</servlet-class>
   </servlet>
-
-	<servlet>
+=======
     <servlet-name>CommentServlet</servlet-name>
     <servlet-class>servlet.CommentServlet</servlet-class>
   </servlet>
@@ -40,13 +40,7 @@
     <servlet-class>servlet.AdminProductChargeServlet</servlet-class>
   </servlet>
 
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ProductFilterServlet</servlet-name>
-    <servlet-class>servlet.ProductFilterServlet</servlet-class>
-  </servlet>
-
+>>>>>>> Jigiang
 
 
   	<servlet-mapping>
@@ -54,15 +48,14 @@
   	<url-pattern>/servlet/AdminServlet</url-pattern>
   	 </servlet-mapping>
   <servlet-mapping>
-
+<<<<<<< HEAD
     <servlet-name>UserLoginServlet</servlet-name>
     <url-pattern>/servlet/UserLoginServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>UserRegServlet</servlet-name>
     <url-pattern>/servlet/UserRegServlet</url-pattern>
-     </servlet-mapping>
-	<servlet-mapping>
+=======
     <servlet-name>DealShoppingServlet</servlet-name>
     <url-pattern>/servlet/DealShoppingServlet</url-pattern>
   </servlet-mapping>
@@ -73,11 +66,7 @@
   <servlet-mapping>
     <servlet-name>AdminProductChargeServlet</servlet-name>
     <url-pattern>/servlet/AdminProductChargeServlet</url-pattern>
-
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ProductFilterServlet</servlet-name>
-    <url-pattern>/servlet/ProductFilterServlet</url-pattern>
+>>>>>>> Jigiang
   </servlet-mapping>
   
   <welcome-file-list>

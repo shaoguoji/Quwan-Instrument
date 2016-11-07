@@ -223,6 +223,37 @@ public class SaleBeforeDao {
 		return salebefores;
 	}
 
+	// 删除售前服务信息
+	public Boolean deleteSaleBefore(int salebefore_id) {
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			try {
+				conn = DBHelper.getConnection();
+				String sql = "delete from salebefore where salebefore_id=?"; // SQL语句
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, salebefore_id);
+				rs = stmt.executeQuery();
+				//stmt.executeUpdate();
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				return null;
+			} finally {
+				// 释放语句对象
+				if (stmt != null) {
+					try {
+						stmt.close();
+						stmt = null;
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+	
+		return true;
+		}
+	
 	/*public static void main(String[] args) {
 
 		SaleBeforeDao pp = new SaleBeforeDao();
