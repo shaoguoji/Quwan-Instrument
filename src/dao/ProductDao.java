@@ -15,6 +15,69 @@ import entity.Product;
 
 public class ProductDao {
 	
+	// 根据id查找商品
+	public Product findProductById(String id)
+	{		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBHelper.getConnection();
+			
+			StringBuilder sql = new StringBuilder("select * from product where product_id=?");		
+			stmt = conn.prepareStatement(sql.toString());
+			stmt.setInt(1, Integer.parseInt(id));
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				Product product = new Product();
+					
+				product.setProduct_id(rs.getInt("product_id"));
+				product.setProduct_name(rs.getString("product_name"));
+				product.setProduct_price(rs.getFloat("product_price"));
+				product.setProduct_color(rs.getString("product_color"));
+				product.setProduct_size(rs.getString("product_size"));
+				product.setProduct_type(rs.getString("product_type"));
+				product.setProduct_level(rs.getString("product_level"));
+				product.setProduct_sale_count(rs.getInt("product_sale_count"));
+				product.setProduct_image(rs.getString("product_image"));
+				product.setProduct_introdution(rs.getString("produxt_introdution"));
+				product.setProduct_infomation(rs.getString("product_infomation"));
+				product.setProduct_is_sale(rs.getBoolean("product_is_sale"));
+				product.setProduct_show_date(rs.getDate("product_show_date"));
+				
+				return product;
+			}
+			else
+			{
+				return null;
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		} finally {
+			// 释放数据集对象
+			if (rs != null) {
+				try {
+					rs.close();
+					rs = null;
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+			// 释放语句对象
+			if (stmt != null) {
+				try {
+					stmt.close();
+					stmt = null;
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+
+		}
+	}
+	
 	// 查找商品
 	public List<Product> findProduct(Properties pro) {
 		List<Product> products = new ArrayList<Product>();
@@ -288,6 +351,9 @@ public class ProductDao {
 //		{
 //			System.out.println(obj);
 //		}
+//		
+//		Product pId = pd.findProductById("3");
+//		System.out.println("PId test:" + pId);
 //		
 //	}
 
