@@ -12,6 +12,59 @@ import entity.Users;
 
 public class UsersDao {
 	//通过用户账号查找用户信息
+	public Users getUserById(String id) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBHelper.getConnection();
+			String sql = "select * from user where user_id=?"; // SQL语句
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, id);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				Users user = new Users();
+				user.setUserId(rs.getInt("user_id"));
+				user.setUserAccount(rs.getString("user_account"));
+				user.setUserPassword(rs.getString("user_password"));
+				user.setUserName(rs.getString("user_name"));
+				user.setUserImage(rs.getString("user_image"));
+				user.setUserPhone(rs.getString("user_phone"));
+				user.setUserEmail(rs.getString("user_email"));
+				user.setUserAddress("user_address");
+				user.setUserPoint(rs.getInt("user_point"));
+				user.setUserVip(rs.getBoolean("user_vip"));
+				return user;
+			} else {
+				return null;
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		} finally {
+			// 释放数据集对象
+			if (rs != null) {
+				try {
+					rs.close();
+					rs = null;
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+			// 释放语句对象
+			if (stmt != null) {
+				try {
+					stmt.close();
+					stmt = null;
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+
+		}
+	}
+	//通过用户账号查找用户信息
 		public Users getItemsByUsersAccount(String user_account) {
 			Connection conn = null;
 			PreparedStatement stmt = null;
