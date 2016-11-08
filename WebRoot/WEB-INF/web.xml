@@ -92,6 +92,13 @@
     <servlet-name>UserPasswordChangeServlet</servlet-name>
     <servlet-class>servlet.UserPasswordChangeServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UserSaleLaterServlet</servlet-name>
+    <servlet-class>servlet.UserSaleLaterServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -155,6 +162,10 @@
   <servlet-mapping>
     <servlet-name>AdminSaleLaterServlet</servlet-name>
     <url-pattern>/servlet/AdminSaleLaterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserSaleLaterServlet</servlet-name>
+    <url-pattern>/servlet/UserSaleLaterServlet</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

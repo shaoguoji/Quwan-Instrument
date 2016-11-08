@@ -1,24 +1,25 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Date;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.DealShoppingDao;
-import entity.Comment;
 
+import dao.UserSaleLaterDao;
+import entity.SaleLater;
 
 @SuppressWarnings("serial")
-public class CommentServlet extends HttpServlet {
+public class UserSaleLaterServlet extends HttpServlet {
 
-	private DealShoppingDao dealDao = new DealShoppingDao();// 商品业务逻辑类的对象
+	private UserSaleLaterDao dao = new UserSaleLaterDao();// 售后服务业务逻辑类的对象
 
 	/**
 	 * Constructor of the object.
 	 */
-	public CommentServlet() {
+	public UserSaleLaterServlet() {
 		super();
 	}
 
@@ -65,40 +66,48 @@ public class CommentServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=utf-8");
-				if (addComment(request, response)) {
-					request.getRequestDispatcher("/deal.jsp").forward(
-							request, response);
-				} else {
-					request.setAttribute("fail", "添加评论");
-					request.getRequestDispatcher("/failure.jsp").forward(
-							request, response);
-				}
+		if (addBackServer(request, response)) {
+			request.getRequestDispatcher("/deal.jsp")
+					.forward(request, response);
+		} else {
+			request.setAttribute("fail", "申请服务");
+			request.getRequestDispatcher("/failure.jsp").forward(
+					request, response);
+		}
 	}
 
-	// 添加评论的方法
-	private boolean addComment(HttpServletRequest request,
+	// 添加服务的方法
+	private boolean addBackServer(HttpServletRequest request,
 			HttpServletResponse response) {
-		String userName = null;
-		String productName = null;
-		Comment comment = new Comment();
-		comment.setComment_date(new Date());
-		if (request.getParameter("comment_content") != null) {
-			comment.setComment_content(request.getParameter("comment_content"));
-		}
-		if (request.getParameter("comment_degree") != null) {
-			comment.setComment_degree(request.getParameter("comment_degree"));
-		}
-		if (request.getSession().getAttribute("user_name") != null) {
-			userName = request.getSession().getAttribute("user_name").toString();
-		}
-		if (request.getSession().getAttribute("product_name") != null) {
-			productName = request.getSession().getAttribute("product_name").toString();
-		}
-		if (dealDao.DealComment(userName, productName, comment)) {
-			System.out.println("添加评论成功");
+		SaleLater sal = new SaleLater();
+		if (request.getSession().getAttribute("product_id") != null)
+			sal.setProduct_id(Integer.parseInt(request.getSession()
+					.getAttribute("product_id").toString()));
+		else 
+			return false;
+		sal.setSalelater_is_handle(false);
+		if (request.getSession().getAttribute("deal_id") != null)
+			sal.setDeal(Integer.parseInt(request.getSession()
+					.getAttribute("deal_id").toString()));
+		else 
+			return false;
+		if (request.getSession().getAttribute("user_id") != null)
+			sal.setUser_id(Integer.parseInt(request.getSession()
+					.getAttribute("user_id").toString()));
+		else 
+			return false;
+		if (request.getSession().getAttribute("salelater") != null)
+			sal.setServive_later(request.getSession().getAttribute("salelater")
+					.toString());
+		else 
+			return false;
+		if (dao.BackServer(
+				sal,
+				Integer.parseInt(request.getParameter("salelater_type")))) {
+			System.out.println("申请服务成功");
 			return true;
 		} else {
-			System.out.println("添加评论失败");
+			System.out.println("申请服务失败");
 			return false;
 		}
 	}
@@ -112,5 +121,4 @@ public class CommentServlet extends HttpServlet {
 	public void init() throws ServletException {
 		// Put your code here
 	}
-
 }
