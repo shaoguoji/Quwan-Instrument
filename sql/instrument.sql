@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50051
 File Encoding         : 65001
 
-Date: 2016-11-07 21:48:51
+Date: 2016-11-08 04:15:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -122,10 +122,10 @@ CREATE TABLE `product` (
 -- Records of product
 -- ----------------------------
 INSERT INTO `product` VALUES ('1', 'YAMAHA 雅马哈 民谣吉他 F310', '799', '原木色', '41英寸', '民谣吉他', '熟悉者', '0', 'images/guitar_yamaha_f310.jpg', '品牌：YAMAHA 雅马哈\r\n\r\n型号：F310\r\nF系列的设计基于我们的FG系列吉他，具备杰出的耐用性和演奏表现力。', '品牌简介\r\n雅马哈公司是在1887年成立，具有悠久历史的公司。雅马哈通过全世界范围的销售公司，在世界市场占有稳固的位置。基于良好的开端，雅马哈公司逐渐发展成为全球的乐器制造商。随着公司的发展，雅马哈公司凭借其一直秉承的前沿技术和精湛的工艺，以音乐为原点培育技术与感染力，与全世界人民一起共创全新的感动和丰富的文化。', '', '2016-11-06');
-INSERT INTO `product` VALUES ('2', 'TAKAMINE D5D 单板民谣吉他', '2409.9', '黑色', '41英寸', '民谣吉他', '专业者', '0', 'images/guitar_TAKAMINE_D5D.jpg', '此款吉他采用标准D型设计，采用单板云杉木面板，玫瑰木背侧板，具有经典的TAKAMINE音色，手感舒适，外型简约大方。', '品牌简介\r\n坐落在日本TAKAMINE山脉环抱中的TAKAMINE公司，已经有了40多年的箱琴改革和制造历史了，它从一个家庭作坊一直发展到今天成为全世界箱琴业界的领导企业之一，在全世界各地，有着无数的吉他手在购买和使用TAKAMINE的吉他。', '', '2016-11-06');
-INSERT INTO `product` VALUES ('3', 'KAKA KUC-25D 23寸  单板尤克里里', '423.2', '原木色', '23英寸', '尤克里里', '初学者', '0', 'images/guitar_KAKA_KUC-25D.jpg', '此款吉他专门为初学者而定制，有助于吉他学习者提高演奏水平', '包装清单\r\nKAKA KUC-25D 23寸 单板尤克里里 小吉他', '', '2016-11-06');
-INSERT INTO `product` VALUES ('7', 'TOTORO 40寸尖角民谣吉他', '598', '亮光', '40英寸', '电箱吉他', '初学者', '0', 'images/guita_TOTORO40.jpg', '尖角款吉他在于它是删繁就简的结果，更因为它是众多贴近人心的细节所堆积而成的结晶。面板与侧板的无缝接和技术挑战了传统工艺，琴身边缘的圆润倒角，让长时间的演奏变得简单', '让梦想触手可及——尖角吉他 岂止于美', '', '2016-11-07');
-INSERT INTO `product` VALUES ('8', 'TOTORO 41寸尖角民谣吉他', '628', '亮光', '41英寸', '电箱吉他', '初学者', '0', 'images/guita_TOTORO41.jpg', '尖角款吉他在于它是删繁就简的结果，更因为它是众多贴近人心的细节所堆积而成的结晶。面板与侧板的无缝接和技术挑战了传统工艺，琴身边缘的圆润倒角，让长时间的演奏变得简单', '让梦想触手可及——尖角吉他 岂止于美', '', '2016-11-07');
+INSERT INTO `product` VALUES ('2', 'TAKAMINE D5D单板民谣吉他', '2409.9', '黑色', '41英寸', '民谣吉他-单板吉他', '专业者', '0', 'images/guitar_TAKAMINE_D5D.jpg', '此款吉他采用标准D型设计，采用单板云杉木面板，玫瑰木背侧板，具有经典的TAKAMINE音色，手感舒适，外型简约大方。', '品牌简介\r\n坐落在日本TAKAMINE山脉环抱中的TAKAMINE公司，已经有了40多年的箱琴改革和制造历史了，它从一个家庭作坊一直发展到今天成为全世界箱琴业界的领导企业之一，在全世界各地，有着无数的吉他手在购买和使用TAKAMINE的吉他。', '', '2016-11-06');
+INSERT INTO `product` VALUES ('3', 'KAKA KUC-25D 23寸单板尤克里里', '423.2', '原木色', '23英寸', '尤克里里-单板吉他', '初学者', '0', 'images/guitar_KAKA_KUC-25D.jpg', '此款吉他专门为初学者而定制，有助于吉他学习者提高演奏水平', '包装清单\r\nKAKA KUC-25D 23寸 单板尤克里里 小吉他', '', '2016-11-06');
+INSERT INTO `product` VALUES ('7', 'TOTORO 40寸尖角民谣吉他', '598', '亮光', '40英寸', '民谣吉他-电箱吉他', '初学者', '0', 'images/guita_TOTORO40.jpg', '尖角款吉他在于它是删繁就简的结果，更因为它是众多贴近人心的细节所堆积而成的结晶。面板与侧板的无缝接和技术挑战了传统工艺，琴身边缘的圆润倒角，让长时间的演奏变得简单', '让梦想触手可及——尖角吉他 岂止于美', '', '2016-11-07');
+INSERT INTO `product` VALUES ('8', 'TOTORO 41寸尖角民谣吉他', '628', '亮光', '41英寸', '民谣吉他-电箱吉他', '初学者', '0', 'images/guita_TOTORO41.jpg', '尖角款吉他在于它是删繁就简的结果，更因为它是众多贴近人心的细节所堆积而成的结晶。面板与侧板的无缝接和技术挑战了传统工艺，琴身边缘的圆润倒角，让长时间的演奏变得简单', '让梦想触手可及——尖角吉他 岂止于美', '', '2016-11-07');
 INSERT INTO `product` VALUES ('9', 'YAMAHA 雅马哈 古典吉他 C70(原木色)', '847.9', '原木色', '39英寸', '古典吉他', '熟悉者', '0', 'images/guitar_yamaha_c70.jpg', 'YAMAHA 雅马哈 古典吉他 C70(原木色)\r\n\r\n品牌：YAMAHA 雅马哈\r\n\r\n型号：C70\r\nC系列是一款适合古典吉他学习进阶的经典型号', '品牌简介\r\n雅马哈公司是在1887年成立，具有悠久历史的公司。雅马哈通过全世界范围的销售公司，在世界市场占有稳固的位置。基于良好的开端，雅马哈公司逐渐发展成为全球的乐器制造商。随着公司的发展，雅马哈公司凭借其一直秉承的前沿技术和精湛的工艺，以音乐为原点培育技术与感染力，与全世界人民一起共创全新的感动和丰富的文化。\r\n\r\n详细参数\r\n面板：云杉木\r\n背板及侧板：柳安木\r\n琴颈：：那都木\r\n指板：玫瑰木\r\n琴桥：玫瑰木\r\n弦长：650mm\r\n卷弦器：金色\r\n抛光：高抛光\r\n箱体深：94-100mm\r\n品数：19\r\n旋钮：镀金\r\n颜色：原木色\r\n\r\n售后信息\r\n保修期2年\r\n客户服务电话：800-819-0161\r\n包装清单\r\n品牌简介\r\n雅马哈公司是在1887年成立，具有悠久历史的公司。雅马哈通过全世界范围的销售公司，在世界市场占有稳固的位置。基于良好的开端，雅马哈公司逐渐发展成为全球的乐器制造商。随着公司的发展，雅马哈公司凭借其一直秉承的前沿技术和精湛的工艺，以音乐为原点培育技术与感染力，与全世界人民一起共创全新的感动和丰富的文化。', '', '2016-11-07');
 INSERT INTO `product` VALUES ('10', 'Glen Burton GE320-GLD Classic LP 风格电吉他', '1369.31', '棕褐色', '38英寸', '电吉他', '专业者', '0', 'images/guitar_GE320.jpg', 'Glen Burton Classic LP Style Electric Guitar, Gold with tan pick guard finish\r\nIncludes Solid Ash Body and Set Maple Neck with Rosewood Fretboard\r\nIncludes Rectangular Inlays and Dual Chrome Covered Humbucker Pickups\r\nIncludes 2 Volume 2 Tone Controls and 3 Way Toggle Switch', 'Glen Burton Classic LP Style Electric Guitar, Gold with tan pick guard finish\r\nIncludes Solid Ash Body and Set Maple Neck with Rosewood Fretboard\r\nIncludes Rectangular Inlays and Dual Chrome Covered Humbucker Pickups\r\nIncludes 2 Volume 2 Tone Controls and 3 Way Toggle Switch', '', '2016-11-07');
 

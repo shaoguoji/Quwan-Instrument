@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@ page import="entity.Users" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -41,6 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
+	<% 
+			Users user =(Users)session.getAttribute("user");
+	%>
 	<!--Top-->
 	<nav id="top">
 		<div class="container">
@@ -73,13 +77,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="index.jsp"><div id="logo"><img src="images/logo.png" /></div></a>
 			</div>
 			<div class="col-md-4">
-
-
-
-				<form action="search.jsp" class="form-search">  
-
-
-					<input type="text" class="input-medium search-query">  
+				<form action="servlet/ProductFilterServlet"  class="form-search" method="post">  
+					<input name="search" type="text" class="input-medium search-query">  
+					<input name="action" type="hidden" value="query">
 					<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>  
 				</form>
 			</div>
@@ -173,8 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<table>
 							<tr>
 								<td><h5>用户名：</h5></td>
-								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
-								<td><a href="#" class="btn btn-2">修改用户名</a></td>
+								<td><span id="user_name" style="margin-left:80px" ><%=user.getUserAccount() %></span></td>
 								
 							</tr>
 							<tr>
@@ -187,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<td><h5>积分： </h5></td>
 
-								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
+								<td><span id="point" style="margin-left:80px"><%=user.getUserPoint() %></span></td>
 								<td><a href="#" class="btn btn-2">申请会员</a></td>
 							</tr>
 							<tr>
@@ -200,8 +199,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<td><h5>地址:<h5/></td>
 
-								<td><h4>&nbsp&nbsp&nbsp&nbsp 仲恺农业工程学院<h4/></td>
-								<td><a href="#" class="btn btn-2">修改地址</a></td>
+								<td><input type="text" name="user_address" id="user_address" value=<%=user.getUserAddress() %> disabled></td>
+								<td><button type="button" name="change_address" id="change_address" class="btn btn-2">修改地址</button></td>
 							</tr>
 							<tr>
 								<td><h5>&nbsp</h5></td>
@@ -220,9 +219,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr>
 
 								<td><h5>手机号：</h5></td>
-								<td><h4>&nbsp&nbsp&nbsp&nbsp Jigiang<h4/></td>
-								<td><a href="#" class="btn btn-2">修改</a></td>
-								
+								<td><input type="text" name="user_phone" id="user_phone" value=<%=user.getUserPhone() %> disabled></td>
+								<td><button type="button" name="change_phone" id="change_phone" class="btn btn-2">修改</button></td>
+
 							</tr>
 							<tr>
 								<td><h5>&nbsp</h5></td>
@@ -233,8 +232,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr>
 
 								<td><h5>邮箱： </h5></td>
-								<td><h4>&nbsp&nbsp&nbsp&nbsp 499<h4/></td>
-								<td><a href="#" class="btn btn-2">修改</a></td>
+								<td><input type="email" name="user_email" id="user_email" value=<%=user.getUserEmail() %> disabled></td>
+								<td><button type="button" name="change_email" id="change_email" class="btn btn-2">修改</button></td>
 
 							</tr>
 							<tr>
@@ -324,4 +323,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</footer>
 </body>
+<script type="text/javascript">
+		$(function(){
+		    var disabled_address =$('input[name="user_address"]').attr("disabled");
+		    var disabled_phone =$('input[name="user_phone"]').attr("disabled");
+		    var disabled_email =$('input[name="user_email"]').attr("disabled");
+		    var userAccount=$('#user_name').html();
+		    $('#change_address').click(function(){
+		        	var userAddress=$('#user_address').val();
+		        if(disabled_address=="disabled"){
+		            $('input[name="user_address"]').removeAttr('disabled');
+		        } else {
+		        	$.ajax({
+					 data: {method:"doPost", user_account:userAccount,user_address:userAddress},
+		             type: "POST",
+		             url: "servlet/UserUpdate",
+		             success: function(data){
+		             				alert("修改成功！");
+		                    }
+	       			  }); 
+		            $('#user_address').attr('disabled', 'disabled');
+		        }
+		        disabled_address =$('input[name="user_address"]').attr("disabled");
+		    });
+		    $('#change_phone').click(function(){
+		    	var userPhone = $('#user_phone').val();
+		        if(disabled_phone=="disabled"){
+		            $('input[name="user_phone"]').removeAttr('disabled');
+		        } else {
+		        	$.ajax({
+					 data: {method:"doPost", user_account:userAccount,user_phone:userPhone},
+		             type: "POST",
+		             url: "servlet/UserUpdate",
+		             success: function(data){
+		             				alert("修改成功！");
+		                    }
+	       			  }); 
+		            $('#user_phone').attr('disabled', 'disabled');
+		        }
+		        disabled_phone=$('input[name="user_phone"]').attr("disabled");
+		    });
+		    $('#change_email').click(function(){
+		    	var userEmail=$('#user_email').val();
+		        if(disabled_email=="disabled"){
+		            $('input[name="user_email"]').removeAttr('disabled');
+		        } else {
+			        $.ajax({
+						 data: {method:"doPost", user_account:userAccount,user_email:userEmail},
+			             type: "POST",
+			             url: "servlet/UserUpdate",
+			             success: function(data){
+			             				alert("修改成功！");
+			                    }
+		       			  }); 
+		            $('#user_email').attr('disabled', 'disabled');
+		        }
+		        disabled_email =$('input[name="user_email"]').attr("disabled");
+		    });
+		});
+</script>
 </html>

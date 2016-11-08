@@ -30,10 +30,10 @@ public class ProductDao {
 				Set keys = pro.keySet();
 				for (Object key : keys)
 				{
-					if (key.equals("product_name")) // Ä£ºýËÑË÷				
+					//if (key.equals("product_name")) // Ä£ºýËÑË÷				
 						sql.append(key + " like '%" + pro.getProperty((String) key) + "%' and ");
-					else
-						sql.append(key + "='" + pro.getProperty((String) key) + "' and ");
+					//else
+					//	sql.append(key + "='" + pro.getProperty((String) key) + "' and ");
 				}
 				sql.delete(sql.length() - 5, sql.length());
 			}
@@ -94,7 +94,7 @@ public class ProductDao {
 	{
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		if(sht == Constants.ADD_PRODUCT)
+		if(sht == Constants.ADD_ADMIN)
 		{
 			try {				
 				conn = DBHelper.getConnection();
@@ -130,7 +130,7 @@ public class ProductDao {
 			}
 		}
 		
-		if(sht==Constants.CHANGE_PRODUCT)
+		if(sht==Constants.CHANGE_ADMIN)
 		{
 			Connection conn2 = null;
 			PreparedStatement stmt2 = null;

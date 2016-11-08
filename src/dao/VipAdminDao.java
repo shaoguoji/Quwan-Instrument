@@ -7,8 +7,9 @@ import java.sql.ResultSet;
 import util.DBHelper;
 import entity.Users;
 
-public class UserVipJudge {
+public class VipAdminDao {
 	
+	//判断积分足够成为会员？
 	public boolean User_pointJudge(String user_account){
 	
 		Connection conn = null;
@@ -64,5 +65,6 @@ public class UserVipJudge {
 		users =usersdao.getItemsByUsersAccount("shaoguoji");
 		vipjudge.User_pointJudge(users.getUserAccount());
 	}*/
+	
 	
 }
