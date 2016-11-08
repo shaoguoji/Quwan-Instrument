@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@ page import="entity.Users" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -12,8 +13,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>用户中心</title>
-
+	
+    <title>个人中心</title>
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -41,20 +42,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-<% request.setCharacterEncoding("utf-8"); %>
+	<% 
+			Users user =(Users)session.getAttribute("user");
+	%>
 	<!--Top-->
 	<nav id="top">
 		<div class="container">
 			<div class="row">
-			
 				<div class="col-xs-6">
-					<div class="col-xs-6">
-						<ul class="top-link">
-							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
-						</ul>
-					</div>
+			<!--		<select class="language">
+						<option value="English" selected>English</option>
+						<option value="France">France</option>
+						<option value="Germany">Germany</option>
+					</select>
+					<select class="currency">
+						<option value="USD" selected>USD</option>
+						<option value="EUR">EUR</option>
+						<option value="DDD">DDD</option>
+			-->		</select>
 				</div>
-				
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<%
@@ -72,7 +78,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
 					</ul>
 				</div>
-				
 			</div>
 		</div>
 	</nav>
@@ -90,22 +95,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form>
 			</div>
 			<div class="col-md-4">
-
-				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 </a></div>
+				<div id="cart"><a class="btn btn-1" href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>购物车 : 0 件商品</a></div>
 			</div>
 		</div>
 	</header>
 	<!--Navigation-->
     <nav id="menu" class="navbar">
 		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">分类</span>
+			<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
 			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-
-					<li><a href="index.jsp">首页</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC 计算机</a>
+					<li><a href="index.jsp">Home</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC Computers</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -115,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 笔记本</a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Laptops &amp; Notebooks</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -128,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div> 
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">手机 &amp; 平板电脑</a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Mobiles &amp; Tablet</a>
 						<div class="dropdown-menu" style="margin-left: -203.625px;">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -155,15 +158,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 					</li>
-
-					<li><a href="category.jsp">软件</a></li>
-
+					<li><a href="category.jsp">Software</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<!--//////////////////////////////////////////////////-->
-	<!--///////////////////Account Page///////////////////-->
+	<!--///////////////////Contact Page///////////////////-->
 	<!--//////////////////////////////////////////////////-->
 	<div id="page-content" class="single-page">
 		<div class="container">
@@ -171,50 +172,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="col-lg-12">
 					<ul class="breadcrumb">
 						<li><a href="index.jsp">首页</a></li>
-						<li><a href="account.jsp">我的账号</a></li>
+						<li><a href="contact.jsp">联系我们</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					<div class="heading"><h2>登录</h2></div>
-					<form name="form1" id="ff1" method="post" action="">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="用户名 :" name="username" id="username" required>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required>
-						</div>
-						<button type="button" class="btn btn-1" name="login" id="login">登录</button>
-						<a href="#">忘记密码 ?</a><span id="errorinfo" style="margin-left:80px"></span>
-					</form>
+				<div class="col-lg-12">
+					<div class="heading"><h1>修改密码</h1></div>
 				</div>
-				<div class="col-md-6">
-					<div class="heading"><h2>新用户 ?  注册账号</h2></div>
-					<form name="form2" id="ff2" method="post" action="servlet/UserRegServlet">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="用户名 :" name="firstname" id="firstname" required>
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Last Name :" name="lastname" id="lastname" required>
-						</div>
-						<div class="form-group">
-							<input type="email" class="form-control" placeholder="邮箱 :" name="email" id="email" required>
-						</div>
-						<div class="form-group">
-							<input type="tel" class="form-control" placeholder="手机号 :" name="phone" id="phone" required>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="reg_password" id="reg_password" required>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="确认密码 :" name="repassword" id="repassword" required>
-						</div>
-						<div class="form-group">
-							<input name="agree" id="agree" type="checkbox" value="agree"> 同意协议
-						</div>
-						<button type="button" class="btn btn-1" name="register"  id="register">注册</button>
-					</form>
+				<div class="col-md-6" style="margin-bottom: 30px;">
+					<table>
+							<tr>
+								<td><h6>当前密码：</h6></td>
+								<td><input name="current_password" type="password" id="current_password"></td>
+								<td><span id="current_errorinfo" style="margin-left:20px"></span></td>
+								
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>	
+							<tr>
+
+								<td><h6>输入密码： </h6></td>
+
+								<td><input name="enter_password" type="password" id="enter_password"></td>
+								<td><span id="enter_errorinfo" style="margin-left:20px"></span></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h6>确认密码:<h6/></td>
+								<td><input name="enter_repassword" type="password" id="enter_repassword"></td>
+								<td><span id="enter_re_errorinfo" style="margin-left:20px"></span></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><button type="button" name="yes" id="yes" class="btn btn-2" style="margin-left:100px">确认</button></td>
+							<td><a href="personal_centre.jsp"><button type="button" name="cancel" id="cancel" class="btn btn-2" style="margin-left:80px" >取消</button></a></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr style="border-top: 1px solid #333">
+								<td><h5></h5></td>
+								<td></td>
+							</tr>
+						</table>
 				</div>
 			</div>
 		</div>
@@ -279,116 +285,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</footer>
 </body>
-
 <script type="text/javascript">
-//初始化整个页面后才运行js代码
-	$(function(){
-			$("#login").click(function(){
-			    var  username  = $('#username').val();
-				var password = $('#password').val(); 
+$(function(){
+	$('#current_password').blur(function(){
+			var currentPassword = $('#current_password').val();
+			if(currentPassword.length==0){
+					$('#current_errorinfo').html("不能为空");
+			}else{
+					$('#current_errorinfo').html("");
+			}
+	});
+	$('#enter_password').blur(function(){
+			var enterPassword = $('#enter_password').val();
+			if(enterPassword.length==0){
+					$('#enter_errorinfo').html("不能为空");
+			}else{
+					$('#enter_errorinfo').html("");
+			}
+	});
+	$('#enter_repassword').blur(function(){
+			var enterPassword = $('#enter_password').val();
+			var enterRepassword = $('#enter_repassword').val();
+			if(enterPassword.length==0){
+					$('#enter_re_errorinfo').html("请输入初始密码");
+			}else if(enterRepassword.length==0){
+					$('#enter_re_errorinfo').html("不能为空");
+			}else if(enterPassword!=enterRepassword){
+					$('#enter_re_errorinfo').html("再次输入密码不一致");
+			}else{
+					$('#enter_re_errorinfo').html("");
+			}
+	});
+	$("#yes").click(function(){
+				var currentPassword = $('#current_password').val();
+				var enterPassword = $('#enter_password').val();
 				$.ajax({
-				 data: {method:"doPost", user_account:username,user_password:password},
+				 data: {method:"doPost", current_password:currentPassword},
 	             type: "POST",
-	             url: "servlet/UserLoginServlet",
+	             url: "servlet/UserPasswordChangeServlet",
 	             success: function(data){
-		                     if(data==1){
-		                     		$("#errorinfo").html("用户名错误");
-		                     }else if(data==2){
-		                     		$("#errorinfo").html("密码不正确");
-		                     }else {
-		                     		window.location.href ="category.jsp";
+		                     if(data==0){
+		                     		$('#current_errorinfo').html("密码错误，请重新输入！");
+		                     }else if(data==1){
+		                     			$.ajax({
+											 data: {method:"doPost", enter_password:enterPassword},
+								             type: "POST",
+								             url: "servlet/UserPasswordChangeServlet",
+								             success: function(data){
+									                     if(data==0){
+									                     		alert("修改成功，请重新登录！");
+									                     		window.location.href ="servlet/LogoutDealServlet";
+									                     }else{
+									                     		alert("未知错误，修改失败！");
+									                     }
+								                    }
+							       			  }); 
 		                     }
 	                    }
        			  }); 
-			
-			});
-			$('#firstname').blur(function(){
-				var useraccount = $('#firstname').val();
-				if(useraccount.length==0){
-						alert("用户名不能为空");
-					}else{
-						$.ajax({
-						 data: {method:"doGet", user_account:useraccount},
-			             type: "GET",
-			             url: "servlet/UserRegServlet",
-			             success: function(isExist){
-			             			if(isExist==1){
-			             				alert("用户名已存在！");
-			             				}
-			                    }
-		       			  }); 
-					}
-			});
-			$('#lastname').blur(function(){
-					var user_name = $('#lastname').val();
-					if(user_name.length==0){
-						alert("姓名不能为空");
-					}
-			});
-			$('#email').blur(function(){
-					var user_email = $('#email').val();
-					if(user_email.length==0){
-						alert("邮箱不能为空");
-					}
-			});
-			$('#phone').blur(function(){
-					var user_phone = $('#phone').val();
-					if(user_phone.length==0){
-						alert("手机号不能为空");
-					}
-			});
-			$('#reg_password').blur(function(){
-					var userPassword = $('#reg_password').val();
-					if(userPassword.length==0){
-						alert("密码不能为空");
-					}
-			});
-			$('#repassword').blur(function(){
-					var userPassword = $('#reg_password').val();
-					var useRrepassword = $('#repassword').val();
-					if(useRrepassword.length==0){
-						alert("确认密码不能为空");
-					}else{
-						$.ajax({
-							 data: {method:"doGet", user_repassword:useRrepassword,user_password:userPassword},
-				             type: "GET",
-				             url: "servlet/UserRegServlet",
-				             success: function(isEqual){
-				             			if(isEqual==0){
-				             				alert("上层密码不能为空");
-				             			}else if(isEqual==2){
-				             				alert("两次密码不一致");
-				             			}
-				                    }
-			       			  }); 
-					}
-			});
-			$('#register').click(function(){
-				var userAccount = $('#firstname').val();
-				var userName = $('#lastname').val();
-				var userEmail = $('#email').val();
-				var userPhone = $('#phone').val();
-				var userPassword = $('#reg_password').val();
-				var userRepassword = $('#repassword').val();
-				var isAgree = $('#agree').val();
-				if(userAccount.length==0||userName.length==0||userEmail.length==0||userPhone.length==0||userPassword.length==0||userRepassword.length==0||isAgree.length==0){
-					alert("不能留空");
-				}else if(!($('[name=agree]:eq(0)').is(':checked'))){
-					alert("未同意协议！");
-				}else{
-					$.ajax({
-					 data: {method:"doPost", user_account:userAccount,user_name:userName,user_email:userEmail,user_phone:userPhone,user_password:userPassword,user_repassword:userRepassword,is_agree:isAgree},
-		             type: "POST",
-		             url: "servlet/UserRegServlet",
-		             success: function(isExist){
-		             				alert("注册成功！");
-		                    }
-	       			  }); 
-				}
-			});
-	});	
-	
-//在这外部定义函数 function
+       	});
+ });
 </script>
-
 </html>

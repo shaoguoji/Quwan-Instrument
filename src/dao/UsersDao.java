@@ -100,7 +100,6 @@ public class UsersDao {
 		//修改用户信息
 		public void updateUser(Properties pro,Properties pros){
 			// TODO Auto-generated method stub
-			System.out.println("jinlaile");
 			StringBuilder sql = new StringBuilder("update user set ");
 			Statement stmt = null;
 			Connection con = null;
@@ -123,7 +122,6 @@ public class UsersDao {
 			}
 			try {
 				con = DBHelper.getConnection();
-				System.out.println(sql.toString());
 				stmt = con.createStatement();
 				stmt.executeUpdate(sql.toString());
 			
