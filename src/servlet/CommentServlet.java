@@ -20,7 +20,6 @@ public class CommentServlet extends HttpServlet {
 	 */
 	public CommentServlet() {
 		super();
-		System.out.println("失败");
 	}
 
 	public void destroy() {
@@ -66,7 +65,6 @@ public class CommentServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println("无奈");
 				if (addComment(request, response)) {
 					request.getRequestDispatcher("/success.jsp").forward(
 							request, response);
@@ -89,11 +87,11 @@ public class CommentServlet extends HttpServlet {
 		if (request.getParameter("comment_degree") != null) {
 			comment.setComment_degree(request.getParameter("comment_degree"));
 		}
-		if (request.getAttribute("user_name") != null) {
-			userName = request.getAttribute("user_name").toString();
+		if (request.getSession().getAttribute("user_name") != null) {
+			userName = request.getSession().getAttribute("user_name").toString();
 		}
-		if (request.getAttribute("product_name") != null) {
-			productName = request.getAttribute("product_name").toString();
+		if (request.getSession().getAttribute("product_name") != null) {
+			productName = request.getSession().getAttribute("product_name").toString();
 		}
 		if (dealDao.DealComment(userName, productName, comment)) {
 			System.out.println("添加评论成功");
