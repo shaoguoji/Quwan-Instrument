@@ -3,6 +3,9 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ page import="dao.DealShoppingDao"%>
+<%@ page import="entity.DealShopping"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -200,10 +203,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</p>
 							</div>
 						</div>
-
+						
+						
+						<!-- 循环的开始 -->
+							<%
+								// ArrayList<DealShopping> list= new ArrayList<DealShopping>();
+								ArrayList<ArrayList<DealShopping>> lists = new ArrayList<ArrayList<DealShopping>>();
+								DealShoppingDao dealDao = new DealShoppingDao();
+								lists = dealDao.getDealsByUsername("钟志坚");
+								if (lists != null && lists.size() > 0) {
+									for (ArrayList<DealShopping> list : lists) {
+										if (list != null && list.size() > 0) {
+											for (DealShopping deal : list) {
+												if (deal.getDeal().getIs_delete() == 0) {
+							%>
+							
+						
+						
 						<div class="row top" style="margin-bottom: 0px;">
 							<div class="col-md-5">
-								 <input type="checkbox" name="orderItems">时间：<span>2016-11-03</span>&nbsp;&nbsp;&nbsp;订单号:<span>2332634411909331</span>
+								 <input type="checkbox" name="orderItems">时间：<span><%=deal.getDeal().getDeal_create_date() %></span>&nbsp;&nbsp;&nbsp;订单号:<span><%=deal.getShopping_number() %></span>
 							</div>
 							
 							<div class="col-md-7">
@@ -217,12 +236,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="product well">
 								<div class="col-md-1">
 									<div class="image">
-										<a href="product.html"><img src="images/galaxy-note4.jpg" /></a>
+										<a href="product.html"><img src="images/galaxy-note-4.jpg" /></a>
 									</div>
 								</div>
 								<div class="col-md-2">
 									<div class="caption">
-										<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
+										<div class="name"><h3><a href="product.jsp"><%= deal.getProduct_id() %></a></h3></div>
 										<div class="info">	
 											<div>Brand: text</div>
 											<div>ID: 0122222</div>	
@@ -255,67 +274,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<div style="height: 5px;"></div>
 									<a href="itemComment.html" class="btn btn-default">评价晒单</a>
 									
+									<%
+								}
+											}
+										}
+									}
+								}
+							%>
 								</div>
 									
 							</div>	
 						</div>
 
 
-						<div class="row top" style="margin-bottom: 0px;">
-							<div class="col-md-5">
-								 <input type="checkbox" name="orderItems">时间：<span>2016-11-03</span>&nbsp;&nbsp;&nbsp;订单号:<span>2332634411909331</span>
-							</div>
-							
-							<div class="col-md-7">
-								<p class="text-right">
-									<a href="javascript:void(0)" onclick="deleteOrder(this)"><i class="glyphicon glyphicon-trash"></i></a>
-								</p>
-							</div>
-						</div>
-		    <div class="row">
-				<div class="product well">
-					<div class="col-md-1">
-						<div class="image">
-							<img src="images/galaxy-note4.jpg" />
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="caption">
-							<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
-							<div class="info">	
-								<div>Brand: text</div>
-								<div>ID: 0122222</div>	
-							</div>
-						</div>
-					</div>
-					<div class="col-md-1">
-						<div class="image">
-							<div class="price">$98<div>$122</div></div>
-						</div>
-					</div>
-					<div class="col-md-1">
-					 	<div class="image">
-							<span>2</span>
-						</div>	
-					</div>
-					<div class="col-md-1">
-						<span>￥50</span>
-					</div>
-					<div class="col-md-2">
-						<a href="#">查看物流</a>
-					</div>
-					<div class="col-md-2">
-					<a href="salesReturn.html">退款/退货/返修</a>
-					</div>	
-					<div class="col-md-2">
-						<a href="#" class="btn btn-default">确认收货</a><br>
-						<div style="height: 5px;"></div>
-						<a href="itemComment.html" class="btn btn-default">评价晒单</a>
-									
-					</div>
-					
-				</div>	
-			</div>
 
 					</div> 
 				</div>
