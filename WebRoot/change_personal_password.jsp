@@ -178,89 +178,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="heading"><h1>个人信息&账户安全</h1></div>
+					<div class="heading"><h1>修改密码</h1></div>
 				</div>
 				<div class="col-md-6" style="margin-bottom: 30px;">
 					<table>
 							<tr>
-								<td><h5>用户名：</h5></td>
-								<td><span id="user_name" style="margin-left:80px" ><%=user.getUserAccount() %></span></td>
+								<td><h6>当前密码：</h6></td>
+								<td><input name="current_password" type="password" id="current_password"></td>
+								<td><span id="current_errorinfo" style="margin-left:20px"></span></td>
 								
 							</tr>
 							<tr>
 								<td><h5>&nbsp</h5></td>
 							</tr>	
 							<tr>
-								<td><h5>&nbsp</h5></td>
-							</tr>	
-							<tr>
 
-								<td><h5>积分： </h5></td>
+								<td><h6>输入密码： </h6></td>
 
-								<td><span id="point" style="margin-left:80px"><%=user.getUserPoint() %></span></td>
-								<td><a href="#" class="btn btn-2">申请会员</a></td>
+								<td><input name="enter_password" type="password" id="enter_password"></td>
+								<td><span id="enter_errorinfo" style="margin-left:20px"></span></td>
 							</tr>
 							<tr>
 								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5></td>
-							</tr>
-							<tr>
-
-								<td><h5>地址:<h5/></td>
-
-								<td><input type="text" name="user_address" id="user_address" value=<%=user.getUserAddress() %> disabled></td>
-								<td><button type="button" name="change_address" id="change_address" class="btn btn-2">修改地址</button></td>
+								<td><h6>确认密码:<h6/></td>
+								<td><input name="enter_repassword" type="password" id="enter_repassword"></td>
+								<td><span id="enter_re_errorinfo" style="margin-left:20px"></span></td>
 							</tr>
 							<tr>
 								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5></td>
-							</tr>
-							<tr style="border-top: 1px solid #333">
-								<td><h5></h5></td>
-								<td></td>
-							</tr>
-						</table>
-				</div>
-				<div class="col-md-6" style="margin-bottom: 30px;">
-					<table>
-							<tr>
-
-								<td><h5>手机号：</h5></td>
-								<td><input type="text" name="user_phone" id="user_phone" value=<%=user.getUserPhone() %> disabled></td>
-								<td><button type="button" name="change_phone" id="change_phone" class="btn btn-2">修改</button></td>
-
-							</tr>
-							<tr>
-								<td><h5>&nbsp</h5></td>
-							</tr>	
-							<tr>
-								<td><h5>&nbsp</h5></td>
-							</tr>	
-							<tr>
-
-								<td><h5>邮箱： </h5></td>
-								<td><input type="email" name="user_email" id="user_email" value=<%=user.getUserEmail() %> disabled></td>
-								<td><button type="button" name="change_email" id="change_email" class="btn btn-2">修改</button></td>
-
-							</tr>
-							<tr>
-								<td><h5>&nbsp</h5></td>
-							</tr>
-							<tr>
-								<td><h5>&nbsp</h5></td>
-							</tr>
-							<tr>
-
-								<td><h5>密码:<h5/></td>
-								<td><a href="change_personal_password.jsp" class="btn btn-2">修改</a></td>
-
-							</tr>
-							<tr>
-								<td><h5>&nbsp</h5></td>
+								<td><button type="button" name="yes" id="yes" class="btn btn-2" style="margin-left:100px">确认</button></td>
+							<td><a href="personal_centre.jsp"><button type="button" name="cancel" id="cancel" class="btn btn-2" style="margin-left:80px" >取消</button></a></td>
 							</tr>
 							<tr>
 								<td><h5>&nbsp</h5></td>
@@ -335,62 +286,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</footer>
 </body>
 <script type="text/javascript">
-		$(function(){
-		    var disabled_address =$('input[name="user_address"]').attr("disabled");
-		    var disabled_phone =$('input[name="user_phone"]').attr("disabled");
-		    var disabled_email =$('input[name="user_email"]').attr("disabled");
-		    var userAccount=$('#user_name').html();
-		    $('#change_address').click(function(){
-		        	var userAddress=$('#user_address').val();
-		        if(disabled_address=="disabled"){
-		            $('input[name="user_address"]').removeAttr('disabled');
-		        } else {
-		        	$.ajax({
-					 data: {method:"doPost", user_account:userAccount,user_address:userAddress},
-		             type: "POST",
-		             url: "servlet/UserUpdate",
-		             success: function(data){
-		             				alert("修改成功！");
-		                    }
-	       			  }); 
-		            $('#user_address').attr('disabled', 'disabled');
-		        }
-		        disabled_address =$('input[name="user_address"]').attr("disabled");
-		    });
-		    $('#change_phone').click(function(){
-		    	var userPhone = $('#user_phone').val();
-		        if(disabled_phone=="disabled"){
-		            $('input[name="user_phone"]').removeAttr('disabled');
-		        } else {
-		        	$.ajax({
-					 data: {method:"doPost", user_account:userAccount,user_phone:userPhone},
-		             type: "POST",
-		             url: "servlet/UserUpdate",
-		             success: function(data){
-		             				alert("修改成功！");
-		                    }
-	       			  }); 
-		            $('#user_phone').attr('disabled', 'disabled');
-		        }
-		        disabled_phone=$('input[name="user_phone"]').attr("disabled");
-		    });
-		    $('#change_email').click(function(){
-		    	var userEmail=$('#user_email').val();
-		        if(disabled_email=="disabled"){
-		            $('input[name="user_email"]').removeAttr('disabled');
-		        } else {
-			        $.ajax({
-						 data: {method:"doPost", user_account:userAccount,user_email:userEmail},
-			             type: "POST",
-			             url: "servlet/UserUpdate",
-			             success: function(data){
-			             				alert("修改成功！");
-			                    }
-		       			  }); 
-		            $('#user_email').attr('disabled', 'disabled');
-		        }
-		        disabled_email =$('input[name="user_email"]').attr("disabled");
-		    });
-		});
+$(function(){
+	$('#current_password').blur(function(){
+			var currentPassword = $('#current_password').val();
+			if(currentPassword.length==0){
+					$('#current_errorinfo').html("不能为空");
+			}else{
+					$('#current_errorinfo').html("");
+			}
+	});
+	$('#enter_password').blur(function(){
+			var enterPassword = $('#enter_password').val();
+			if(enterPassword.length==0){
+					$('#enter_errorinfo').html("不能为空");
+			}else{
+					$('#enter_errorinfo').html("");
+			}
+	});
+	$('#enter_repassword').blur(function(){
+			var enterPassword = $('#enter_password').val();
+			var enterRepassword = $('#enter_repassword').val();
+			if(enterPassword.length==0){
+					$('#enter_re_errorinfo').html("请输入初始密码");
+			}else if(enterRepassword.length==0){
+					$('#enter_re_errorinfo').html("不能为空");
+			}else if(enterPassword!=enterRepassword){
+					$('#enter_re_errorinfo').html("再次输入密码不一致");
+			}else{
+					$('#enter_re_errorinfo').html("");
+			}
+	});
+	$("#yes").click(function(){
+				var currentPassword = $('#current_password').val();
+				var enterPassword = $('#enter_password').val();
+				$.ajax({
+				 data: {method:"doPost", current_password:currentPassword},
+	             type: "POST",
+	             url: "servlet/UserPasswordChangeServlet",
+	             success: function(data){
+		                     if(data==0){
+		                     		$('#current_errorinfo').html("密码错误，请重新输入！");
+		                     }else if(data==1){
+		                     			$.ajax({
+											 data: {method:"doPost", enter_password:enterPassword},
+								             type: "POST",
+								             url: "servlet/UserPasswordChangeServlet",
+								             success: function(data){
+									                     if(data==0){
+									                     		alert("修改成功，请重新登录！");
+									                     		window.location.href ="servlet/LogoutDealServlet";
+									                     }else{
+									                     		alert("未知错误，修改失败！");
+									                     }
+								                    }
+							       			  }); 
+		                     }
+	                    }
+       			  }); 
+       	});
+ });
 </script>
 </html>
