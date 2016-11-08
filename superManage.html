@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>superManager</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <title>Mobile Shop</title>
+	
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
+	
+	<!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+	
+	
+	<!-- Custom Fonts -->
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"  type="text/css">
+    <link rel="stylesheet" href="fonts/font-slider.css" type="text/css">
+	
+	<!-- jQuery and Modernizr-->
+	<script src="js/jquery-2.1.1.js"></script>
+	
+	<!-- Core JavaScript Files -->  	 
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    	function delNode(node){
+    		if (!confirm("你真的要删除所选的商品吗？")){
+					return;
+				} 
+    		node.parentNode.parentNode.parentNode.removeChild(node.parentNode.parentNode);
+    	}
+    	function addTable(){
+    		var tabNode=document.getElementById("tab");
+    		// if (tabNode.className=="close"){
+    		// 	tabNode.className="open";
+    		if(tabNode.style.display=="none"){
+    			tabNode.style.display="block";
+    		}
+
+    	}
+
+    </script>
+ 
+    <style type="text/css">
+    	.tabbable{
+    		background-color: white;
+    		border:none;
+    	}
+    	.tab-content{
+    		border:none;
+    	}
+    </style>
+	
+</head>
+<body>
+	<nav id="top">
+		<div class="container">
+		<!-- class="container"设置为固定宽度 -->
+			<div class="row">
+				<div class="col-xs-6">
+					<span>后台管理</span>
+				</div>
+				<div class="col-xs-6">
+					<ul class="top-link">
+						<li class="active"><a href="#"><span class="glyphicon glyphicon-off"></span>注销</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<header class="container">
+		<div class="tabbable">  
+			<ul class="nav nav-tabs">    
+				<li class="active"><a href="#1" data-toggle="tab">人员信息管理</a></li>    
+				<li><a href="#2" data-toggle="tab">权限管理</a></li>  
+			</ul> 
+			<div class="tab-content">    
+				<div class="tab-pane active" id="1">
+					<div class="row" style="margin-bottom: 30px;">
+						<button onclick="addTable()">添加</button>     
+						<button>编辑</button>     
+						<button>修改密码</button>     
+						<button>禁用人员</button>     
+						<form class="pull-right">
+							<input class="text"></input>
+							<button>查询</button>
+						</form> 
+					</div>
+
+					<div class="row col-lg-12" >
+						<div id="tab" style="display: none;">
+						<table class="table">
+							<tr>
+								<th><input type="checkbox"></th>
+								<th>姓名</th>
+								<th>用户名</th>
+								<th>角色</th>
+								<th>在线</th>
+								<th>入职时间</th>
+								
+
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="box"></input></td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+							
+								<td><button onclick="delNode(this)">删除</button></td>
+								
+								
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="box"></input></td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								
+								<td><button onclick="delNode(this)">删除</button></td>
+								
+								
+							</tr>
+						</table>
+						</div>
+					</div>
+				</div> 
+				<div class="tab-pane" id="2">
+					<div class="row" style="margin-bottom: 30px;">
+						<button>添加</button>     
+						<button>编辑</button>     
+						<button>删除</button>       
+						<form class="pull-right">
+							<input class="text"></input>
+							<button>查询</button>
+						</form> 
+					</div>
+
+					<div class="row col-lg-12" >
+						<table class="table">
+							<tr>
+								<th><input type="checkbox" ></th>
+								<th>姓名</th>
+								<th>用户名</th>
+								<th>角色</th>
+								<th>在线</th>
+								<th>入职时间</th>
+								
+
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="box"></input></td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								
+								<td><button onclick="delNode(this)">删除</button></td>
+								
+								
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="box"></input></td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td><button onclick="delNode(this)">删除</button></td>
+								
+								
+							</tr>
+						</table>
+					</div>
+				</div> 
+
+	
+</body>
+</html>
