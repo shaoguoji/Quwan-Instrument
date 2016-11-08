@@ -67,7 +67,18 @@ Product product = productDao.findProductById(id);
 
 				<div class="col-xs-6">
 					<ul class="top-link">
+						<%
+							if(session.getAttribute("isLogin")==null){
+					 %>
 						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
+						<%
+							}else{
+						 %>
+						<li><a href="personal_centre.jsp"><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("user_account") %></a></li>
+						<li><a href="servlet/LogoutDealServlet"><span class="glyphicon glyphicon-off"></span> 注销</a></li>
+						<%
+							}
+						 %>
 						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
 					</ul>
 				</div>

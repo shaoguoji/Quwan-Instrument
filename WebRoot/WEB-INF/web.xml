@@ -39,6 +39,34 @@
     <servlet-name>AdminProductChargeServlet</servlet-name>
     <servlet-class>servlet.AdminProductChargeServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SuperAdminServlet</servlet-name>
+    <servlet-class>servlet.SuperAdminServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminVipServlet</servlet-name>
+    <servlet-class>servlet.AdminVipServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminSaleBeforeServlet</servlet-name>
+    <servlet-class>servlet.AdminSaleBeforeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminSaleLaterServlet</servlet-name>
+    <servlet-class>servlet.AdminSaleLaterServlet</servlet-class>
+  </servlet>
+
+
+
+
 
   <servlet>
     <description>This is the description of my J2EE component</description>
@@ -52,6 +80,20 @@
     <servlet-name>UserUpdate</servlet-name>
     <servlet-class>servlet.UserUpdate</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LogoutDealServlet</servlet-name>
+    <servlet-class>servlet.LogoutDealServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UserPasswordChangeServlet</servlet-name>
+    <servlet-class>servlet.UserPasswordChangeServlet</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -89,6 +131,30 @@
   <servlet-mapping>
     <servlet-name>UserUpdate</servlet-name>
     <url-pattern>/servlet/UserUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LogoutDealServlet</servlet-name>
+    <url-pattern>/servlet/LogoutDealServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserPasswordChangeServlet</servlet-name>
+    <url-pattern>/servlet/UserPasswordChangeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SuperAdminServlet</servlet-name>
+    <url-pattern>/servlet/SuperAdminServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminVipServlet</servlet-name>
+    <url-pattern>/servlet/AdminVipServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminSaleBeforeServlet</servlet-name>
+    <url-pattern>/servlet/AdminSaleBeforeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminSaleLaterServlet</servlet-name>
+    <url-pattern>/servlet/AdminSaleLaterServlet</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

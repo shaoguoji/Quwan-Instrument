@@ -2,23 +2,23 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UsersDao;
-import encryption.EncryptionForPassword;
-import entity.Users;
+import dao.SaleBeforeDao;
+import dao.VipAdminDao;
 
-public class UserLoginServlet extends HttpServlet {
+public class AdminSaleBeforeServlet extends HttpServlet {
 
+	private String action; // 表示超级管理员动作
+	private SaleBeforeDao  salebeforedao= new SaleBeforeDao();// 售前服务逻辑类的对象
 	/**
 	 * Constructor of the object.
 	 */
-	public UserLoginServlet() {
+	public AdminSaleBeforeServlet() {
 		super();
 	}
 
@@ -42,8 +42,8 @@ public class UserLoginServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-			doPost(request, response);
+		doPost(request,response);
+		
 	}
 
 	/**
@@ -58,35 +58,37 @@ public class UserLoginServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		int type=0;
-		UsersDao usersDao = new UsersDao();
-		try {
-			String newPassword = EncryptionForPassword.EncoderByMd5(request.getParameter("user_password"));
-			Users user = usersDao.getItemsByUsersAccount(request.getParameter("user_account"));
-			if(user==null){
-					type=1;
-					out.print(type);
-			}else{
-				String oldPassword =user.getUserPassword();
-				if(newPassword.equals(oldPassword)){
-					request.getSession().setAttribute("user_account", user.getUserAccount());
-					request.getSession().setAttribute("isLogin", true);
-					request.getSession().setAttribute("user", user);
-					response.sendRedirect("../category.jsp");
-				}else{
-					type=2;
-					out.print(type);
-				}
+		if (request.getParameter("action") != null) {
+			this.action = request.getParameter("action");
+			if(action.equals("show")) //获取所有售前服务申请
+			{
+				request.getRequestDispatcher("#").forward(request,
+						response);
 			}
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(action.equals("delete")) //删除售前服务申请
+			{
+				if (SaleBeforeDelete(request, response)) {
+					request.getRequestDispatcher("#").forward(request,
+							response);
+				} else {
+					request.getRequestDispatcher("#").forward(request,
+							response);
+			}	
+			}
 		}
 	}
-
+	
+	//删除售前申请
+	private boolean SaleBeforeDelete(HttpServletRequest request,
+		HttpServletResponse response) {
+		String id = request.getParameter("salebefore_id");
+		if (salebeforedao.deleteSaleBefore(Integer.parseInt(id))) {
+			return true;
+		} else {
+			return false;
+		}
+	}	 
 	/**
 	 * Initialization of the servlet. <br>
 	 *

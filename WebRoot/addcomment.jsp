@@ -39,8 +39,37 @@
 
 </head>
 <body>
-	<nav id="top">
-		
+		<nav id="top">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-xs-6">
+					<div class="col-xs-6">
+						<ul class="top-link">
+							<li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="col-xs-6">
+					<ul class="top-link">
+						<%
+							if(session.getAttribute("isLogin")==null){
+					 %>
+						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
+						<%
+							}else{
+						 %>
+						<li><a href="personal_centre.jsp"><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("user_account") %></a></li>
+						<li><a href="servlet/LogoutDealServlet"><span class="glyphicon glyphicon-off"></span> 注销</a></li>
+						<%
+							}
+						 %>
+						<li><a href="contact.jsp"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
+					</ul>
+				</div>
+				
+			</div>
 	</nav>
 	<!--Header-->
 	<header class="container">
@@ -90,11 +119,11 @@
 					</ul>
 					<%
 					//	ProductDao dao = new ProductDao();
-					//	Users user = (Users)request.getSession().getAttribute("user");
-					//	request.setAttribute("user_name",user.getUserName());
-					//	request.setAttribute("product_name",(dao.findProductById(request.getParameter("product_id")).getProduct_name()));
-					request.setAttribute("user_name","钟志坚");
-					request.setAttribute("product_name","TAKAMINE D5D 单板民谣吉他");
+					//	Users user = (Users)session.getAttribute("user");
+					//	session.setAttribute("user_name",user.getUserName());
+					//	session.setAttribute("product_name",(dao.findProductById(request.getParameter("product_id")).getProduct_name()));
+					session.setAttribute("user_name","钟志坚");
+					session.setAttribute("product_name","TAKAMINE D5D 单板民谣吉他");
 					%>
 					<div class="tab-content">
 						<div class="tab-pane active" id="1">
@@ -121,8 +150,7 @@
 									<div class="col-sm-2">
 										<!--  <button>发表评价</button>-->
 										<!-- <div class="button"><input type="submit" value="发表评价" /></div> -->
-										<!-- <button type="submit" class="btn" value="发表评价">发表评价</button>  -->
-										<a href="servlet/CommentServlet">发表评价</a>
+										<button type="submit" class="btn" value="发表评价">发表评价</button>
 									</div>
 								</div>
 							</form>

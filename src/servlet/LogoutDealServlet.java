@@ -2,23 +2,18 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UsersDao;
-import encryption.EncryptionForPassword;
-import entity.Users;
-
-public class UserLoginServlet extends HttpServlet {
+public class LogoutDealServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public UserLoginServlet() {
+	public LogoutDealServlet() {
 		super();
 	}
 
@@ -42,9 +37,8 @@ public class UserLoginServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 			doPost(request, response);
-	}
+			}
 
 	/**
 	 * The doPost method of the servlet. <br>
@@ -58,33 +52,10 @@ public class UserLoginServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		int type=0;
-		UsersDao usersDao = new UsersDao();
-		try {
-			String newPassword = EncryptionForPassword.EncoderByMd5(request.getParameter("user_password"));
-			Users user = usersDao.getItemsByUsersAccount(request.getParameter("user_account"));
-			if(user==null){
-					type=1;
-					out.print(type);
-			}else{
-				String oldPassword =user.getUserPassword();
-				if(newPassword.equals(oldPassword)){
-					request.getSession().setAttribute("user_account", user.getUserAccount());
-					request.getSession().setAttribute("isLogin", true);
-					request.getSession().setAttribute("user", user);
-					response.sendRedirect("../category.jsp");
-				}else{
-					type=2;
-					out.print(type);
-				}
-			}
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			request.getSession().removeAttribute("user");
+			request.getSession().removeAttribute("user_account");
+			request.getSession().invalidate();
+			response.sendRedirect("../index.jsp");
 	}
 
 	/**
