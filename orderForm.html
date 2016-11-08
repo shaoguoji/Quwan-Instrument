@@ -29,16 +29,11 @@
     <script type="text/javascript">
 		function deleteOrder(node){
 			
-			// alert(node.parentNode.nodeName);
+			
 			var rowNode=node.parentNode.parentNode.parentNode;
-			// alert(rowNode.parentNode.nodeName);
 			var nextNode=rowNode.nextSibling.nextSibling;
-			// alert(nextNode.nodeName);
-			// rowNode.parentNode.removeChild(rowNode)；
 			rowNode.parentNode.removeChild(rowNode);
-			// $(nextNode).remove();
-			// nextNode.removeNode(false);
-			nextNode.innerHTML="";
+			nextNode.parentNode.removeChild(nextNode);
 			
 
 		}
@@ -78,7 +73,10 @@
     	.th_r{
     		border-right: 1px solid #DCD8D8;
 
-    	}	
+    	}
+    	.addBorder{
+    		border:1px solid #DCD8D8;
+    	}
     </style>
 </head>
 <body>
@@ -130,15 +128,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<!-- <div class="col-lg-2 col-md-2 col-xs-12">
-						<ul class="group">
-							<li class="list-group-item active" ><a href="#">退货/退款</a></li>
-							<li class="list-group-item" ><a href="#">商品投诉</a></li>
-							<li class="list-group-item" ><a href="#">售后保修</a></li>
-							<li class="list-group-item" ><a href="#">用户评价</a></li>
-						</ul>	
-					</div> -->
-					<div class="col-lg-10 col-md-10 col-xs-12">
+					
+					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="row">
 							<ul class="nav nav-tabs">
 								<li class="active"><a href="#">所有订单</a></li>
@@ -184,16 +175,18 @@
 						</div>
 
 						<div class="row">
-							<div class="col-md-6">
-								 <input type="checkbox" onclick="selectAll(this)">全选</input>
+							<div class="col-md-3" style="margin-top: 20px;">
+								 <input type="checkbox" onclick="selectAll(this)">全选</input>&nbsp;&nbsp;&nbsp;
 								 <button onclick="confirm()">批量确认收货</button>
 							</div>
 							
-							<div class="col-md-6">
-								<p class="text-right">
-									<button class="glyphicon glyphicon-chevron-left">上一页</button>
-									<button class="glyphicon glyphicon-chevron-right">下一页</button>
-								</p>
+							<div class="col-md-9">
+								<!-- <p class="text-right"> -->
+									<ul class="pager">  
+									<li><a href="#">前一页</a></li>  
+									<li><a href="#">后一页</a></li>
+									</ul>
+								<!-- </p> -->
 							</div>
 						</div>
 
@@ -208,117 +201,151 @@
 								</p>
 							</div>
 						</div>
+
+						
+				<div class="row addBorder">
+						<div class="row">
+							<div class="col-md-1">
+								<div>
+									<a href="product.html"><img src="images/galaxy-note5.jpg" /></a>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div >
+									<div class="name"><a href="product.html">Aliquam erat volutpat</a></div>
+									<div class="info">	
+										<div>Brand: text</div>
+										<div>ID: 0122222</div>	
+									</div>
+								</div>
+							</div>
+						
+							<div class="col-md-1">
+								<div class="price"><div>$122</div>$98</div>
+							</div>
+							<div class="col-md-1">
+							 	<div style="text-align: center;">2</div>
+							</div>
+							<div class="col-md-1">
+								<div>￥50</div>
+							</div>
+							<div class="col-md-2">
+								<a href="#">查看物流</a>
+							</div>
+							<div class="col-md-2">
+								<a href="salesReturn.html">退款/退货/返修</a><br>
+							</div>
+							<div class="col-md-2">
+								<a href="#" class="btn btn-default">确认收货</a>
+								<div style="height: 5px;"></div>
+								<a href="itemComment.html" class="btn btn-default">评价晒单</a>
+								
+							</div>
+						</div> 
+						
+						
 
 						<div class="row">
-							<div class="product well">
-								<div class="col-md-1">
-									<div class="image">
-										<a href="product.html"><img src="images/galaxy-note5.jpg" /></a>
+							<div class="col-md-1">
+								<div>
+									<a href="product.html"><img src="images/galaxy-note5.jpg" /></a>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div >
+									<div class="name"><a href="product.html">Aliquam erat volutpat</a></div>
+									<div class="info">	
+										<div>Brand: text</div>
+										<div>ID: 0122222</div>	
 									</div>
 								</div>
-								<div class="col-md-2">
-									<div class="caption">
-										<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
-										<div class="info">	
-											<div>Brand: text</div>
-											<div>ID: 0122222</div>	
-										</div>
-									</div>
-								</div>
-								<div class="col-md-1">
-									<div class="image">
-										<!-- <div class="price">$122<span>$98</span></div> -->
-										<div class="price">$98<div>$122</div></div>
-									</div>
-								</div>
-								<div class="col-md-1">
-								 	<div class="image">
-										<span>2</span>
-									</div>	
-								</div>
-								<div class="col-md-1">
-									<span>￥50</span>
-								</div>
-								<div class="col-md-2">
-									<a href="#">查看物流</a>
-								</div>
-								<div class="col-md-2">
+							</div>
+						
+							<div class="col-md-1">
+								<div class="price"><div>$122</div>$98</div>
+							</div>
+							<div class="col-md-1">
+							 	<div style="text-align: center;">2</div>
+							</div>
+							<div class="col-md-1">
+								<div>￥50</div>
+							</div>
+							<div class="col-md-2">
+								<a href="#">查看物流</a>
+							</div>
+							<div class="col-md-2">
 								<a href="salesReturn.html">退款/退货/返修</a><br>
+							</div>
+							<div class="col-md-2">
+								<a href="#" class="btn btn-default">确认收货</a>
+								<div style="height: 5px;"></div>
+								<a href="itemComment.html" class="btn btn-default">评价晒单</a>
+							</div>
+						</div>
+
+					</div>
+
+
+
+
+
+					<div class="row top" style="margin-bottom: 0px;">
+						<div class="col-md-5">
+							 <input type="checkbox" name="orderItems">时间：<span>2016-11-03</span>&nbsp;&nbsp;&nbsp;订单号:<span>2332634411909331</span>
+						</div>
+						
+						<div class="col-md-7">
+							<p class="text-right">
+								<a href="javascript:void(0)" onclick="deleteOrder(this)"><i class="glyphicon glyphicon-trash"></i></a>
+							</p>
+						</div>
+					</div>
+					<div class="row addBorder">
+						<div class="row">
+							<div class="col-md-1">
+								<div>
+									<a href="product.html"><img src="images/galaxy-note5.jpg" /></a>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div >
+									<div class="name"><a href="product.html">Aliquam erat volutpat</a></div>
+									<div class="info">	
+										<div>Brand: text</div>
+										<div>ID: 0122222</div>	
+									</div>
+								</div>
+							</div>
+						
+							<div class="col-md-1">
+								<div class="price"><div>$122</div>$98</div>
+							</div>
+							<div class="col-md-1">
+							 	<div style="text-align: center;">2</div>
+							</div>
+							<div class="col-md-1">
+								<div>￥50</div>
+							</div>
+							<div class="col-md-2">
+								<a href="#">查看物流</a>
+							</div>
+							<div class="col-md-2">
+								<a href="salesReturn.html">退款/退货/返修</a><br>
+							</div>
+							<div class="col-md-2">
+								<a href="#" class="btn btn-default">确认收货</a>
+								<div style="height: 5px;"></div>
+								<a href="itemComment.html" class="btn btn-default">评价晒单</a>
 								
-								</div>
-								<div class="col-md-2">
-									<a href="#" class="btn btn-default">确认收货</a><br>
-									<div style="height: 5px;"></div>
-									<a href="itemComment.html" class="btn btn-default">评价晒单</a>
-									
-								</div>
-									
-							</div>	
-						</div>
-
-
-						<div class="row top" style="margin-bottom: 0px;">
-							<div class="col-md-5">
-								 <input type="checkbox" name="orderItems">时间：<span>2016-11-03</span>&nbsp;&nbsp;&nbsp;订单号:<span>2332634411909331</span>
-							</div>
-							
-							<div class="col-md-7">
-								<p class="text-right">
-									<a href="javascript:void(0)" onclick="deleteOrder(this)"><i class="glyphicon glyphicon-trash"></i></a>
-								</p>
-							</div>
-						</div>
-		    <div class="row">
-				<div class="product well">
-					<div class="col-md-1">
-						<div class="image">
-							<img src="images/galaxy-note5.jpg" />
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="caption">
-							<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
-							<div class="info">	
-								<div>Brand: text</div>
-								<div>ID: 0122222</div>	
 							</div>
 						</div>
 					</div>
-					<div class="col-md-1">
-						<div class="image">
-							<div class="price">$98<div>$122</div></div>
-						</div>
-					</div>
-					<div class="col-md-1">
-					 	<div class="image">
-							<span>2</span>
-						</div>	
-					</div>
-					<div class="col-md-1">
-						<span>￥50</span>
-					</div>
-					<div class="col-md-2">
-						<a href="#">查看物流</a>
-					</div>
-					<div class="col-md-2">
-					<a href="salesReturn.html">退款/退货/返修</a>
-					</div>	
-					<div class="col-md-2">
-						<a href="#" class="btn btn-default">确认收货</a><br>
-						<div style="height: 5px;"></div>
-						<a href="itemComment.html" class="btn btn-default">评价晒单</a>
-									
-					</div>
-					
-				</div>	
-			</div>
 
 					</div> 
 				</div>
 			</div>	
 		</div> 
-			
-		</div>
+	</div>
 		
 	<footer>
 		<div class="container">
