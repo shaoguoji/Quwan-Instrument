@@ -2,7 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,15 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UsersDao;
-import encryption.EncryptionForPassword;
 import entity.Users;
 
-public class UserLoginServlet extends HttpServlet {
+public class UserUpdate extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public UserLoginServlet() {
+	public UserUpdate() {
 		super();
 	}
 
@@ -42,8 +41,8 @@ public class UserLoginServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 			doPost(request, response);
+		
 	}
 
 	/**
@@ -59,33 +58,26 @@ public class UserLoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html;charset=utf-8");
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		int type=0;
 		UsersDao usersDao = new UsersDao();
-		try {
-			String newPassword = EncryptionForPassword.EncoderByMd5(request.getParameter("user_password"));
-			Users user = usersDao.getItemsByUsersAccount(request.getParameter("user_account"));
-			if(user==null){
-					type=1;
-					out.print(type);
-			}else{
-				String oldPassword =user.getUserPassword();
-				if(newPassword.equals(oldPassword)){
-					request.getSession().setAttribute("user_account", user.getUserAccount());
-					request.getSession().setAttribute("user_id", user.getUserId());
-					System.out.println(user.getUserAddress());
-					request.getSession().setAttribute("user", user);
-					response.sendRedirect("../category.jsp");
-				}else{
-					type=2;
-					out.print(type);
-				}
-			}
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Properties pros =new Properties();
+		if(request.getParameter("user_address")!=null){
+			pros.setProperty("user_address", request.getParameter("user_address"));
+		}else if(request.getParameter("user_phone")!=null){
+			pros.setProperty("user_phone", request.getParameter("user_phone"));
+		}else{
+			pros.setProperty("user_email", request.getParameter("user_email"));
 		}
+		Properties pro =new Properties();
+		pro.setProperty("user_account", request.getParameter("user_account"));
+		usersDao.updateUser(pro, pros);
+		Users user =null;
+		user = usersDao.getItemsByUsersAccount(request.getParameter("user_account"));
+		request.getSession().setAttribute("user", user);
+		int data=0;
+		out.print(data);
+		
 	}
 
 	/**

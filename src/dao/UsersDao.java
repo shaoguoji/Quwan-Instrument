@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 import java.util.Set;
 
@@ -31,7 +32,7 @@ public class UsersDao {
 					user.setUserImage(rs.getString("user_image"));
 					user.setUserPhone(rs.getString("user_phone"));
 					user.setUserEmail(rs.getString("user_email"));
-					user.setUserAddress("user_address");
+					user.setUserAddress(rs.getString("user_address"));
 					user.setUserPoint(rs.getInt("user_point"));
 					user.setUserVip(rs.getBoolean("user_vip"));
 					return user;
@@ -97,11 +98,11 @@ public class UsersDao {
 				}
 		}
 		//修改用户信息
-		public void updateUser(String user_account, Properties pros){
+		public void updateUser(Properties pro,Properties pros){
 			// TODO Auto-generated method stub
-
+			System.out.println("jinlaile");
 			StringBuilder sql = new StringBuilder("update user set ");
-			PreparedStatement stmt = null;
+			Statement stmt = null;
 			Connection con = null;
 			if (pros.size() > 0) {
 
@@ -112,12 +113,20 @@ public class UsersDao {
 
 				sql.setCharAt(sql.lastIndexOf(","), ' ');
 
-				sql.append(" where user_account=?");
+				sql.append(" where ");
+				Set keys1 = pro.keySet();
+				for (Object key : keys1) {
+					sql.append(key + "='" + pro.getProperty((String) key)
+							+ "' and ");
+				}
+				sql.delete(sql.lastIndexOf("and"), sql.length() - 1);
 			}
 			try {
 				con = DBHelper.getConnection();
-				stmt = con.prepareStatement(sql.toString());
-				stmt.setString(1,user_account);
+				System.out.println(sql.toString());
+				stmt = con.createStatement();
+				stmt.executeUpdate(sql.toString());
+			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
