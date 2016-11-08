@@ -1,25 +1,18 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import dao.CommentDao;
 import dao.DealShoppingDao;
 import entity.Comment;
-import entity.DealShopping;
-import entity.Product;
-import entity.Users;
 
+
+@SuppressWarnings("serial")
 public class CommentServlet extends HttpServlet {
 
-	private String action; // 表示订单的动作 ,add,show,delete
-	private CommentDao commentDao = new CommentDao();// 评论业务逻辑类的对象
 	private DealShoppingDao dealDao = new DealShoppingDao();// 商品业务逻辑类的对象
 
 	/**
@@ -27,6 +20,7 @@ public class CommentServlet extends HttpServlet {
 	 */
 	public CommentServlet() {
 		super();
+		System.out.println("失败");
 	}
 
 	public void destroy() {
@@ -72,11 +66,7 @@ public class CommentServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		if (request.getParameter("action") != null) {
-			this.action = request.getParameter("action");
-			if (action.equals("add")) // 如果是添加评论
-			{
+		System.out.println("无奈");
 				if (addComment(request, response)) {
 					request.getRequestDispatcher("/success.jsp").forward(
 							request, response);
@@ -84,14 +74,6 @@ public class CommentServlet extends HttpServlet {
 					request.getRequestDispatcher("/failure.jsp").forward(
 							request, response);
 				}
-			}
-			/*
-			 * if (action.equals("show"))// 如果是显示评论 {
-			 * request.getRequestDispatcher("/.jsp").forward(request, response);
-			 * }
-			 */
-		}
-
 	}
 
 	// 添加评论的方法
@@ -107,15 +89,17 @@ public class CommentServlet extends HttpServlet {
 		if (request.getParameter("comment_degree") != null) {
 			comment.setComment_degree(request.getParameter("comment_degree"));
 		}
-		if (request.getParameter("user_name") != null) {
-			userName = request.getParameter("user_name");
+		if (request.getAttribute("user_name") != null) {
+			userName = request.getAttribute("user_name").toString();
 		}
-		if (request.getParameter("product_name") != null) {
-			productName = request.getParameter("product_name");
+		if (request.getAttribute("product_name") != null) {
+			productName = request.getAttribute("product_name").toString();
 		}
 		if (dealDao.DealComment(userName, productName, comment)) {
+			System.out.println("添加评论成功");
 			return true;
 		} else {
+			System.out.println("添加评论失败");
 			return false;
 		}
 	}
