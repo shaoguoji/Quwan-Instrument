@@ -208,7 +208,7 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
 
 			</div>	
 
-<!-- 			
+			
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -219,13 +219,13 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
 						<div class="col-lg-1 col-md-1 sort"><a href="itemSearch.html">销量<i class="glyphicon glyphicon-arrow-down"></i></a></div>
 						<div class="col-lg-1 col-md-1 sort"><a href="itemSearch.html">价格<i class="glyphicon glyphicon-arrow-down"></i></a></div>
 				
-					
+				
 						<div class="col-lg-1 col-md-1 sort"><input type="checkbox">包邮</input></div>
 											
 				</div>	
 			</div>
 		</div>
- -->
+
 
 
 
@@ -252,15 +252,15 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
 							 %>
 											<div class="col-lg-3 col-md-3 col-xs-12">
 												<div class="product">
-													<div class="image"><a href="product.jsp?product_id=<%=p.getProduct_id() %>"><img style="height:300px;width:auto" src="<%=p.getProduct_image() %>" /></a></div>
+													<div class="image"><a href="product.jsp?id=<%=p.getProduct_id() %>"><img style="height:300px;width:auto" src="<%=p.getProduct_image() %>" /></a></div>
 													<div class="buttons">
 														<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 														<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 														<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 													</div>
 													<div class="caption">
-														<div class="name"><h3><a href="product.jsp?product_id=<%=p.getProduct_id() %>"><%=p.getProduct_name() %></a></h3></div>
-														<div class="price">¥<%=p.getProduct_price() %><span>¥<%=p.getProduct_price()+200 %></span></div>
+														<div class="name"><h3><a href="product.jsp?id=<%=p.getProduct_id() %>"><%=p.getProduct_name() %></a></h3></div>
+														<div class="price">¥<%=p.getProduct_price() %></div>
 														<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
 													</div>
 												</div>

@@ -1,7 +1,15 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@page import="entity.Product"%>
+
+<jsp:useBean id="productDao" class="dao.ProductDao" scope="page"/>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+
+request.setCharacterEncoding("utf-8");
+
+String id = request.getParameter("id");
+Product product = productDao.findProductById(id);
 %>
 
 <!DOCTYPE html>
@@ -167,11 +175,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="row">
-				<div id="main-content" class="col-md-8">
+				<div id="main-content" class="col-md-12">
 					<div class="product">
 						<div class="col-md-6">
-							<div class="image">
-								<img src="images/galaxy-note.jpg" />
+								<div class="image">
+									<img class="img-responsive center-block" src="images/galaxy-note.jpg" />
 								<div class="image-more">
 									 <ul class="row">
 										 <li class="col-lg-3 col-sm-3 col-xs-4">
@@ -304,7 +312,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 									</div>
 									<div class="caption">
-										<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></div>
+										<div class="name"><h3><a href="product.jsp">Aliquam erat volutpat</a></h3></div>
 										<div class="price">$122<span>$98</span></div>
 										<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
 									</div>
@@ -314,6 +322,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="clear"></div>
 					</div>
 				</div>
+<!--				
 				<div id="sidebar" class="col-md-4">
 					<div class="widget wid-categories">
 						<div class="heading"><h4>分类</h4></div>
@@ -390,6 +399,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 				</div>
+-->				
 			</div>
 		</div>
 	</div>	
