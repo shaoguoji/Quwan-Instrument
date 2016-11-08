@@ -5,6 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@ page import="dao.DealShoppingDao"%>
 <%@ page import="entity.DealShopping"%>
+<%@ page import="dao.ProductDao"%>
 
 
 <!DOCTYPE html>
@@ -210,6 +211,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								// ArrayList<DealShopping> list= new ArrayList<DealShopping>();
 								ArrayList<ArrayList<DealShopping>> lists = new ArrayList<ArrayList<DealShopping>>();
 								DealShoppingDao dealDao = new DealShoppingDao();
+								ProductDao pDao = new ProductDao();
 								lists = dealDao.getDealsByUsername("钟志坚");
 								if (lists != null && lists.size() > 0) {
 									for (ArrayList<DealShopping> list : lists) {
@@ -241,7 +243,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 								<div class="col-md-2">
 									<div class="caption">
-										<div class="name"><h3><a href="product.jsp"><%= deal.getProduct_id() %></a></h3></div>
+										<div class="name"><h3><a href="product.jsp"><%= pDao.deal.getProduct_id() %></a></h3></div>
 										<div class="info">	
 											<div>Brand: text</div>
 											<div>ID: 0122222</div>	
