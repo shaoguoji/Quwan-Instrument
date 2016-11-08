@@ -85,7 +85,7 @@ public class UserRegServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		Users user =null;
 		UsersDao usersDao =new UsersDao();
-		user = usersDao.getItemsByUsersAccount(request.getParameter("user_account"));
+		//user = usersDao.getItemsByUsersAccount(request.getParameter("user_account"));
 		
 			String password=null;
 			try {

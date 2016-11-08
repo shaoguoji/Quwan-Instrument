@@ -122,7 +122,7 @@
 										<!--  <button>发表评价</button>-->
 										<!-- <div class="button"><input type="submit" value="发表评价" /></div> -->
 										<!-- <button type="submit" class="btn" value="发表评价">发表评价</button>  -->
-										<a href="servlet/CartServlet">发表评价</a>
+										<a href="servlet/CommentServlet">发表评价</a>
 									</div>
 								</div>
 							</form>
