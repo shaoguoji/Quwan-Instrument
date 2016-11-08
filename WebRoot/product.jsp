@@ -2,6 +2,7 @@
 <%@page import="entity.Product"%>
 <%@page import="entity.Comment"%>
 <%@page import="entity.Users"%>
+<%@page import="java.text.DecimalFormat"%>
 
 <jsp:useBean id="productDao" class="dao.ProductDao" scope="page"/>
 <jsp:useBean id="usersDao" class="dao.UsersDao" scope="page"/>
@@ -14,6 +15,7 @@ request.setCharacterEncoding("utf-8");
 
 String id = request.getParameter("id");
 Product product = productDao.findProductById(id);
+DecimalFormat formater = new DecimalFormat("#0.##");
 
 // 获取商品图片
 StringBuilder image = new StringBuilder(product.getProduct_image());
@@ -30,6 +32,13 @@ for (Comment cm : comments)
 	Users user;
 	user = usersDao.getUserById(String.valueOf(cm.getUser_id()));
 	users.add(user);
+}
+
+// 获取当前登陆用户
+Users loginUser = null;
+if(request.getSession().getAttribute("user") != null)
+{
+	loginUser = (Users)request.getSession().getAttribute("user");
 }
 %>
 
@@ -234,7 +243,30 @@ for (Comment cm : comments)
 							<div class="caption">
 								<div class="name"><h3><%= product.getProduct_name() %></h3></div>
 								
-								<div class="price">¥<%= product.getProduct_price() %><div >¥98</div></div>
+								<%
+									if (loginUser != null)
+									{
+										if (loginUser.isUserVip())
+										{
+								 %>
+											<div class="price"><h3>¥<%= formater.format(product.getProduct_price() * 0.95) %></h3><div>¥<%= product.getProduct_price() %></div></div>
+								<%
+										}
+										else
+										{
+								%>		
+											<div class="price"><h3>¥<%= product.getProduct_price()%></h3></div>
+								<%
+										}
+									}
+									else
+									{
+								 %>
+								 		<div class="price"><h3>¥<%= product.getProduct_price()%></h3></div>
+								 <%
+								 	}
+								  %>
+								
 								<strong><p><%= product.getProduct_introdution() %></p></strong>
 								<div class="options">
 									可用选项
@@ -279,6 +311,8 @@ for (Comment cm : comments)
 							<ul class="list-group">
 							
 							<%
+								if (comments.size() > 0)
+								{
 								for (int i = 0; i < comments.size(); i++)
 								{	
 									Comment c = comments.get(i);
@@ -322,7 +356,14 @@ for (Comment cm : comments)
 								</li>
 							<%
 								}
+								}
+								else
+								{
 							 %>
+							 		<div class="alert alert-info">提示-此商品暂无评论</div>
+							 <%
+							 	}
+							  %>
 							</ul>
 <!--
 							  <div class="review-text">
