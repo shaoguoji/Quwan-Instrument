@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
-
 import util.DBHelper;
 import entity.SaleBefore;
 
@@ -62,6 +61,8 @@ public class SaleBeforeDao {
 				salebefore.setUser_id(rs.getInt("user_id"));
 				salebefore.setProduct_id(rs.getInt("product_id"));
 				salebefore.setService_before(rs.getString("service_before"));
+				salebefore.setSalebefore_is_handle(rs.getBoolean("salebefore_is_handle"));
+				
 
 				salebefores.add(salebefore);
 			}
@@ -109,7 +110,7 @@ public class SaleBeforeDao {
 				salebefore.setUser_id(rs.getInt("user_id"));
 				salebefore.setProduct_id(rs.getInt("product_id"));
 				salebefore.setService_before(rs.getString("service_before"));
-
+				salebefore.setSalebefore_is_handle(rs.getBoolean("salebefore_is_handle"));
 				return salebefore;
 			} else {
 				return null;
@@ -158,7 +159,7 @@ public class SaleBeforeDao {
 				salebefore.setUser_id(rs.getInt("user_id"));
 				salebefore.setProduct_id(rs.getInt("product_id"));
 				salebefore.setService_before(rs.getString("service_before"));
-
+				salebefore.setSalebefore_is_handle(rs.getBoolean("salebefore_is_handle"));
 				return salebefore;
 			} else {
 				return null;
@@ -191,7 +192,7 @@ public class SaleBeforeDao {
 	}
 
 	// 通过售前服务内容查找售前服务信息
-	public List<SaleBefore> getSaleBeforeByService(Properties pro) {
+	public List<SaleBefore> getSaleBeforeByService(String select) {
 		List<SaleBefore> salebefores = new ArrayList<SaleBefore>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -200,7 +201,7 @@ public class SaleBeforeDao {
 			conn = DBHelper.getConnection();
 
 			StringBuilder sql = new StringBuilder("select * from salebefore ");
-			if (pro != null && pro.size() > 0) {
+			/*if (pro != null && pro.size() > 0) {
 				sql.append(" where ");
 				Set keys = pro.keySet();
 				for (Object key : keys) {
@@ -212,9 +213,11 @@ public class SaleBeforeDao {
 								+ "' and ");
 				}
 				sql.delete(sql.length() - 5, sql.length());
-			}
+			}*/
+			sql.append(" where service_before like '%");
+			sql.append(select);
+			sql.append("%'" );
 			System.out.println("sql==>" + sql);
-
 			stmt = conn.prepareStatement(sql.toString());
 			rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -223,7 +226,7 @@ public class SaleBeforeDao {
 				salebefore.setUser_id(rs.getInt("user_id"));
 				salebefore.setProduct_id(rs.getInt("product_id"));
 				salebefore.setService_before(rs.getString("service_before"));
-
+				salebefore.setSalebefore_is_handle(rs.getBoolean("salebefore_is_handle"));
 				salebefores.add(salebefore);
 			}
 
@@ -265,7 +268,7 @@ public class SaleBeforeDao {
 				String sql = "delete from salebefore where salebefore_id=?"; // SQL语句
 				stmt = conn.prepareStatement(sql);
 				stmt.setInt(1, salebefore_id);
-				rs = stmt.executeQuery();
+				stmt.execute();
 				//stmt.executeUpdate();
 				
 			} catch (Exception ex) {

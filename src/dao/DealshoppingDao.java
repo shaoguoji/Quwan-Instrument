@@ -40,13 +40,13 @@ public class DealshoppingDao {
 		ArrayList<DealShopping> list3 = new ArrayList<DealShopping>();
 		DealShopping deal = new DealShopping();
 		deal.setDeal_price_(100);
-		deal.setUser_id(3);
+		deal.setUser_id(2);
 		deal.setProduct_id(2);
 		deal.setProduct_count(2);
 		list3.add(deal);
 		DealShopping deal2 = new DealShopping();
 		deal2.setDeal_price_(1650);
-		deal2.setUser_id(3);
+		deal2.setUser_id(2);
 		deal2.setProduct_id(3);
 		deal2.setProduct_count(5);
 		list3.add(deal2);
