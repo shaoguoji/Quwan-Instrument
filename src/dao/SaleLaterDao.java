@@ -94,7 +94,7 @@ public class SaleLaterDao {
 			return true;
 			}
 
-	//修改售后服务请求bit
+	//修改售后服务请求bit(处理完毕）
 	public Boolean changeSalerLaterBit(int salelater_id){
 		Connection conn = null;
 		PreparedStatement stmt = null;

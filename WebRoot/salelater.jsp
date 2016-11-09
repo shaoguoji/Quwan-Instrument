@@ -6,6 +6,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@page import="entity.Users"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,17 +56,21 @@
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<%
-							if(session.getAttribute("isLogin")==null){
-					 %>
-						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
+							if (session.getAttribute("isLogin") == null) {
+						%>
+						<li><a href="account.jsp"><span
+								class="glyphicon glyphicon-user"></span> 登录</a></li>
 						<%
-							}else{
-						 %>
-						<li><a href="personal_centre.jsp"><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("user_account") %></a></li>
-						<li><a href="servlet/LogoutDealServlet"><span class="glyphicon glyphicon-off"></span> 注销</a></li>
+							} else {
+						%>
+						<li><a href="personal_centre.jsp"><span
+								class="glyphicon glyphicon-user"></span> <%=session.getAttribute("user_account")%></a>
+						</li>
+						<li><a href="servlet/LogoutDealServlet"><span
+								class="glyphicon glyphicon-off"></span> 注销</a></li>
 						<%
 							}
-						 %>
+						%>
 						</li>
 						<li><a href="contact.jsp"><span
 								class="glyphicon glyphicon-envelope"></span> 联系我们</a>
@@ -94,12 +99,18 @@
 			</div>
 			<div class="col-md-4">
 				<div id="cart">
-					<a class="btn btn-1" href="cart.html"><span
+					<a class="btn btn-1" href="cart.jsp"><span
 						class="glyphicon glyphicon-shopping-cart"></span>购物车 </a>
 				</div>
 			</div>
 		</div>
 	</header>
+	<%
+		if (session.getAttribute("user") != null) {
+			session.setAttribute("user_id",
+					((Users) session.getAttribute("user")).getUserId());
+		}else{response.sendRedirect("account.jsp");}
+	%>
 
 	<div id="page-content" class="single-page">
 		<div class="container">
@@ -115,39 +126,40 @@
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="1">
-							<form class="form-horizontal" action="#">
+							<form class="form-horizontal"
+								action="servlet/UserSaleLaterServlet">
 								<div class="form-group">
-									<label class="col-sm-2 control-label">退款原因：</label>
+									<label class="col-sm-2 control-label">退货原因：</label>
 									<div class="col-sm-6">
 										<select name="" id="" class="form-control">
-											<option value="1">请选择退款原因</option>
+											<option value="1">请选择退货原因</option>
 											<option value="2">无收到商品</option>
 											<option value="8">商品损坏</option>
 										</select>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">退款金额：</label>
-									<div class="col-sm-2">
-										<input type="text" class="form-control "></input>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">退款说明：</label>
+									<label class="col-sm-2 control-label">退货说明：</label>
 									<div class="col-sm-6">
-										<textarea class="form-control "></textarea>
+										<textarea class="form-control " name="salelater"></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label"></label>
 									<div class="col-sm-2">
+										<input type="hidden" name="product_id"
+											value=<%=request.getParameter("product_id")%>> <input
+											type="hidden" name="deal_id"
+											value=<%=request.getParameter("deal_id")%>> <input
+											type="hidden" name="salelater_type" value="5">
 										<button>提交退货申请</button>
 									</div>
 								</div>
 							</form>
 						</div>
 						<div class="tab-pane" id="2">
-							<form class="form-horizontal" action="#">
+							<form class="form-horizontal"
+								action="servlet/UserSaleLaterServlet">
 								<div class="form-group">
 									<label class="col-sm-2 control-label">是否收货：</label>
 									<div class="col-sm-3">
@@ -176,20 +188,19 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">退款金额：</label>
-									<div class="col-sm-2">
-										<input type="text" class="form-control "></input>
-									</div>
-								</div>
-								<div class="form-group">
 									<label class="col-sm-2 control-label">退款说明：</label>
 									<div class="col-sm-6">
-										<textarea class="form-control "></textarea>
+										<textarea name="salelater" class="form-control "></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label"></label>
 									<div class="col-sm-2">
+										<input type="hidden" name="salelater_type" value="4">
+										<input type="hidden" name="product_id"
+											value=<%=request.getParameter("product_id")%>> <input
+											type="hidden" name="deal_id"
+											value=<%=request.getParameter("deal_id")%>>
 										<button>提交退款申请</button>
 									</div>
 								</div>
@@ -197,7 +208,8 @@
 						</div>
 
 						<div class="tab-pane " id="3">
-							<form class="form-horizontal" action="#">
+							<form class="form-horizontal"
+								action="servlet/UserSaleLaterServlet">
 								<div class="form-group">
 									<label class="col-sm-2 ">申请凭据：</label>
 									<div class="col-sm-6">
@@ -213,6 +225,11 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label"></label>
 									<div class="col-sm-2">
+										<input type="hidden" name="salelater_type" value="4">
+										<input type="hidden" name="product_id"
+											value=<%=request.getParameter("product_id")%>> <input
+											type="hidden" name="deal_id"
+											value=<%=request.getParameter("deal_id")%>>
 										<button>提交返修申请</button>
 									</div>
 								</div>
