@@ -29,13 +29,19 @@
 		<div id="box">
 			<%=request.getAttribute("fail")%>失败，请重试！<br>
 			<%
-				if (request.getAttribute("fail").equals("添加评论"))
+				if (request.getAttribute("fail").equals("添加评论")){
 			%>
-			<a href="comment.jsp">返回</a>
+			<a href="../addcomment.jsp">返回</a>
 			<%
-				if (request.getAttribute("fail").equals("申请服务"))
+				}
 			%>
-			<a href="salelater.jsp">返回</a>
+			<%
+				if (request.getAttribute("fail").equals("申请服务")){
+			%>
+			<a href="../salelater.jsp">返回</a>
+			<%
+				}
+			%>
 		</div>
 	</div>
 </body>

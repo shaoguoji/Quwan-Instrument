@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -66,8 +67,7 @@ public class CommentServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=utf-8");
 				if (addComment(request, response)) {
-					request.getRequestDispatcher("/deal.jsp").forward(
-							request, response);
+					response.sendRedirect("../deal.jsp");
 				} else {
 					request.setAttribute("fail", "添加评论");
 					request.getRequestDispatcher("/failure.jsp").forward(
@@ -77,11 +77,17 @@ public class CommentServlet extends HttpServlet {
 
 	// 添加评论的方法
 	private boolean addComment(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws UnsupportedEncodingException {
 		String userName = null;
 		String productName = null;
 		Comment comment = new Comment();
 		comment.setComment_date(new Date());
+		request.setCharacterEncoding("utf-8");
+		System.out.println(request.getParameter("comment_content"));
+		System.out.println(request.getParameter("comment_degree"));
+		System.out.println(request.getParameter("deal_id"));
+		System.out.println(request.getParameter("product_name"));
+		System.out.println(request.getSession().getAttribute("user_name").toString());
 		if (request.getParameter("comment_content") != null) {
 			comment.setComment_content(request.getParameter("comment_content"));
 		}
@@ -91,11 +97,12 @@ public class CommentServlet extends HttpServlet {
 		if (request.getSession().getAttribute("user_name") != null) {
 			userName = request.getSession().getAttribute("user_name").toString();
 		}
-		if (request.getSession().getAttribute("product_name") != null) {
-			productName = request.getSession().getAttribute("product_name").toString();
+		if (request.getParameter("product_name") != null) {
+			productName = request.getParameter("product_name");
 		}
 		if (dealDao.DealComment(userName, productName, comment)) {
 			System.out.println("添加评论成功");
+			dealDao.CommentProduct(Integer.parseInt(request.getParameter("deal_id")));
 			return true;
 		} else {
 			System.out.println("添加评论失败");
