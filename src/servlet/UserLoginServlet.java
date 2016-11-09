@@ -75,7 +75,7 @@ public class UserLoginServlet extends HttpServlet {
 					request.getSession().setAttribute("user_account", user.getUserAccount());
 					request.getSession().setAttribute("isLogin", true);
 					request.getSession().setAttribute("user", user);
-					response.sendRedirect("../category.jsp");
+					response.sendRedirect("../index.jsp");
 				}else{
 					type=2;
 					out.print(type);

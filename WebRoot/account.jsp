@@ -95,69 +95,84 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</header>
-	<!--Navigation-->
-    <nav id="menu" class="navbar">
+	<nav id="menu" class="navbar">
 		<div class="container">
-			<div class="navbar-header"><span id="heading" class="visible-xs">分类</span>
+			<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
 			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
 
 					<li><a href="index.jsp">首页</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">PC 计算机</a>
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">西洋乐器</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
-									<li><a href="category.jsp">Window</a></li>
-									<li><a href="category.jsp">MacBook</a></li>
+									<li><a href="category.jsp">吉他</a></li>
+									<li><a href="category.jsp">钢琴</a></li>
+									<li><a href="category.jsp">萨克斯风</a></li>
+									<li><a href="category.jsp">架子鼓他</a></li>
+									<li><a href="category.jsp">小提琴</a></li>
+									<li><a href="category.jsp">单簧</a></li>
 								</ul>
 							</div>
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 笔记本</a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">民族乐器</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
-									<li><a href="category.jsp">Dell</a></li>
-									<li><a href="category.jsp">Asus</a></li>
-									<li><a href="category.jsp">Samsung</a></li>
-									<li><a href="category.jsp">Lenovo</a></li>
-									<li><a href="category.jsp">Acer</a></li>
+									<li><a href="category.jsp">古琴</a></li>
+									<li><a href="category.jsp">葫芦丝</a></li>
+									<li><a href="category.jsp">二胡</a></li>
+									<li><a href="category.jsp">古筝</a></li>
+									<li><a href="category.jsp">笛子</a></li>
+									<li><a href="category.jsp">陶笛</a></li>
+									<li><a href="category.jsp">阮</a></li>
 								</ul>
 							</div> 
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">手机 &amp; 平板电脑</a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">电声乐器</a>
+						<div class="dropdown-menu">
+							<div class="dropdown-inner">
+								<ul class="list-unstyled">
+									<li><a href="category.jsp">电钢琴</a></li>
+									<li><a href="category.jsp">电子琴</a></li>
+									<li><a href="category.jsp">电吉他</a></li>
+									<li><a href="category.jsp">电子鼓</a></li>
+								</ul>
+							</div> 
+						</div>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">乐器品牌</a>
 						<div class="dropdown-menu" style="margin-left: -203.625px;">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
-									<li><a href="category.jsp">Iphone</a></li>
-									<li><a href="category.jsp">Samsung</a></li>
-									<li><a href="category.jsp">Nokia</a></li>
-									<li><a href="category.jsp">Lenovo</a></li>
-									<li><a href="category.jsp">Google</a></li>
+									<li><a href="category.jsp">珠江钢琴</a></li>
+									<li><a href="category.jsp">英昌</a></li>
+									<li><a href="category.jsp">雅马哈</a></li>
+									<li><a href="category.jsp">星海</a></li>
 								</ul>
 								<ul class="list-unstyled">
-									<li><a href="category.jsp">Nexus</a></li>
-									<li><a href="category.jsp">Dell</a></li>
-									<li><a href="category.jsp">Oppo</a></li>
-									<li><a href="category.jsp">Blackberry</a></li>
-									<li><a href="category.jsp">HTC</a></li>
+									<li><a href="category.jsp">星臣</a></li>
+									<li><a href="category.jsp">海伦钢琴</a></li>
+									<li><a href="category.jsp">卡西欧</a></li>
+									<li><a href="category.jsp">卡瓦依</a></li>
+									<li><a href="category.jsp">敦煌</a></li>
 								</ul>
 								<ul class="list-unstyled">
-									<li><a href="category.jsp">LG</a></li>
-									<li><a href="category.jsp">Q-Mobiles</a></li>
-									<li><a href="category.jsp">Sony</a></li>
-									<li><a href="category.jsp">Wiko</a></li>
+									<li><a href="category.jsp">红棉吉他</a></li>
+									<li><a href="category.jsp">乐海</a></li>
+									<li><a href="category.jsp">凤灵</a></li>
+									<li><a href="category.jsp">托雅玛</a></li>
 									<li><a href="category.jsp">T&T</a></li>
 								</ul>
 							</div>
 						</div>
 					</li>
-
-					<li><a href="category.jsp">软件</a></li>
-
+					<li><a href="category.jsp">其他配件</a></li>
 				</ul>
 			</div>
 		</div>
