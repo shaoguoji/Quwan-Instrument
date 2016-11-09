@@ -96,6 +96,15 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
     	}*/
 
     </style>
+    
+    <script type="text/javascript" src="js/lhgcore.js"></script>
+    <script type="text/javascript" src="js/lhgdialog.js"></script>
+    <script type="text/javascript">
+   	  function selflog_show(id)
+      {   	
+         J.dialog.get({id: 'haoyue_creat',title: '购物成功',width: 400,height:250, link: '<%=path%>/servlet/CartServlet?id='+id+'&num=1&action=add', cover:true});
+      }
+    </script>
 </head>
 <body>
 <!--Top-->
@@ -265,7 +274,7 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
 												<div class="product">
 													<div class="image"><a href="product.jsp?id=<%=p.getProduct_id() %>"><img style="height:300px;width:auto" src="<%=p.getProduct_image() %>" /></a></div>
 													<div class="buttons">
-														<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+														<a class="btn cart" href="javascript:selflog_show(<%=p.getProduct_id()%>)"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 														<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 														<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 													</div>
@@ -284,7 +293,7 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
 									{
 							%>
 										<div class="col-lg-12">																													
-											<div class="alert alert-info">没有找到相关的商品</div>
+											<div class="alert alert-info">提示 - 没有找到相关的商品</div>
 										</div>
 							<%										
 									}																	
@@ -293,7 +302,7 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
 								{																
 							%>				
 									<div class="col-lg-12">																													
-										<div class="alert alert-warning">请输入商品关键字</div>
+										<div class="alert alert-warning">提示 - 请输入商品关键字</div>
 									</div>									
 							<%		
 								}

@@ -1,7 +1,12 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%@page import="entity.Product"%>
+<%@page import="entity.Comment"%>
+<%@page import="entity.Users"%>
+<%@page import="java.text.DecimalFormat"%>
 
 <jsp:useBean id="productDao" class="dao.ProductDao" scope="page"/>
+<jsp:useBean id="usersDao" class="dao.UsersDao" scope="page"/>
+<jsp:useBean id="commentDao" class="dao.CommentDao" scope="page"/>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,6 +15,31 @@ request.setCharacterEncoding("utf-8");
 
 String id = request.getParameter("id");
 Product product = productDao.findProductById(id);
+DecimalFormat formater = new DecimalFormat("#0.##");
+
+// 获取商品图片
+StringBuilder image = new StringBuilder(product.getProduct_image());
+String imageName = image.delete(image.length() - 4, image.length()).toString(); // 去掉.jpg后缀
+
+// 获取商品评论
+ArrayList<Comment> comments = new ArrayList<Comment>();
+comments = commentDao.getCommentsByProductname(product.getProduct_name());
+
+// 获取发表评论用户
+ArrayList<Users> users = new ArrayList<Users>();
+for (Comment cm : comments)
+{
+	Users user;
+	user = usersDao.getUserById(String.valueOf(cm.getUser_id()));
+	users.add(user);
+}
+
+// 获取当前登陆用户
+Users loginUser = null;
+if(request.getSession().getAttribute("user") != null)
+{
+	loginUser = (Users)request.getSession().getAttribute("user");
+}
 %>
 
 <!DOCTYPE html>
@@ -48,6 +78,32 @@ Product product = productDao.findProductById(id);
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
+    
+    <script type="text/javascript" src="js/lhgcore.js"></script>
+    <script type="text/javascript" src="js/lhgdialog.js"></script>
+    <script type="text/javascript">
+      function selflog_show(id)
+      {   	
+         var num =  document.getElementById("number").value; 
+         J.dialog.get({id: 'haoyue_creat',title: '购物成功',width: 600,height:400, link: '<%=path%>/servlet/CartServlet?id='+id+'&num='+num+'&action=add', cover:true});
+      }
+      function add()
+      {
+         var num = parseInt(document.getElementById("number").value);
+         if(num<100)
+         {
+            document.getElementById("number").value = ++num;
+         }
+      }
+      function sub()
+      {
+         var num = parseInt(document.getElementById("number").value);
+         if(num>1)
+         {
+            document.getElementById("number").value = --num;
+         }
+      }
+    </script>
 </head>
 <body>
 	<!--Top-->
@@ -190,20 +246,20 @@ Product product = productDao.findProductById(id);
 					<div class="product">
 						<div class="col-md-6">
 								<div class="image">
-									<img class="img-responsive center-block" src="images/galaxy-note.jpg" />
+									<img class="img-responsive center-block" src="<%=image + ".jpg" %>" />
 								<div class="image-more">
 									 <ul class="row">
 										 <li class="col-lg-3 col-sm-3 col-xs-4">
-											<a href="#"><img class="img-responsive" src="images/galaxy-note.jpg"></a>
+											<a href="#"><img class="img-responsive" src="<%=image + ".jpg" %>"></a>
 										</li>
 										 <li class="col-lg-3 col-sm-3 col-xs-4">
-											<a href="#"><img class="img-responsive" src="images/galaxy-note-2.jpg"></a>
+											<a href="#"><img class="img-responsive" src="<%=image + "-1.jpg" %>"></a>
 										</li>
 										 <li class="col-lg-3 col-sm-3 col-xs-4">
-											<a href="#"><img class="img-responsive" src="images/galaxy-note-3.jpg"></a>
+											<a href="#"><img class="img-responsive" src="<%=image + "-2.jpg" %>"></a>
 										</li>
 										 <li class="col-lg-3 col-sm-3 col-xs-4">
-											<a href="#"><img class="img-responsive" src="images/galaxy-note-4.jpg"></a>
+											<a href="#"><img class="img-responsive" src="<%=image + "-3.jpg" %>"></a>
 										</li>
 									</ul>
 								</div>
@@ -211,24 +267,43 @@ Product product = productDao.findProductById(id);
 						</div>
 						<div class="col-md-6">
 							<div class="caption">
-								<div class="name"><h3>Aliquam erat volutpat</h3></div>
-								<div class="info">
-									<ul>
-										<li>品牌: text</li>
-										<li>ID: 0122222</li>
-									</ul>
-								</div>
-								<div class="price">$122<span>$98</span></div>
+								<div class="name"><h3><%= product.getProduct_name() %></h3></div>
+								
+								<%
+									if (loginUser != null)
+									{
+										if (loginUser.isUserVip())
+										{
+								 %>
+											会员价：<div class="price"><h3>¥<%= formater.format(product.getProduct_price() * 0.95) %></h3><div>¥<%= product.getProduct_price() %></div></div>
+								<%
+										}
+										else
+										{
+								%>		
+											<div class="price"><h3>¥<%= product.getProduct_price()%></h3></div>
+								<%
+										}
+									}
+									else
+									{
+								 %>
+								 		<div class="price"><h3>¥<%= product.getProduct_price()%></h3></div>
+								 <%
+								 	}
+								  %>
+								
+								<strong><p><%= product.getProduct_introdution() %></p></strong>
 								<div class="options">
 									可用选项
 									<select>
-										<option value="" selected>----请选择----</option>
-										<option value="red">RED</option>
-										<option value="black">BLACK</option>
+										<option value="" selected>----请选择物流----</option>
+										<option value="red">快递</option>
+										<option value="black">EMS</option>
 									</select>
 								</div>
 								<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-								<div class="well"><label>数量: </label> <input class="form-inline quantity" type="text" value="1"><a href="#" class="btn btn-2 ">添加</a></div>
+								<div class="well"><label>数量: </label> <span class="btn" id="sub" onclick="sub();">-</span><input id="number" class="form-inline quantity" type="text" value="1" /><span class="btn" id="add" onclick="add();">+</span><a href="javascript:selflog_show(<%=id%>)" class="btn btn-2 "><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</a></div>
 								<div class="share well">
 									<strong style="margin-right: 13px;">分享 :</strong>
 									<a href="#" class="share-btn" target="_blank">
@@ -252,12 +327,71 @@ Product product = productDao.findProductById(id);
 						</ul>
 						<div class="tab-content">
 							<div id="description" class="tab-pane fade in active">
-								<h4>Sample Lorem Ipsum Text</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula. Pellentesque aliquam quam vel dolor. Nunc adipiscing. Sed quam odio, tempus ac, aliquam molestie, varius ac, tellus. Vestibulum ut nulla aliquam risus rutrum interdum. Pellentesque lorem. Curabitur sit amet erat quis risus feugiat viverra. Pellentesque augue justo, sagittis et, lacinia at, venenatis non, arcu. Nunc nec libero. In cursus dictum risus. Etiam tristique nisl a</p>
-								<h4>Sample Lorem Ipsum Text</h4>
-								<p>Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque aliquet lacus vitae pede. Nullam mollis dolor ac nisi. Phasellus sit amet urna. Praesent pellentesque sapien sed lacus. Donec lacinia odio in odio. In sit amet elit. Maecenas gravida interdum urna. Integer pretium, arcu vitae imperdiet facilisis, elit tellus tempor nisi, vel feugiat ante velit sit amet mauris. Vivamus arcu. Integer pharetra magna ac lacus. Aliquam vitae sapien in nibh vehicula auctor. Suspendisse leo mauris, pulvinar sed, tempor et, consequat ac, lacus. Proin velit. Nulla semper lobortis mauris. Duis urna erat, ornare et, imperdiet eu, suscipit sit amet, massa. Nulla nulla nisi, pellentesque at, egestas quis, fringilla eu, diam.</p>
+								<h4>商品简介</h4>
+								<p><%= product.getProduct_introdution() %></p>
+								<h4>商品详情</h4>
+								<p><%= product.getProduct_infomation() %></p>
 							</div>
 							<div id="review" class="tab-pane fade">
+							
+							<ul class="list-group">
+							
+							<%
+								if (comments.size() > 0)
+								{
+								for (int i = 0; i < comments.size(); i++)
+								{	
+									Comment c = comments.get(i);
+									Users u = users.get(i);
+							%>
+							
+    							<li class="list-group-item">
+									<div class="row">
+										<div style="padding-top: 0px"class="col-md-2 column">
+											<br>
+											<img alt="140x140" src="<%= u.getUserImage() %>" class="img-rounded img-responsive center-block" />
+											<hr>
+											<div class="text-center"><span class="glyphicon glyphicon-user"></span>用户：<%= u.getUserName() %></div>
+										</div>
+										<div class="col-md-10 column">
+											<br>
+											<h6>评论内容</h6>
+											<dl><dd><%= c.getComment_content() %></dd></dl>
+											<hr>
+											<p>评论星级：
+												<%
+													int degree = Integer.parseInt(c.getComment_degree());
+													for (int j = 0; j < degree; j++)
+													{
+												 %>
+												
+													<span class="glyphicon glyphicon-star"></span>
+												<%
+													}
+													for (int j = 0; j < 5-degree; j++)
+													{
+												 %>
+													<span class="glyphicon glyphicon-star-empty"></span>
+												<%
+													}
+												 %>													
+											</p>
+											<p>评论时间：<%= c.getComment_date().toString() %></p>
+										</div>
+									</div>
+								</li>
+							<%
+								}
+								}
+								else
+								{
+							 %>
+							 		<div class="alert alert-info">提示-此商品暂无评论</div>
+							 <%
+							 	}
+							  %>
+							</ul>
+<!--
 							  <div class="review-text">
 								<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 							  </div>
@@ -278,6 +412,7 @@ Product product = productDao.findProductById(id);
 									</div>
 								</form>
 							  </div>
+-->
 							</div>
 						</div>
 					</div>
