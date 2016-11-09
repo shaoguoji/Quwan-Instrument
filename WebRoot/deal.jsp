@@ -8,7 +8,7 @@
 	+ request.getServerName() + ":" + request.getServerPort()
 	+ path + "/";
 %>
-<%@ page import="dao.DealShoppingDao"%>
+<%@ page import="dao.DealshoppingDao"%>
 <%@ page import="entity.DealShopping"%>
 <%@ page import="dao.ProductDao"%>
 <%@ page import="entity.Product"%>
@@ -247,7 +247,7 @@ a:hover {
 							if (session.getAttribute("user") != null) {
 								VIP = ((Users) session.getAttribute("user")).isUserVip();
 								ArrayList<ArrayList<DealShopping>> lists = new ArrayList<ArrayList<DealShopping>>();
-								DealShoppingDao dealDao = new DealShoppingDao();
+								DealshoppingDao dealDao = new DealshoppingDao();
 								ProductDao pDao = new ProductDao();
 								Product product = new Product();
 								Users user = (Users) session.getAttribute("user");

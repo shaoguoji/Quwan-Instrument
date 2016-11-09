@@ -14,7 +14,7 @@ import entity.Comment;
 import entity.Deal;
 import entity.DealShopping;
 
-public class DealShoppingDao {
+public class DealshoppingDao {
 
 	public static void main(String[] args) {
 		/*
@@ -36,7 +36,7 @@ public class DealShoppingDao {
 		 * Date date = new Date(); comment.setComment_date(date);
 		 */
 		// dao.DealComment("钟志坚", "TAKAMINE D5D 单板民谣吉他", comment);
-		DealShoppingDao dao = new DealShoppingDao();
+		DealshoppingDao dao = new DealshoppingDao();
 		ArrayList<DealShopping> list3 = new ArrayList<DealShopping>();
 		DealShopping deal = new DealShopping();
 		deal.setDeal_price_(100);
