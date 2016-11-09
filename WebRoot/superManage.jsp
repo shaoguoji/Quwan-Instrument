@@ -4,6 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<base href="<%=basePath%>"> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,10 +80,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="tab-content">    
 				<div class="tab-pane active" id="1">
 					<div class="row" style="margin-bottom: 30px;">
-						<button>编辑</button>     
-						<button>修改密码</button>     
-						<form class="pull-right">
-							<input class="text"></input>
+						<button id="edit">编辑</button>     
+						<button id="change_password">修改密码</button>     
+						<button id="cancel">取消</button>     
+						<form class="pull-right" action="servlet/SuperAdminServlet" method="get">
+							<input class="text" name="admin_username" placeholder="用户名"></input>
 							<button>查询</button>
 						</form> 
 					</div>
@@ -91,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div id="tab" >
 						<table class="table" id="table">
 							<tr>
-								<th><input type="checkbox"></th>
+								<th></th>
 								<th>管理员Id</th>
 								<th>用户名</th>
 								<th>岗位</th>
@@ -103,22 +105,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td><input type="text" id="adminUsername" size="15"placeholder="用户名" size="15"></td>
 								<td><input type="text" id="adminDep" size="15"placeholder="岗位" size="15"></td>
 								<td><input type="text" id="adminLevel" size="15"placeholder="等级" size="15"></td>
-								<td><button id="addButton">添加</button></td>
+								<td><Button id="addButton" >添加</Button></td>
 							</tr>
 							<%
+								if(request.getAttribute("admin")==null){
 									for(int i=0;i<admin.size();i++){									
 							 %>
 							<tr >
-								<td><input type="checkbox" name="box"></input></td>
+								<td><input type="radio" name="box"></input></td>
 								<td><%=admin.get(i).getAdminId() %></td>
 								<td><%=admin.get(i).getAdminUsername() %></td>
 								<td><%=admin.get(i).getAdminDep() %></td>
 								<td><%=admin.get(i).getAdminLevel() %></td>
-								<td><button onclick="delNode(this)">删除</button></td>
+								<td><a href="servlet/SuperAdminServlet?admin_id=<%=admin.get(i).getAdminId() %>"><button >删除</button></a></td>
 							</tr>
 							<%
-									}
+										}
+									}else{
 							 %>
+							 <tr >
+								<td><input type="checkbox" name="box"></input></td>
+								<td><%=((Admin)request.getAttribute("admin")).getAdminId() %></td>
+								<td><%=((Admin)request.getAttribute("admin")).getAdminUsername() %></td>
+								<td><%=((Admin)request.getAttribute("admin")).getAdminDep() %></td>
+								<td><%=((Admin)request.getAttribute("admin")).getAdminLevel() %></td>
+								<td><a href="servlet/SuperAdminServlet?admin_id=<%=((Admin)request.getAttribute("admin")).getAdminId() %>"><button >删除</button></a></td>
+							</tr>
+							 <%
+							 		}
+							  %>
 							 
 						</table>
 						</div>
@@ -172,20 +187,119 @@ $(function(){
 			var adminLevel = $("#adminLevel").val();
 			if(adminPassword.length==0||adminUsername.length==0||adminDep.length==0||adminLevel.length==0){
 					    alert("不能留空");
+			}else if( $('#addButton').html()=="修改"){
+			
+						//这条语句中的password是adminId。
+					 $.ajax({
+					 data: {method:"doPost", adminDep:adminDep,adminLevel:adminLevel,adminId:adminPassword},
+		             type: "POST",
+		             url: "servlet/SuperAdminServlet?change=dep_level",
+		             success: function(data){
+		             				if(data>0){
+		             					alert("修改成功");
+		             					window.location.href ="superManage.jsp";
+		             				}else{
+		             					 alert("修改失败");
+		             				}
+	    					} 
+       				  }); 
 			}else{
 				$.ajax({
 				 data: {method:"doPost", adminPassword:adminPassword,adminUsername:adminUsername,adminDep:adminDep,adminLevel:adminLevel},
 	             type: "POST",
-	             url: "servlet/SuperAdminServlet",
+	             url: "servlet/SuperAdminServlet?add=true",
 	             success: function(data){
-				    		 		if(data==1){
+				    		 		if(data==0){
+				    		 			alert("用户名已存在");
+				    		 		}else if(data=1){
+				    		 			/* $('#adminPassword').html("");
+				    		 			$('#adminUsername').html("");
+				    		 			$('#adminDep').html("");
+				    		 			$('#adminLevel').html(""); */
 				    		 			alert("添加成功");
+				    		 			window.location.href ="superManage.jsp";
 				    		 		}else{
-				    		 			alert("添加失败");
+				    			 		alert("添加失败");
 				    		 		}
     						 } 
        			  }); 
        		}
+			});
+			$("#edit").click(function(){
+					var rows = document.getElementById("table").rows; 
+					 var a = document.getElementsByName("box"); 
+					 //var states = ""; 
+					// var  table = document.getElementById("table");
+					for(var i=0;i<a.length;i++) 
+					 { 
+					 if(a[i].checked){ 
+						   	var row = a[i].parentElement.parentElement.rowIndex; 
+						 //states += rows[row].cells[1].innerHTML+";"; 
+					  	 //alert(a[i].value); 
+						 /*   alert(rows[row].cells[1].innerHTML); 
+						   alert(rows[row].cells[2].innerHTML); 
+						   alert(rows[row].cells[3].innerHTML); 
+						   alert(rows[row].cells[4].innerHTML);  */
+						   $('#adminPassword').attr('disabled', 'disabled');
+						   $('#adminUsername').attr('disabled', 'disabled');
+						   $('#adminPassword').val(rows[row].cells[1].innerHTML);
+						   $('#adminUsername').val(rows[row].cells[2].innerHTML);
+						   $('#adminDep').val(rows[row].cells[3].innerHTML);
+						   $('#adminLevel').val(rows[row].cells[4].innerHTML);
+						   $('#addButton').html("修改");
+						   break;
+						 } 
+					 }
+					
+			});
+			$("#cancel").click(function(){
+						   $('#adminPassword').removeAttr('disabled', 'disabled');
+						   $('#adminUsername').removeAttr('disabled', 'disabled');
+						   $('#adminDep').removeAttr('disabled', 'disabled');
+						   $('#adminLevel').removeAttr('disabled', 'disabled');
+						   $('#adminPassword').val("");
+						   $('#adminUsername').val("");
+						   $('#adminDep').val("");
+						   $('#adminLevel').val("");
+						   $('#addButton').html("添加");
+			});
+			$("#change_password").click(function(){
+				   $('#adminDep').attr('disabled', 'disabled');
+					$('#adminUsername').attr('disabled', 'disabled');
+					$('#adminLevel').attr('disabled', 'disabled');
+					var rows = document.getElementById("table").rows; 
+					 var a = document.getElementsByName("box"); 
+					 var adminPassword = $("#adminPassword").val();
+					 //var states = ""; 
+					// var  table = document.getElementById("table");
+					var row = 0;
+					for(var i=0;i<a.length;i++) 
+					 { 
+					 if(a[i].checked){ 
+						   	row = a[i].parentElement.parentElement.rowIndex; 
+						 //states += rows[row].cells[1].innerHTML+";"; 
+					  	 //alert(a[i].value); 
+						 /*   alert(rows[row].cells[1].innerHTML); 
+						   alert(rows[row].cells[2].innerHTML); 
+						   alert(rows[row].cells[3].innerHTML); 
+						   alert(rows[row].cells[4].innerHTML);  */
+							 var adminId = rows[row].cells[1].innerHTML;
+							 $.ajax({
+							 data: {method:"doPost",adminPassword:adminPassword,adminId:adminId},
+				             type: "POST",
+				             url: "servlet/SuperAdminServlet",
+				             success: function(data){
+				             				if(data>0){
+				             					alert("修改成功");
+				             					window.location.href ="superManage.jsp";
+				             				}else{
+				             					 alert("修改失败");
+				             				}
+			    					} 
+		       				  }); 
+						   break;
+						 } 
+					 }
 			});
 		});
 </script>

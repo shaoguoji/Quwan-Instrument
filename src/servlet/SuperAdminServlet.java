@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +22,6 @@ import entity.DealShopping;
 
 public class SuperAdminServlet extends HttpServlet {
 
-	private String action; // 表示超级管理员动作
 	private SuperAdminDao superadmindao = new SuperAdminDao();// 超级管理员逻辑类的对象
 	/**
 	 * Constructor of the object.
@@ -109,19 +110,52 @@ public class SuperAdminServlet extends HttpServlet {
 			}
 		}
 		*/
-		int data;
-		  if(addAdmin(request,response)){
-			  data=1;
-		  }else{
-			  data=2;
-		  }
-		  out.print(data);
+		if(request.getParameter("admin_username")!=null){
+			SuperAdminDao superAdminDao= new SuperAdminDao();
+			List<Admin> admin = superAdminDao.findAllAdmin();
+			for(Admin a:admin){
+				if(request.getParameter("admin_username").equals(a.getAdminUsername())){
+					request.setAttribute("admin", a);
+					break;
+				}
+			}
+			request.getRequestDispatcher("/superManage.jsp").forward(request, response);
+		}else if(request.getParameter("admin_id")!=null){
+			if(deleteAdmin(request,response)){
+				request.getRequestDispatcher("/superManage.jsp").forward(request, response);
+			}
+		}else if(request.getParameter("add")!=null){
+			SuperAdminDao superAdminDao= new SuperAdminDao();
+			List<Admin> admin = superAdminDao.findAllAdmin();
+			int data=-1;
+			for(Admin a:admin){
+				if(request.getParameter("adminUsername").equals(a.getAdminUsername())){
+						data=0;
+						break;
+				}
+			}
+			if(data!=0){
+			  if(addAdmin(request,response)){
+				  data=1;
+			  }else{
+				  data=2;
+			  }
+			}
+			  out.print(data);
+		}else if(request.getParameter("change")!=null){
+			int data = changeAdminDepOrLevel(request,response);
+			out.print(data);
+		}else{
+			int data = changeAdminPassword(request, response);
+			out.print(data);
+		}
 	}
 	
 	//删除管理员
 	private boolean deleteAdmin(HttpServletRequest request,
 			HttpServletResponse response) {
 		String id = request.getParameter("admin_id");
+		System.out.println(id);
 		if (superadmindao.deleteAdminById(Integer.parseInt(id))) {
 			return true;
 		} else {
@@ -165,33 +199,28 @@ public class SuperAdminServlet extends HttpServlet {
 			return true;
 	}
 	//编辑管理员
-	private boolean ChangeAdmin(HttpServletRequest request,
+	private int changeAdminDepOrLevel(HttpServletRequest request,
 			HttpServletResponse response) {
-		Admin admin =new Admin();
 		
-		if (request.getParameter("admin_id") != null)
-			admin.setAdminId(Integer.parseInt(request.getParameter("admin_id")));
-		else
-			return false;
-		if (request.getParameter("admin_username") != null)
-			admin.setAdminUsername(request.getParameter("admin_username"));
-		else
-			return false;
-		if (request.getParameter("admin_password") != null)
-			admin.setAdminPassword(request.getParameter("admin_password"));
-		else
-			return false;
-		if (request.getParameter("admin_dep") != null)
-			admin.setAdminDep(request.getParameter("admin_dep"));
-		else
-			return false;
-		if (request.getParameter("admin_level") != null)
-			admin.setAdminLevel(Integer.parseInt(request.getParameter("admin_level")));
-		else
-			return false;
-		superadmindao.saveAdmin(admin, Constants.CHANGE_ADMIN);
-		return true;
-
+			int data = superadmindao.changeAdminDepOrLevel(request.getParameter("adminDep"), Integer.parseInt(request.getParameter("adminLevel")),request.getParameter("adminId"));
+			return data;
+	}
+	//修改密码
+	public int changeAdminPassword(HttpServletRequest request,
+			HttpServletResponse response){
+			try {
+				String password = EncryptionForPassword.EncoderByMd5(request.getParameter("adminPassword"));
+				int data = superadmindao.changeAdminPassword(password,request.getParameter("adminId"));
+				return data;
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 0;
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 0;
+			}
 	}
 	/**
 	 * Initialization of the servlet. <br>

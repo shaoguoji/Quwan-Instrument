@@ -63,13 +63,12 @@ public class SuperAdminDao {
 	public Boolean deleteAdminById(int admin_id) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		try {
 			conn = DBHelper.getConnection();
 			String sql = "delete from admin where admin_id=?"; // SQL语句
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, admin_id);
-			rs = stmt.executeQuery();
+			stmt.execute();
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -122,39 +121,68 @@ public class SuperAdminDao {
 				}
 			}
 			
-		if(sht==Constants.CHANGE_ADMIN)
-		{
+	}
+	public int changeAdminDepOrLevel(String admin_dep,int admin_level,String admin_id){
 			Connection conn2 = null;
 			PreparedStatement stmt2 = null;
 			
 			try {				
 					conn2 = DBHelper.getConnection();
-					String sql = "update admin set admin_id=?,admin_username=?,admin_password=?,admin_dep=?,admin_level=?";
+					String sql = "update admin set  admin_dep=?,admin_level=? where admin_id=?";
 					stmt2 = conn2.prepareStatement(sql);
 					
-					stmt2.setInt(1, admin.getAdminId());
-					stmt2.setString(2, admin.getAdminUsername());
-					stmt2.setString(3, admin.getAdminPassword());
-					stmt2.setString(4, admin.getAdminDep());
-					stmt2.setInt(5, admin.getAdminLevel());
+					stmt2.setString(1, admin_dep);
+					stmt2.setInt(2, admin_level);
+					stmt2.setString(3, admin_id);
 					
-					stmt2.executeUpdate();
+					int data = stmt2.executeUpdate();
+					return data;
 				}catch (Exception ex) {
 					ex.printStackTrace();
+					return 0;
 				} finally {
 					// 释放语句对象
-					if (stmt != null) {
+					if (stmt2 != null) {
 						try {
-							stmt.close();
-							stmt = null;
+							stmt2.close();
+							stmt2 = null;
 						} catch (Exception ex) {
 							ex.printStackTrace();
 						}
 					}
 				}
-			}
-		}
+	}
+	public int changeAdminPassword(String admin_password,String admin_id){
+		
+			Connection conn3 = null;
+			PreparedStatement stmt3 = null;
 			
+			
+			try {				
+					conn3 = DBHelper.getConnection();
+					String sql = "update admin set admin_password=? where admin_id=?";
+					stmt3 = conn3.prepareStatement(sql);
+					
+					stmt3.setString(1,admin_password);
+					stmt3.setString(2,admin_id);
+					
+					int data = stmt3.executeUpdate();
+					return data;
+				}catch (Exception ex) {
+					ex.printStackTrace();
+					return 0;
+				} finally {
+					// 释放语句对象
+					if (stmt3 != null) {
+						try {
+							stmt3.close();
+							stmt3 = null;
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+					}
+		}
+	}
 	
 	public static void main(String[] args) {
 

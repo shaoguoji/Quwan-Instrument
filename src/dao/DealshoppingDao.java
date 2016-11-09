@@ -7,14 +7,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
 import util.DBHelper;
 import entity.Comment;
 import entity.Deal;
 import entity.DealShopping;
 
-public class DealshoppingDao {
+public class DealShoppingDao {
 
 	public static void main(String[] args) {
 		/*
@@ -36,7 +34,7 @@ public class DealshoppingDao {
 		 * Date date = new Date(); comment.setComment_date(date);
 		 */
 		// dao.DealComment("钟志坚", "TAKAMINE D5D 单板民谣吉他", comment);
-		DealshoppingDao dao = new DealshoppingDao();
+		DealShoppingDao dao = new DealShoppingDao();
 		ArrayList<DealShopping> list3 = new ArrayList<DealShopping>();
 		DealShopping deal = new DealShopping();
 		deal.setDeal_price_(100);

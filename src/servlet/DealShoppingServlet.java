@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
-import dao.DealshoppingDao;
+import dao.DealShoppingDao;
 import entity.DealShopping;
 import entity.Product;
 import entity.Users;
@@ -18,7 +18,7 @@ import entity.Users;
 public class DealShoppingServlet extends HttpServlet {
 
 	private String action; // 表示订单的动作 ,add,show,delete
-	private DealshoppingDao dealDao = new DealshoppingDao();// 商品业务逻辑类的对象
+	private DealShoppingDao dealDao = new DealShoppingDao();// 商品业务逻辑类的对象
 
 	/**
 	 * Constructor of the object.

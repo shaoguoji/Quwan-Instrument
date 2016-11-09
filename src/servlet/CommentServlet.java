@@ -6,14 +6,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.DealshoppingDao;
+import dao.DealShoppingDao;
 import entity.Comment;
 
 
 @SuppressWarnings("serial")
 public class CommentServlet extends HttpServlet {
 
-	private DealshoppingDao dealDao = new DealshoppingDao();// 商品业务逻辑类的对象
+	private DealShoppingDao dealDao = new DealShoppingDao();// 商品业务逻辑类的对象
 
 	/**
 	 * Constructor of the object.
