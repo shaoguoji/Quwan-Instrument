@@ -175,7 +175,7 @@ public class Product {
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-		if(this==obj)
+		if(this == obj)
 		{
 			return true;
 		}
