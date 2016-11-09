@@ -50,7 +50,7 @@ if(request.getSession().getAttribute("user") != null)
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>产品详情</title>
+    <title><%=product.getProduct_name()+" - "%>商品详情</title>
 
 
     <!-- Bootstrap Core CSS -->
@@ -85,7 +85,8 @@ if(request.getSession().getAttribute("user") != null)
       function selflog_show(id)
       {   	
          var num =  document.getElementById("number").value; 
-         J.dialog.get({id: 'haoyue_creat',title: '购物成功',width: 600,height:400, link: '<%=path%>/servlet/CartServlet?id='+id+'&num='+num+'&action=add', cover:true});
+         window.location.href = "servlet/CartServlet?id="+id+"&num="+num+"&action=add";
+         //J.dialog.get({id: 'haoyue_creat',title: '购物成功',width: 600,height:400, link: '<%=path%>/servlet/CartServlet?id='+id+'&num='+num+'&action=add', cover:true});
       }
       function add()
       {

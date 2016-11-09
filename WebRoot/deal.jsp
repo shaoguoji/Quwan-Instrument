@@ -8,7 +8,7 @@
 	+ request.getServerName() + ":" + request.getServerPort()
 	+ path + "/";
 %>
-<%@ page import="dao.DealShoppingDao"%>
+<%@ page import="dao.DealshoppingDao"%>
 <%@ page import="entity.DealShopping"%>
 <%@ page import="dao.ProductDao"%>
 <%@ page import="entity.Product"%>
@@ -170,7 +170,7 @@ a:hover {
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="row">
 							<ul class="nav nav-tabs">
-								<li class="active"><a
+								<li><a
 									href="servlet/DealShoppingServlet?aciton=query">所有订单</a></li>
 								<li><a
 									href="servlet/DealShoppingServlet?aciton=querybytype&deal_type=paied">待收货</a>
@@ -247,7 +247,7 @@ a:hover {
 							if (session.getAttribute("user") != null) {
 								VIP = ((Users) session.getAttribute("user")).isUserVip();
 								ArrayList<ArrayList<DealShopping>> lists = new ArrayList<ArrayList<DealShopping>>();
-								DealShoppingDao dealDao = new DealShoppingDao();
+								DealshoppingDao dealDao = new DealshoppingDao();
 								ProductDao pDao = new ProductDao();
 								Product product = new Product();
 								Users user = (Users) session.getAttribute("user");

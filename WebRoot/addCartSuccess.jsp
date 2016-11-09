@@ -4,7 +4,7 @@
 <%@page import="entity.Cart"%>
 
 <%@page import="java.text.DecimalFormat"%>
-
+<jsp:useBean id="productDao" class="dao.ProductDao" scope="page"/>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -20,7 +20,7 @@ if(request.getSession().getAttribute("user") != null)
 	loginUser = (Users)request.getSession().getAttribute("user");
 }
 %>
-
+<base href="<%=basePath %>">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +30,7 @@ if(request.getSession().getAttribute("user") != null)
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>购物车</title>
+    <title>加入购物车成功</title>
 
 	
     <!-- Bootstrap Core CSS -->
@@ -56,34 +56,6 @@ if(request.getSession().getAttribute("user") != null)
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
-    
-      <script type="text/javascript">
-      function cartUpdate(id)
-      {   	
-
-         var num =  document.getElementById(id).value;
-         window.location.href="servlet/CartServlet?id="+id+"&num="+num+"&action=update";
-         //window.navigate("index.jsp");
-         //window.location.href="servlet/CartServlet?id="+id+"&num="+num+"&action=update";  
-         //J.dialog.get({id: 'haoyue_creat',title: '购物成功',width: 600,height:400, link: '<%=path%>/servlet/CartServlet?id='+id+'&num='+num+'&action=update', cover:true});
-      }
-      function add(id)
-      {
-         var num = parseInt(document.getElementById(id).value);
-         if(num<100)
-         {
-            document.getElementById(id).value = ++num;
-         }
-      }
-      function sub(id)
-      {
-         var num = parseInt(document.getElementById(id).value);
-         if(num>1)
-         {
-            document.getElementById(id).value = --num;
-         }
-      }
-    </script>
     
 </head>
 <body>
@@ -220,27 +192,22 @@ if(request.getSession().getAttribute("user") != null)
 					</ul>
 				</div>
 			</div>
-			
-			<% 
-			    //首先判断session中是否有购物车对象
-				if(request.getSession().getAttribute("cart")!=null)
-				{
-			%>
+    		<center><img src="images/add_cart_success.jpg"/></center>
 							<!-- 循环的开始 -->
 			<% 
-			    cart = (Cart)request.getSession().getAttribute("cart");
-				products = cart.getProducts();
-				Set<Product> ps = products.keySet();
-				Iterator<Product> it = ps.iterator();
+
+
+
+
+				
+				String	id = request.getParameter("id");
+				String number = request.getParameter("num");
+				
+				Product p = productDao.findProductById(id);	
 				 
-				if (products.size() == 0)
+				if(p != null)
 				{
-			%>		<div class="alert alert-info">提示 - 购物车空空的，先去挑选商品吧</div>
-			<%	}
-				 
-				while(it.hasNext())
-				{
-					Product p = it.next();
+					
 					
 			 %>
 			<div class="row">
@@ -264,7 +231,7 @@ if(request.getSession().getAttribute("user") != null)
 										{
 											
 								 %>
-											<div>会员价： <h6>¥<%= formater.format(p.getProduct_price() * 0.95) %></h6>&nbsp;&nbsp;<s>¥<%= p.getProduct_price() %></s></div>
+											<div>会员价： <h6>¥<%= formater.format(Integer.parseInt(number) * 0.95) %></h6>&nbsp;&nbsp;<s>¥<%= p.getProduct_price() %></s></div>
 								<%
 										}
 										else
@@ -287,10 +254,10 @@ if(request.getSession().getAttribute("user") != null)
 							</div> 
 							
 
+							<h6>数量: <%=number %></h6>
+							 
 							
-							<label>数量: </label> <span class="btn" onclick="sub(<%= p.getProduct_id() %>);">-</span> <input id = "<%= p.getProduct_id() %>" type="text" class="form-inline quantity" value="<%= products.get(p) %>"> <span class="btn" onclick="add(<%= p.getProduct_id() %>);">+</span> <a href="javascript:cartUpdate(<%= p.getProduct_id() %>)" class="btn btn-2">确定</a> 
 							<hr> 
-							<a href="servlet/CartServlet?action=delete&id=<%= p.getProduct_id() %>" class="btn btn-default pull-right">删除</a> 
 							
 							<%
 								if (loginUser != null)
@@ -298,27 +265,26 @@ if(request.getSession().getAttribute("user") != null)
 									if (loginUser.isUserVip())
 									{
 							%>
-										<h3>总计： ¥<%= formater.format(Float.parseFloat(formater.format(p.getProduct_price() * 0.95))*products.get(p)) %></h3>
+										<h3>总计： ¥<%= formater.format(Float.parseFloat(formater.format(p.getProduct_price()))*Integer.parseInt(number)) %></h3>
 							<%
 									}
 									else
 									{
 							 %>
-										<h3>总计： ¥<%= formater.format(Float.parseFloat(formater.format(p.getProduct_price()))*products.get(p)) %></h3>
+										<h3>总计： ¥<%= formater.format(Float.parseFloat(formater.format(p.getProduct_price()))*Integer.parseInt(number)) %></h3>
 							<%
 									}
 								}
 								else
 								{
 							%>
-									<h3>总计： ¥<%= formater.format(Float.parseFloat(formater.format(p.getProduct_price()))*products.get(p)) %></h3>
+									<h3>总计： ¥<%= formater.format(Float.parseFloat(formater.format(p.getProduct_price()))*Integer.parseInt(number)) %></h3>
 							<%
 								}
 							%>
 							
 						</div>
 					</div>
-					<div class="clear"></div>
 				</div>	
 			</div>
 
@@ -328,109 +294,15 @@ if(request.getSession().getAttribute("user") != null)
 				<!--循环的结束-->
 
 			<div class="row">
-				<div class="col-md-4 col-md-offset-8 ">
-					<a href="servlet/CartServlet?action=clear" class="btn btn-1">清空购物车</a>
-					<a href="index.jsp" class="btn btn-1">继续购物</a>
-				</div>
-			</div>
-			<div class="row">
 				<div class="pricedetails">
-					<div class="col-md-4 col-md-offset-8">
-						<table>
-							<h6>价格详情</h6>
-							<tr>
-								<td>商品总价</td>
-								<td><%= formater.format(cart.getTotalPrice()) %></td>
-							</tr>
-							<tr>
-								<td>折扣</td>
-								<%
-									if (loginUser != null)
-									{
-										if (loginUser.isUserVip())
-										{
-								 %>
-											<td>0.95</td>
-								<%
-										}
-										else
-										{
-								%>
-											<td>---------</td>
-								<%
-										}
-									}
-									else
-									{		
-								%>
-										<td>---------</td>
-								<%
-									}
-								 %>
-							</tr>
-							<tr>
-								<td>派送费</td>
-							<%
-								if (products.size() > 0)
-								{
-							 %>		<td>40.00</td>
-							</tr>
-							<tr style="border-top: 1px solid #333">
-								<td><h5>总价格</h5></td>
-								<td><h5><%= formater.format(cart.getTotalPrice()+40) %></h5></td>
-							</tr>
-							 <%	}
-							 	else
-							 	{
-							  %>	<td>00.00</td>
-							</tr>
-							<tr style="border-top: 1px solid #333">
-								<td><h5>总价格</h5></td>
-								<td><h5><%= formater.format(cart.getTotalPrice()) %></h5></td>
-							</tr>
-							  <%} %>
-
-						</table>
-				<%
-					}
-					else
-					{
-				 %>		
-				<div class="alert alert-info">提示 - 购物车空空的，先去挑选商品吧</div>
-				<div class="row">
-				<div class="col-md-4 col-md-offset-8 ">
-					<a href="servlet/CartServlet?action=clear" class="btn btn-1">清空购物车</a>
-					<a href="index.jsp" class="btn btn-1">继续购物</a>
-				</div>
-				</div>
 				
-				<div class="row">
-				<div class="pricedetails">
-					<div class="col-md-4 col-md-offset-8">
-						<table>
-							<h6>价格详情</h6>
-							<tr>
-								<td>商品总价</td>
-								<td>0.00</td>
-							</tr>
-							<tr>
-								<td>折扣</td>
-				 				<td>---------</td>
-				 			</tr>
-							<tr>
-								<td>派送费</td>
-								<td>00.00</td>
-							</tr>
-							<tr style="border-top: 1px solid #333">
-								<td><h5>总价格</h5></td>
-								<td><h5>0.00</h5></td>
-							</tr>
-						</table>
-				 <%
-				 	}
-				  %>
-				
-						<center><a href="#" class="btn btn-1">去下单</a></center>
+					<div class="row">
+						<div class="pricedetails">
+							<div class="col-md-4 col-md-offset-8 ">
+								<a href="product.jsp?id=<%=p.getProduct_id() %>" class="btn btn-1">返回商品详情</a>
+								<a href="cart.jsp" class="btn btn-1">去购物车结算</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
