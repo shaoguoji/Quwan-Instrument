@@ -428,7 +428,7 @@ if(request.getSession().getAttribute("user") != null)
 				 	}
 				  %>
 				
-						<center><a href="#" class="btn btn-1">去下单</a></center>
+						<center><a href="servlet/DealShoppingServlet?action=add" class="btn btn-1">去下单</a></center>
 					</div>
 				</div>
 			</div>

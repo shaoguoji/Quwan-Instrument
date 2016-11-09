@@ -1,16 +1,18 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 import dao.DealshoppingDao;
+import entity.Cart;
 import entity.DealShopping;
 import entity.Product;
 import entity.Users;
@@ -88,7 +90,7 @@ public class DealShoppingServlet extends HttpServlet {
 				request.getSession().removeAttribute("dealbynum");
 				request.getSession().removeAttribute("dealbytype");
 				response.sendRedirect("../deal.jsp");
-				
+
 			}
 			if (action.equals("querybynum")) // 如果订单号是查询订单
 			{
@@ -99,11 +101,12 @@ public class DealShoppingServlet extends HttpServlet {
 					response.sendRedirect("../deal.jsp");
 				}
 			}
-			
+
 			if (action.equals("querybytype")) // 如果类型是查询订单
 			{
 				if (queryDealByType(request, response)) {
-					response.sendRedirect("../deal.jsp");;
+					response.sendRedirect("../deal.jsp");
+					;
 				} else {
 					response.sendRedirect("../deal.jsp");
 				}
@@ -136,25 +139,43 @@ public class DealShoppingServlet extends HttpServlet {
 	// 添加订单
 	private boolean addDeal(HttpServletRequest request,
 			HttpServletResponse response) {
-		/*
-		 * ArrayList<DealShopping> list = new ArrayList<DealShopping>();
-		 * Iterator<Product> it = items.iterator(); while (it.hasNext()) {
-		 * Product pd = it.next(); for (DealShopping deal : list) { Users user =
-		 * (Users) request.getSession().getAttribute("user");
-		 * deal.setUser_id(user.getUserId());
-		 * deal.setProduct_id(pd.getProduct_id());
-		 * deal.setProduct_count(pd.getProduct_sale_count());
-		 * deal.setDeal_price_(pd.getProduct_id()* pd.getProduct_sale_count());
-		 * list.add(deal); } }
-		 */
-
-		ArrayList<DealShopping> list = (ArrayList<DealShopping>) request
-				.getAttribute("list");
-		if (list != null && list.size() > 0) {
-			if (dealDao.AddDeal(list)) {
-				return true;
-			} else {
+		// 首先判断session中是否有购物车对象
+		if (request.getSession().getAttribute("cart") != null) {
+			System.out.println("有购物车");
+			Cart cart = (Cart) request.getSession().getAttribute("cart");
+			HashMap<Product, Integer> products = cart.getProducts();
+			Set<Product> ps = products.keySet();
+			Iterator<Product> it = ps.iterator();
+			ArrayList<DealShopping> list = new ArrayList<DealShopping>();
+			DealShopping deal = new DealShopping();
+			if (products.size() == 0) {
+				System.out.println(products.size());
 				return false;
+			}
+			while (it.hasNext()) {
+				Product pd = it.next();
+				System.out.println((Users) request.getSession().getAttribute(
+						"user"));
+				System.out.println(pd.getProduct_name());
+				System.out.println(pd.getProduct_price());
+				System.out.println(products.get(pd));
+				System.out.println(pd);
+				Users user = (Users) request.getSession().getAttribute("user");
+				deal.setUser_id(user.getUserId());
+				deal.setProduct_id(pd.getProduct_id());
+				deal.setProduct_count(products.get(pd));
+				deal.setDeal_price_(pd.getProduct_price() * products.get(pd));
+				list.add(deal);
+
+			}
+			if (list != null && list.size() > 0) {
+				System.out.println(list.size());
+				if (dealDao.AddDeal(list)) {
+					cart.setProducts(null);
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 		return false;
@@ -177,48 +198,52 @@ public class DealShoppingServlet extends HttpServlet {
 		 * list.add(deal); } }
 		 */
 		if (request.getSession().getAttribute("user") != null)
-			userName = ((Users)request.getSession().getAttribute("user")).getUserName();
+			userName = ((Users) request.getSession().getAttribute("user"))
+					.getUserName();
 		else
 			return false;
 		if (request.getParameter("deal_shopnumber") != null)
 			num = request.getParameter("deal_shopnumber");
-		else 
+		else
 			return false;
-		ArrayList<ArrayList<DealShopping>> deal = dealDao.getDealsByUsernameAndShopnum(userName, num);
+		ArrayList<ArrayList<DealShopping>> deal = dealDao
+				.getDealsByUsernameAndShopnum(userName, num);
 		request.getSession().setAttribute("dealbynum", deal);
 		return true;
 
 	}
-	// 通过订单类型查询订单
-		private boolean queryDealByType(HttpServletRequest request,
-				HttpServletResponse response) {
-			String userName = null;
-			String deal_type = null;
-			/*
-			 * ArrayList<DealShopping> list = new ArrayList<DealShopping>();
-			 * Iterator<Product> it = items.iterator(); while (it.hasNext()) {
-			 * Product pd = it.next(); for (DealShopping deal : list) { Users user =
-			 * (Users) request.getSession().getAttribute("user");
-			 * deal.setUser_id(user.getUserId());
-			 * deal.setProduct_id(pd.getProduct_id());
-			 * deal.setProduct_count(pd.getProduct_sale_count());
-			 * deal.setDeal_price_(pd.getProduct_id() pd.getProduct_sale_count());
-			 * list.add(deal); } }
-			 */
-			if (request.getSession().getAttribute("user")!= null)
-				userName = ((Users)request.getSession().getAttribute("user")).getUserName();
-			else
-				return false;
-			if (request.getParameter("deal_type") != null)
-				deal_type = request.getParameter("deal_type");
-			else 
-				return false;
-			ArrayList<ArrayList<DealShopping>> deal = dealDao.getDealsByUsernameAndType(userName, deal_type);
-			request.getSession().setAttribute("dealbytype", deal);
-			return true;
 
-		}
-		
+	// 通过订单类型查询订单
+	private boolean queryDealByType(HttpServletRequest request,
+			HttpServletResponse response) {
+		String userName = null;
+		String deal_type = null;
+		/*
+		 * ArrayList<DealShopping> list = new ArrayList<DealShopping>();
+		 * Iterator<Product> it = items.iterator(); while (it.hasNext()) {
+		 * Product pd = it.next(); for (DealShopping deal : list) { Users user =
+		 * (Users) request.getSession().getAttribute("user");
+		 * deal.setUser_id(user.getUserId());
+		 * deal.setProduct_id(pd.getProduct_id());
+		 * deal.setProduct_count(pd.getProduct_sale_count());
+		 * deal.setDeal_price_(pd.getProduct_id() pd.getProduct_sale_count());
+		 * list.add(deal); } }
+		 */
+		if (request.getSession().getAttribute("user") != null)
+			userName = ((Users) request.getSession().getAttribute("user"))
+					.getUserName();
+		else
+			return false;
+		if (request.getParameter("deal_type") != null)
+			deal_type = request.getParameter("deal_type");
+		else
+			return false;
+		ArrayList<ArrayList<DealShopping>> deal = dealDao
+				.getDealsByUsernameAndType(userName, deal_type);
+		request.getSession().setAttribute("dealbytype", deal);
+		return true;
+
+	}
 
 	// 确认收货的的方法
 	private boolean SureRecieve(HttpServletRequest request,
