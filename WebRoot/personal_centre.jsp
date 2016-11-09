@@ -196,9 +196,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr>
 
 								<td><h5>积分： </h5></td>
-
 								<td><span id="point" style="margin-left:80px"><%=user.getUserPoint() %></span></td>
-								<td><a href="#" class="btn btn-2">申请会员</a></td>
+								<%  
+										if(user.isUserVip()){
+								%>
+								<td><button type="button" name="apply_vip" id="apply_vip" class="btn btn-2" disabled>申请会员</button></td>
+								<%
+										}else{
+								 %>
+								 	<td><button type="button" name="apply_vip" id="apply_vip" class="btn btn-2" >申请会员</button></td>
+								<% 
+										}
+								%>
 							</tr>
 							<tr>
 								<td><h5>&nbsp</h5></td>
@@ -340,6 +349,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    var disabled_phone =$('input[name="user_phone"]').attr("disabled");
 		    var disabled_email =$('input[name="user_email"]').attr("disabled");
 		    var userAccount=$('#user_name').html();
+		    
+		    $('#apply_vip').click(function(){
+		        	$.ajax({
+					 data: {method:"doPost"},
+		             type: "POST",
+		             url: "servlet/VipAdminServlet",
+		             success: function(data){
+					             if(data==1){
+			             				alert("申请成功！");
+			             				document.getElementById("apply_vip").disabled =true;
+					             }
+					             if(data==2){
+					             		alert("未知问题请求失败");
+					             }
+					             if(data==3){
+					             		alert("积分不够，请求失败");
+					             }
+		                    }
+	       			  }); 
+		    });
+		    
 		    $('#change_address').click(function(){
 		        	var userAddress=$('#user_address').val();
 		        if(disabled_address=="disabled"){

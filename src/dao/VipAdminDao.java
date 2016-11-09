@@ -10,26 +10,19 @@ import entity.Users;
 public class VipAdminDao {
 	
 	//判断积分足够成为会员？
-	public boolean User_pointJudge(String user_account){
+	public int change_vip_status(String user_account){
 	
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
-		UsersDao usersdao =new UsersDao();
-		Users users =new Users();
-		users =usersdao.getItemsByUsersAccount(user_account);
-		
-		conn = DBHelper.getConnection();
-		System.out.println(users.getUserAccount());
-		if(users.getUserPoint()>=600){
+		int isSuccess=0;
 			try {
 				conn = DBHelper.getConnection();
 				String sql = "update user set user_vip = 1 where user_account=?" ; // SQL语句
 				stmt = conn.prepareStatement(sql);
 				stmt.setString(1, user_account);
 				//rs = stmt.executeQuery();
-				stmt.executeUpdate();
+				isSuccess= stmt.executeUpdate();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				
@@ -53,10 +46,7 @@ public class VipAdminDao {
 					}
 				}
 			}	
-			return true;
-		}
-		else
-			return false;	
+			return isSuccess;
 	}
 	/*public static void main(String[] args) {
 		UserVipJudge vipjudge =new UserVipJudge();
@@ -65,6 +55,4 @@ public class VipAdminDao {
 		users =usersdao.getItemsByUsersAccount("shaoguoji");
 		vipjudge.User_pointJudge(users.getUserAccount());
 	}*/
-	
-	
 }
