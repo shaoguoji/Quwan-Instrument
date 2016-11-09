@@ -90,6 +90,13 @@ public class Cart {
 		return true;
 	}
 	
+	public boolean clearCart(Users user)
+	{
+		products.clear();
+		calToalPrice(user); // 重新计算购物车总金额
+		return true;
+	}
+	
 	// set/get方法
 	public HashMap<Product, Integer> getProducts() {
 		return products;
