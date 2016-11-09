@@ -78,6 +78,32 @@ if(request.getSession().getAttribute("user") != null)
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
+    
+    <script type="text/javascript" src="js/lhgcore.js"></script>
+    <script type="text/javascript" src="js/lhgdialog.js"></script>
+    <script type="text/javascript">
+      function selflog_show(id)
+      {   	
+         var num =  document.getElementById("number").value; 
+         J.dialog.get({id: 'haoyue_creat',title: '购物成功',width: 600,height:400, link: '<%=path%>/servlet/CartServlet?id='+id+'&num='+num+'&action=add', cover:true});
+      }
+      function add()
+      {
+         var num = parseInt(document.getElementById("number").value);
+         if(num<100)
+         {
+            document.getElementById("number").value = ++num;
+         }
+      }
+      function sub()
+      {
+         var num = parseInt(document.getElementById("number").value);
+         if(num>1)
+         {
+            document.getElementById("number").value = --num;
+         }
+      }
+    </script>
 </head>
 <body>
 	<!--Top-->
@@ -249,7 +275,7 @@ if(request.getSession().getAttribute("user") != null)
 										if (loginUser.isUserVip())
 										{
 								 %>
-											<div class="price"><h3>¥<%= formater.format(product.getProduct_price() * 0.95) %></h3><div>¥<%= product.getProduct_price() %></div></div>
+											会员价：<div class="price"><h3>¥<%= formater.format(product.getProduct_price() * 0.95) %></h3><div>¥<%= product.getProduct_price() %></div></div>
 								<%
 										}
 										else
@@ -277,7 +303,7 @@ if(request.getSession().getAttribute("user") != null)
 									</select>
 								</div>
 								<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-								<div class="well"><label>数量: </label> <input class="form-inline quantity" type="text" value="1"><a href="#" class="btn btn-2 ">添加</a></div>
+								<div class="well"><label>数量: </label> <span class="btn" id="sub" onclick="sub();">-</span><input id="number" class="form-inline quantity" type="text" value="1" /><span class="btn" id="add" onclick="add();">+</span><a href="javascript:selflog_show(<%=id%>)" class="btn btn-2 "><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</a></div>
 								<div class="share well">
 									<strong style="margin-right: 13px;">分享 :</strong>
 									<a href="#" class="share-btn" target="_blank">
