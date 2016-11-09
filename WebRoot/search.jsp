@@ -40,7 +40,7 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
     <meta name="description" content="">
     <meta name="author" content="">
 	 
-    <title><%= search %>-商品搜索</title>
+    <title><%= search + " - "%>商品搜索</title>
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
@@ -274,7 +274,7 @@ String search = pro.getProperty("product_name"); // 请确保search不为空，�
 												<div class="product">
 													<div class="image"><a href="product.jsp?id=<%=p.getProduct_id() %>"><img style="height:300px;width:auto" src="<%=p.getProduct_image() %>" /></a></div>
 													<div class="buttons">
-														<a class="btn cart" href="javascript:selflog_show(<%=p.getProduct_id()%>)"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+														<a class="btn cart" href="servlet/CartServlet?id=<%=p.getProduct_id() %>&num=1&action=add"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 														<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
 														<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
 													</div>

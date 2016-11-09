@@ -13,6 +13,38 @@ import entity.SaleBefore;
 
 public class SaleBeforeDao {
 
+	// 添加售前服务
+	public void addSaleBefore(SaleBefore sb)
+	{
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {				
+			conn = DBHelper.getConnection();
+			String sql = "insert into salebefore (user_id, product_id, service_before, salebefore_is_handle) values (?,?,?,?)";
+			stmt = conn.prepareStatement(sql);
+			
+			stmt.setInt(1, sb.getUser_id());
+			stmt.setInt(2, sb.getProduct_id());
+			stmt.setString(3, sb.getService_before());
+			stmt.setBoolean(4, sb.isSalebefore_is_handle());
+			
+			stmt.executeUpdate();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			// 释放语句对象
+			if (stmt != null) {
+				try {
+					stmt.close();
+					stmt = null;
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	// 查找所有售前服务申请
 	public List<SaleBefore> findSaleBefore() {
 		List<SaleBefore> salebefores = new ArrayList<SaleBefore>();
