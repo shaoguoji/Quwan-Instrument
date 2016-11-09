@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DealShoppingDao;
+import dao.DealshoppingDao;
 import dao.SuperAdminDao;
 import dao.VipAdminDao;
 
