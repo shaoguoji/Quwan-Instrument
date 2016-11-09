@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import util.Constants;
 
 import dao.SuperAdminDao;
+import encryption.EncryptionForPassword;
 import entity.Admin;
 import entity.DealShopping;
 
@@ -64,7 +67,7 @@ public class SuperAdminServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		if (request.getParameter("action") != null) {
+		/*if (request.getParameter("action") != null) {
 			this.action = request.getParameter("action");
 			if (action.equals("delede")) // 删除管理员
 			{
@@ -104,8 +107,15 @@ public class SuperAdminServlet extends HttpServlet {
 				}
 					
 			}
-	
 		}
+		*/
+		int data;
+		  if(addAdmin(request,response)){
+			  data=1;
+		  }else{
+			  data=2;
+		  }
+		  out.print(data);
 	}
 	
 	//删除管理员
@@ -124,24 +134,31 @@ public class SuperAdminServlet extends HttpServlet {
 			
 			Admin admin =new Admin();
 			
-			if (request.getParameter("admin_id") != null)
-				admin.setAdminId(Integer.parseInt(request.getParameter("admin_id")));
+			
+			if (request.getParameter("adminUsername") != null)
+				admin.setAdminUsername(request.getParameter("adminUsername"));
 			else
 				return false;
-			if (request.getParameter("admin_username") != null)
-				admin.setAdminUsername(request.getParameter("admin_username"));
+			if (request.getParameter("adminPassword") != null){
+				try {
+					String password = EncryptionForPassword.EncoderByMd5(request.getParameter("adminPassword"));
+					admin.setAdminPassword(password);
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			else
 				return false;
-			if (request.getParameter("admin_password") != null)
-				admin.setAdminPassword(request.getParameter("admin_password"));
+			if (request.getParameter("adminDep") != null)
+				admin.setAdminDep(request.getParameter("adminDep"));
 			else
 				return false;
-			if (request.getParameter("admin_dep") != null)
-				admin.setAdminDep(request.getParameter("admin_dep"));
-			else
-				return false;
-			if (request.getParameter("admin_level") != null)
-				admin.setAdminLevel(Integer.parseInt(request.getParameter("admin_level")));
+			if (request.getParameter("adminLevel") != null)
+				admin.setAdminLevel(Integer.parseInt(request.getParameter("adminLevel")));
 			else
 				return false;
 			superadmindao.saveAdmin(admin, Constants.ADD_ADMIN);

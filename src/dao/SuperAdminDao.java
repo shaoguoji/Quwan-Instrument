@@ -97,14 +97,13 @@ public class SuperAdminDao {
 		{
 			try {				
 					conn = DBHelper.getConnection();
-					String sql = "insert into admin (admin_id,admin_username,admin_password,admin_lep,admin_level) values (?,?,?,?,?)";
+					String sql = "insert into admin (admin_username,admin_password,admin_dep,admin_level) values (?,?,?,?)";
 					stmt = conn.prepareStatement(sql);
 					
-					stmt.setInt(1, admin.getAdminId());
-					stmt.setString(2, admin.getAdminUsername());
-					stmt.setString(3, admin.getAdminPassword());
-					stmt.setString(4, admin.getAdminDep());
-					stmt.setInt(5, admin.getAdminLevel());
+					stmt.setString(1, admin.getAdminUsername());
+					stmt.setString(2, admin.getAdminPassword());
+					stmt.setString(3, admin.getAdminDep());
+					stmt.setInt(4, admin.getAdminLevel());
 				
 					
 					stmt.executeUpdate();
