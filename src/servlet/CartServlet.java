@@ -72,6 +72,14 @@ public class CartServlet extends HttpServlet {
 					response.sendRedirect(request.getContextPath() + "/cart.jsp");
 				}
 			}
+			if (action.equals("clear"))
+			{
+				Cart cart = (Cart)request.getSession().getAttribute("cart");
+				if (cart.clearCart(loginUser))
+				{
+					response.sendRedirect(request.getContextPath() + "/cart.jsp");
+				}
+			}
 			if(action.equals("delete"))//如果是删除购物车
 			{
 				deleteFromCart(request, response);			

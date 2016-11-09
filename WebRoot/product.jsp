@@ -391,28 +391,28 @@ if(request.getSession().getAttribute("user") != null)
 							 	}
 							  %>
 							</ul>
-<!--
+
 							  <div class="review-text">
-								<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+								<p></p>
 							  </div>
 							  <div class="review-form">
-								<h4>Write a review</h4>
+								<h4>售前咨询</h4>
 								<form name="form1" id="ff" method="post" action="review.php">
 									<label>
-									<span>Enter your name:</span>
+									<span>请输入你的姓名</span>
 									<input type="text"  name="name" id="name" required>
 									</label>
 									<label>
-									<span>Your message here:</span>
+									<span>资讯信息</span>
 									<textarea name="message" id="message"></textarea>
 									</label>
 									<div class="text-right">
-										<input class="btn btn-default" type="reset" name="reset" value="Reset">
-										<input class="btn btn-default" type="submit" name="Submit" value="Submit">
+										<input class="btn btn-default" type="reset" name="chongzhi" value="重置">
+										<input class="btn btn-default" type="submit" name="Submit" value="提交">
 									</div>
 								</form>
 							  </div>
--->
+
 							</div>
 						</div>
 					</div>

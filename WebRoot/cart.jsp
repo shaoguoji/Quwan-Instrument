@@ -329,7 +329,8 @@ if(request.getSession().getAttribute("user") != null)
 
 			<div class="row">
 				<div class="col-md-4 col-md-offset-8 ">
-					<center><a href="index.jsp" class="btn btn-1">继续购物</a></center>
+					<a href="servlet/CartServlet?action=clear" class="btn btn-1">清空</a>
+					<a href="index.jsp" class="btn btn-1">继续购物</a>
 				</div>
 			</div>
 			<div class="row">
@@ -398,6 +399,7 @@ if(request.getSession().getAttribute("user") != null)
 				<div class="alert alert-info">提示 - 购物车空空的，先去挑选商品吧</div>
 				<div class="row">
 				<div class="col-md-4 col-md-offset-8 ">
+					<center><a href="servlet/CartServlet?action=clear" class="btn btn-1">清空</a></center>
 					<center><a href="index.jsp" class="btn btn-1">继续购物</a></center>
 				</div>
 				</div>
