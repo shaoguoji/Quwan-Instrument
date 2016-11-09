@@ -1,3 +1,9 @@
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@ page import ="entity.Admin,dao.SuperAdminDao" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,28 +29,16 @@
 	
 	<!-- jQuery and Modernizr-->
 	<script src="js/jquery-2.1.1.js"></script>
-	
-	<!-- Core JavaScript Files -->  	 
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript">
+	    <script type="text/javascript">
     	function delNode(node){
     		if (!confirm("你真的要删除所选的商品吗？")){
 					return;
 				} 
     		node.parentNode.parentNode.parentNode.removeChild(node.parentNode.parentNode);
     	}
-    	function addTable(){
-    		var tabNode=document.getElementById("tab");
-    		// if (tabNode.className=="close"){
-    		// 	tabNode.className="open";
-    		if(tabNode.style.display=="none"){
-    			tabNode.style.display="block";
-    		}
-
-    	}
-
     </script>
- 
+	<!-- Core JavaScript Files -->  	 
+    <script src="js/bootstrap.min.js"></script>
     <style type="text/css">
     	.tabbable{
     		background-color: white;
@@ -57,6 +51,10 @@
 	
 </head>
 <body>
+	<%
+			SuperAdminDao superAdminDao= new SuperAdminDao();
+			List<Admin> admin = superAdminDao.findAllAdmin();
+	 %>
 	<nav id="top">
 		<div class="container">
 		<!-- class="container"设置为固定宽度 -->
@@ -76,15 +74,13 @@
 		<div class="tabbable">  
 			<ul class="nav nav-tabs">    
 				<li class="active"><a href="#1" data-toggle="tab">人员信息管理</a></li>    
-				<li><a href="#2" data-toggle="tab">权限管理</a></li>  
+			<!-- 	<li><a href="#2" data-toggle="tab">权限管理</a></li>   -->
 			</ul> 
 			<div class="tab-content">    
 				<div class="tab-pane active" id="1">
 					<div class="row" style="margin-bottom: 30px;">
-						<button onclick="addTable()">添加</button>     
 						<button>编辑</button>     
 						<button>修改密码</button>     
-						<button>禁用人员</button>     
 						<form class="pull-right">
 							<input class="text"></input>
 							<button>查询</button>
@@ -92,51 +88,46 @@
 					</div>
 
 					<div class="row col-lg-12" >
-						<div id="tab" style="display: none;">
-						<table class="table">
+						<div id="tab" >
+						<table class="table" id="table">
 							<tr>
 								<th><input type="checkbox"></th>
-								<th>姓名</th>
+								<th>管理员Id</th>
 								<th>用户名</th>
-								<th>角色</th>
-								<th>在线</th>
-								<th>入职时间</th>
-								
-
+								<th>岗位</th>
+								<th>等级</th>
 							</tr>
-							<tr>
+							<tr >
+								<td></td>
+								<td><input type="password" id="adminPassword" placeholder="管理员密码" size="15"></td>
+								<td><input type="text" id="adminUsername" size="15"placeholder="用户名" size="15"></td>
+								<td><input type="text" id="adminDep" size="15"placeholder="岗位" size="15"></td>
+								<td><input type="text" id="adminLevel" size="15"placeholder="等级" size="15"></td>
+								<td><button id="addButton">添加</button></td>
+							</tr>
+							<%
+									for(int i=0;i<admin.size();i++){									
+							 %>
+							<tr >
 								<td><input type="checkbox" name="box"></input></td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							
+								<td><%=admin.get(i).getAdminId() %></td>
+								<td><%=admin.get(i).getAdminUsername() %></td>
+								<td><%=admin.get(i).getAdminDep() %></td>
+								<td><%=admin.get(i).getAdminLevel() %></td>
 								<td><button onclick="delNode(this)">删除</button></td>
-								
-								
 							</tr>
-							<tr>
-								<td><input type="checkbox" name="box"></input></td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								
-								<td><button onclick="delNode(this)">删除</button></td>
-								
-								
-							</tr>
+							<%
+									}
+							 %>
+							 
 						</table>
 						</div>
 					</div>
 				</div> 
-				<div class="tab-pane" id="2">
+				<%-- <div class="tab-pane" id="2">
 					<div class="row" style="margin-bottom: 30px;">
 						<button>添加</button>     
 						<button>编辑</button>     
-						<button>删除</button>       
 						<form class="pull-right">
 							<input class="text"></input>
 							<button>查询</button>
@@ -147,41 +138,55 @@
 						<table class="table">
 							<tr>
 								<th><input type="checkbox" ></th>
-								<th>姓名</th>
+								<th>管理员Id</th>
 								<th>用户名</th>
-								<th>角色</th>
-								<th>在线</th>
-								<th>入职时间</th>
-								
-
+								<th>岗位</th>
+								<th>等级</th>
 							</tr>
+							<%
+									for(int i=0;i<admin.size();i++){									
+							 %>
 							<tr>
 								<td><input type="checkbox" name="box"></input></td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								
+								<td><%=admin.get(i).getAdminId() %></td>
+								<td><%=admin.get(i).getAdminUsername() %></td>
+								<td><%=admin.get(i).getAdminDep() %></td>
+								<td><%=admin.get(i).getAdminLevel() %></td>
 								<td><button onclick="delNode(this)">删除</button></td>
-								
-								
 							</tr>
-							<tr>
-								<td><input type="checkbox" name="box"></input></td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td><button onclick="delNode(this)">删除</button></td>
-								
-								
-							</tr>
+							<%
+									}
+							 %>
 						</table>
-					</div>
+					</div> --%>
 				</div> 
-
-	
+			</div> 
+		</header>
 </body>
+<script type="text/javascript">
+$(function(){
+			$("#addButton").click(function(){
+			var adminPassword = $("#adminPassword").val();
+			 var adminUsername = $("#adminUsername").val();
+			 var adminDep = $("#adminDep").val();
+			var adminLevel = $("#adminLevel").val();
+			if(adminPassword.length==0||adminUsername.length==0||adminDep.length==0||adminLevel.length==0){
+					    alert("不能留空");
+			}else{
+				$.ajax({
+				 data: {method:"doPost", adminPassword:adminPassword,adminUsername:adminUsername,adminDep:adminDep,adminLevel:adminLevel},
+	             type: "POST",
+	             url: "servlet/SuperAdminServlet",
+	             success: function(data){
+				    		 		if(data==1){
+				    		 			alert("添加成功");
+				    		 		}else{
+				    		 			alert("添加失败");
+				    		 		}
+    						 } 
+       			  }); 
+       		}
+			});
+		});
+</script>
 </html>
