@@ -6,17 +6,19 @@ public class SaleBefore {
 	private int user_id;		//用户id
 	private int product_id;		//商品id
 	private String service_before; //售前服务内容
+	private boolean salebefore_is_handle;
 	
 	public SaleBefore(){
 		
 	}
 	
-	public SaleBefore(int salebefore_id,int user_id,int product_id,String service_before){
+	public SaleBefore(int salebefore_id,int user_id,int product_id,String service_before,boolean salebefore_is_handle){
 		
 		this.salebefore_id=salebefore_id;
 		this.user_id=user_id;
 		this.product_id=product_id;
 		this.service_before =service_before;
+		this.salebefore_is_handle = salebefore_is_handle;
 	}
 	
 	public int getSalebefore_id() {
@@ -43,5 +45,14 @@ public class SaleBefore {
 	public void setService_before(String service_before) {
 		this.service_before = service_before;
 	}
+
+	public boolean isSalebefore_is_handle() {
+		return salebefore_is_handle;
+	}
+
+	public void setSalebefore_is_handle(boolean salebefore_is_handle) {
+		this.salebefore_is_handle = salebefore_is_handle;
+	}
+	
 	
 }

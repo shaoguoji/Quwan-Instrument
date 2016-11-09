@@ -184,15 +184,10 @@ if(request.getSession().getAttribute("user") != null)
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<ul class="breadcrumb">
-
-						<li><a href="index.jsp">首页</a></li>
-						<li><a href="cart.jsp">购物车</a></li>
-						
-					</ul>
+					<center><img src="images/add_cart_success.jpg"/></center>
 				</div>
 			</div>
-    		<center><img src="images/add_cart_success.jpg"/></center>
+    		
 							<!-- 循环的开始 -->
 			<% 
 

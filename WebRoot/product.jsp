@@ -393,25 +393,38 @@ if(request.getSession().getAttribute("user") != null)
 							  %>
 							</ul>
 
-							  <div class="review-text">
-								<p></p>
-							  </div>
+
 							  <div class="review-form">
 								<h4>售前咨询</h4>
-								<form name="form1" id="ff" method="post" action="review.php">
+								
+						<%
+							if (loginUser != null)
+								{
+						 %>
+								
+								<form name="form1" id="ff" method="post" action="servlet/salebeforeServlet">
+								<div class="review-text">
+								<p>填写咨询信息，咨询商品更详细的信息，提出您对商品的疑问</p>
+							  	</div>
 									<label>
-									<span>请输入你的姓名</span>
-									<input type="text"  name="name" id="name" required>
-									</label>
-									<label>
-									<span>资讯信息</span>
+									<span>咨询信息</span>
 									<textarea name="message" id="message"></textarea>
 									</label>
 									<div class="text-right">
 										<input class="btn btn-default" type="reset" name="chongzhi" value="重置">
-										<input class="btn btn-default" type="submit" name="Submit" value="提交">
+										<input  onclick="javascript:alert('提交成功')" class="btn btn-default" type="submit" name="Submit" value="提交">
+										<input type="hidden" name="id" value=<%=product.getProduct_id() %>>
 									</div>
 								</form>
+						<%
+								}
+								else
+								{
+						 %>
+						 			<div class="alert alert-warning">提示 - 请先登录再进行售前咨询</div>
+						 <%
+						 		}
+						  %>
 							  </div>
 
 							</div>
