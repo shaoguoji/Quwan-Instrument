@@ -2,8 +2,10 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -73,42 +75,61 @@ public class AdminProductChargeServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
 		if (request.getParameter("action") != null) {
 			this.action = request.getParameter("action");
 			if (action.equals("add")) // 如果是添加商品
 			{
 				if (addProduct(request, response)) {
-					request.getRequestDispatcher("/success.jsp").forward(
-							request, response);
+					response.sendRedirect("../productmanager.jsp");
 				} else {
+					request.setAttribute("fail", "商品管理");
 					request.getRequestDispatcher("/failure.jsp").forward(
 							request, response);
 				}
 			}
 			if (action.equals("show"))// 如果是显示商品
 			{
-				request.getRequestDispatcher("/adminproduct.jsp").forward(request,
-						response);
+				request.getRequestDispatcher("/productmanager.jsp").forward(
+						request, response);
 			}
 			if (action.equals("delete")) // 如果是删除商品
 			{
 				if (deleteDeal(request, response)) {
-					request.getRequestDispatcher("/adminproduct.jsp").forward(request,
-							response);
+					response.sendRedirect("../productmanager.jsp");
 				} else {
-					request.getRequestDispatcher("/adminproduct.jsp").forward(request,
-							response);
+					request.setAttribute("fail", "商品管理");
+					request.getRequestDispatcher("/failure.jsp").forward(
+							request, response);
 				}
 			}
 			if (action.equals("update")) // 如果是编辑商品
 			{
 				if (updateProduct(request, response)) {
-					request.getRequestDispatcher("/deal.jsp").forward(request,
-							response);
+					response.sendRedirect("../adminproduct.jsp");
 				} else {
-					request.getRequestDispatcher("/deal.jsp").forward(request,
-							response);
+					request.setAttribute("fail", "商品管理");
+					request.getRequestDispatcher("/failure.jsp").forward(
+							request, response);
+				}
+			}
+			if (action.equals("search")) // 如果是添加商品
+			{
+				if (searchProduct(request, response)) {
+					response.sendRedirect("../productmanager.jsp");
+				} else {
+					request.setAttribute("fail", "商品管理");
+					request.getRequestDispatcher("/failure.jsp").forward(
+							request, response);
+				}
+			}
+			if (action.equals("upproduct")) // 如果是上架商品
+			{
+				if (upProduct(request, response)) {
+					response.sendRedirect("../productmanager.jsp");
+				} else {
+					request.setAttribute("fail", "商品管理");
+					request.getRequestDispatcher("/failure.jsp").forward(
+							request, response);
 				}
 			}
 		}
@@ -118,127 +139,149 @@ public class AdminProductChargeServlet extends HttpServlet {
 	// 添加商品的方法
 	private boolean addProduct(HttpServletRequest request,
 			HttpServletResponse response) {
-
 		Product product = new Product();
-		if (request.getParameter("product_image") != null)
+		if (request.getParameter("product_image") != null&&request.getParameter("product_image") !="") {
 			product.setProduct_image(request.getParameter("product_image"));
-		else
+		} else {
 			return false;
-		if (request.getParameter("product_color") != null)
+		}
+		if (request.getParameter("product_color") != null&&request.getParameter("product_image") !="") {
 			product.setProduct_color(request.getParameter("product_color"));
-		else
+		} else {
 			return false;
-		if (request.getParameter("product_level") != null)
+		}
+		if (request.getParameter("product_level") != null&&request.getParameter("product_image") !="") {
 			product.setProduct_level(request.getParameter("product_level"));
-		else
+		} else {
 			return false;
-		if (request.getParameter("product_price") != null)
-			product.setProduct_price(Integer.parseInt(request
-					.getParameter("product_price")));
-		else
-			return false;
-		if (request.getParameter("product_name") != null)
-			product.setProduct_name(request.getParameter("product_name"));
-		else
-			return false;
-		product.setProduct_show_date(new java.sql.Date(new Date().getTime()));
-		if (request.getParameter("product_infomation") != null)
-			product.setProduct_infomation(request
-					.getParameter("product_infomation"));
-		else
-			return false;
-		if (request.getParameter("product_introdution") != null)
-			product.setProduct_introdution(request
-					.getParameter("product_introdution"));
-		else
-			return false;
-		if (request.getParameter("product_size") != null)
-			product.setProduct_size(request.getParameter("product_size"));
-		else
-			return false;
-		if (request.getParameter("product_type") != null)
-			product.setProduct_type(request.getParameter("product_type"));
-		else
-			return false;
-		product.setProduct_is_sale(false);
-		if (request.getParameter("product_sale_count") != null)
-			product.setProduct_sale_count(Integer.parseInt(request
-					.getParameter("product_sale_count")));
-		else
-			return false;
-		dao.saveProduct(product, Constants.ADD_PRODUCT);
-		return true;
-	}
-	// 编辑商品的方法
-		private boolean updateProduct(HttpServletRequest request,
-				HttpServletResponse response) {
-
-			Product product = new Product();
-			if (request.getParameter("product_image") != null)
-				product.setProduct_image(request.getParameter("product_image"));
-			else
-				return false;
-			if (request.getParameter("product_color") != null)
-				product.setProduct_color(request.getParameter("product_color"));
-			else
-				return false;
-			if (request.getParameter("product_level") != null)
-				product.setProduct_level(request.getParameter("product_level"));
-			else
-				return false;
-			if (request.getParameter("product_price") != null)
+		}
+		if (request.getParameter("product_price") != null&&request.getParameter("product_image") !="") {
+			try {
 				product.setProduct_price(Integer.parseInt(request
 						.getParameter("product_price")));
-			else
-				return false;
-			if (request.getParameter("product_name") != null)
-				product.setProduct_name(request.getParameter("product_name"));
-			else
-				return false;
-			product.setProduct_show_date(new java.sql.Date(new Date().getTime()));
-			if (request.getParameter("product_infomation") != null)
-				product.setProduct_infomation(request
-						.getParameter("product_infomation"));
-			else
-				return false;
-			if (request.getParameter("product_introdution") != null)
-				product.setProduct_introdution(request
-						.getParameter("product_introdution"));
-			else
-				return false;
-			if (request.getParameter("product_size") != null)
-				product.setProduct_size(request.getParameter("product_size"));
-			else
-				return false;
-			if (request.getParameter("product_type") != null)
-				product.setProduct_type(request.getParameter("product_type"));
-			else
-				return false;
-			product.setProduct_is_sale(false);
-			if (request.getParameter("product_sale_count") != null)
+			} catch (NumberFormatException e) {
+				// TODO: handle exception
+				System.out.println("");
+			}
+		} else {
+			return false;
+		}
+		if (request.getParameter("product_name") != null&&request.getParameter("product_image") !="") {
+			product.setProduct_name(request.getParameter("product_name"));
+		} else {
+			return false;
+		}
+		product.setProduct_show_date(new java.sql.Date(new Date().getTime()));
+		if (request.getParameter("product_information") != null&&request.getParameter("product_image") !="") {
+			product.setProduct_infomation(request
+					.getParameter("product_information"));
+		} else {
+			return false;
+		}
+		if (request.getParameter("product_introduction") != null&&request.getParameter("product_image") !="") {
+			product.setProduct_introdution(request
+					.getParameter("product_introduction"));
+		} else {
+			return false;
+		}
+		if (request.getParameter("product_size") != null&&request.getParameter("product_image") !="") {
+			product.setProduct_size(request.getParameter("product_size"));
+		} else {
+			return false;
+		}
+		if (request.getParameter("product_type") != null&&request.getParameter("product_image") !="") {
+			product.setProduct_type(request.getParameter("product_type"));
+		} else {
+			return false;
+		}
+		product.setProduct_is_sale(false);
+		if (request.getParameter("product_sale_count") != null&&request.getParameter("product_image") !="") {
+			try {
 				product.setProduct_sale_count(Integer.parseInt(request
 						.getParameter("product_sale_count")));
-			else
-				return false;
-			dao.saveProduct(product, Constants.CHANGE_PRODUCT);
+			} catch (NumberFormatException e) {
+				// TODO: handle exception
+				System.out.println("");
+			}
+
+		} else
+			return false;
+		dao.saveProduct(product, Constants.ADD_ADMIN);
+		return true;
+	}
+
+	// 查询商品的方法
+	private boolean searchProduct(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+
+		Properties pro = new Properties();
+		if (request.getParameter("pro") != null)
+			pro.setProperty(
+					"product_name",
+					new String(request.getParameter("pro").getBytes(
+							"ISO-8859-1"), "utf-8"));
+		else
+			return false;
+		request.getSession()
+				.setAttribute("searchproduct", dao.findProduct(pro));
+		return true;
+	}
+
+	// 编辑商品的方法
+	private boolean updateProduct(HttpServletRequest request,
+			HttpServletResponse response) {
+		System.out.println(request.getParameterValues("checkbox"));
+		if (request.getParameterValues("checkbox") != null) {
+			String[] strs = request.getParameterValues("checkbox");
+			int[] ids = new int[20];
+			int i = 0;
+			for (String str : strs) {
+				ids[i++] = Integer.parseInt(str);
+			}
+			Product product = dao.findProductById(String.valueOf(ids[0]));
+			request.getSession().setAttribute("update", product);
+			//dao.saveProduct(product, Constants.CHANGE_PRODUCT);
 			return true;
+		}
+		return false;
+		
+	}
+	// 上架商品的方法
+		private boolean upProduct(HttpServletRequest request,
+				HttpServletResponse response) {
+			System.out.println(request.getParameterValues("checkbox"));
+			if (request.getParameterValues("checkbox") != null) {
+				String[] strs = request.getParameterValues("checkbox");
+				int[] ids = new int[20];
+				int i = 0;
+				for (String str : strs) {
+					ids[i++] = Integer.parseInt(str);
+				}
+				if(dao.upProductById(ids))
+					return true;
+				else
+					return false;
+			}
+			return false;
+			
 		}
 
 	// 删除商品的方法
 	private boolean deleteDeal(HttpServletRequest request,
 			HttpServletResponse response) {
-		if(request.getParameterValues("id")!=null){
-		String[] strs = request.getParameterValues("id");
-		int[] ids = new int[20];
-		int i =0;
-		for(String str:strs){
-			ids[i++] = Integer.parseInt(str);
-		}
-		if (dao.deleteProductById(ids)) {
-			return true;
-		} else {
-			return false;
-		}
+
+		if (request.getParameterValues("checkbox") != null) {
+			String[] strs = request.getParameterValues("checkbox");
+			int[] ids = new int[20];
+			int i = 0;
+			for (String str : strs) {
+				ids[i++] = Integer.parseInt(str);
+			}
+			if (dao.deleteProductById(ids)) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		return false;
 	}

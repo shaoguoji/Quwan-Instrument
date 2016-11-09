@@ -161,10 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</nav>
-	<!--//////////////////////////////////////////////////-->
-	<!--///////////////////HomePage///////////////////////-->
-	<!--//////////////////////////////////////////////////-->
-    <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
+	
 	<div id="page-content" class="home-page">
 		<div class="container">
 			<div class="row">

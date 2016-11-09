@@ -175,9 +175,9 @@ public class ProductDao {
 				stmt.setString(9, product.getProduct_introdution());
 				stmt.setString(10, product.getProduct_infomation());
 				stmt.setBoolean(11, product.isProduct_is_sale());
-				stmt.setDate(12, product.getProduct_show_date());
-				
+				stmt.setDate(12, product.getProduct_show_date());	
 				stmt.executeUpdate();
+				System.out.println("成功添加商品");
 			}catch (Exception ex) {
 				ex.printStackTrace();
 			} finally {
@@ -272,7 +272,44 @@ public class ProductDao {
 		else
 			return false;
 	}
-	
+	//上架商品
+		public Boolean upProductById(int[] ids)
+		{
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			int[] result = null;
+			
+			try {
+				conn = DBHelper.getConnection();
+				String sql = "update  product set product_is_sale=1 where product_id=?"; // SQL语句
+				stmt = conn.prepareStatement(sql);
+
+				for (int id : ids) {
+					stmt.setInt(1, id);
+					stmt.addBatch();
+				}
+				result = stmt.executeBatch();
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				return null;
+			} finally {
+				// 释放语句对象
+				if (stmt != null) {
+					try {
+						stmt.close();
+						stmt = null;
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+
+			if (result.length == ids.length)
+				return true;
+			else
+				return false;
+		}
 	// 获取所有商品
 	public List<Product> findAllProduct()
 	{

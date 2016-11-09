@@ -1,3 +1,4 @@
+<%@page import="javax.management.StringValueExp"%>
 <%@ page language="java" import="java.util.*"
 	contentType="text/html; charset=utf-8"%>
 <%
@@ -6,18 +7,22 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ page import="dao.ProductDao"%>
+<%@ page import="entity.Product"%>
+<%
+	Product product = new Product();
+%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>salesReturn</title>
+<title>销售服务管理</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Mobile Shop</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -37,56 +42,7 @@
 <!-- Core JavaScript Files -->
 <script src="js/bootstrap.min.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="insert.js"> -->
-<script type="text/javascript">
-	function addTable() {
-		var tabNode = document.getElementById("tab");
-		// if (tabNode.className=="close"){
-		// 	tabNode.className="open";
-		if (tabNode.style.display == "none") {
-			tabNode.style.display = "block";
-		}
 
-	}
-	function checkAll(node) {
-		var boxNodes = document.getElementsByName("box");
-		for ( var x = 0; x < boxNodes.length; x++) {
-			boxNodes[x].checked = node.checked;
-		}
-	}
-
-	function deleteTable() {
-
-		if (!confirm("你真的要删除所选的商品吗？")) {
-			return;
-		}
-
-		//获取所有的box节点
-		var boxNodes = document.getElementsByName("box");
-
-		for ( var x = 0; x < boxNodes.length; x++) {
-
-			if (boxNodes[x].checked) {
-
-				var oTrNode = boxNodes[x].parentNode.parentNode;
-				oTrNode.parentNode.removeChild(oTrNode);
-				x--;
-			}
-		}
-
-	}
-	// function editTable(){
-	// 	var boxNodes=document.getElementsByName("box");
-	// 	for (var x = 0; x < boxNodes.length; x++) {
-
-	// 		if (boxNodes[x].checked) {
-	// 			alert(boxNodes[x].nextSibling);
-	// 			boxNodes[x].nextSibling.innerHTML="<table><tr><td>222222222222</td></tr></table>";
-
-	// 		}					
-	// 	}
-
-	// }
-</script>
 
 <style type="text/css">
 .well {
@@ -125,87 +81,126 @@ a:hover {
 </head>
 
 <body>
-	<div class="container">
-		<div class="top">
-			<!-- <p><img src=""></p> -->
-			<span class="fr">商品管理</span> <span class="fl"><a href="#">注销</a>
-			</span>
-
+	<nav id="top">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-14">
+					<ul class="top-link">
+						<%
+							if (session.getAttribute("admin_username") == null) {
+								//response.sendRedirect("admin_account.jsp");
+							} else {
+						%>
+						<li><a href="personal_centre.jsp"><span
+								class="glyphicon glyphicon-user"></span> <%=(session.getAttribute("admin_username").toString())%></a>
+						</li>
+						<li><a href="admin_account.jsp"><span
+								class="glyphicon glyphicon-off"></span> 注销</a>
+						</li>
+						<%
+							}
+						%>
+					</ul>
+				</div>
+			</div>
 		</div>
+	</nav>
+	<div class="container">
 		<hr>
 		<div class="row">
-			<div class="col-md-2">
-				<a
-					href="addcomment.jsp"
-					class="btn btn-default">&nbsp&nbsp添加商品&nbsp&nbsp</a>
-			</div>
-						<div class="col-md-2">
-			<button class="btn btn-default" type="submit">&nbsp&nbsp编辑商品&nbsp&nbsp</button>			</div>
-						<div class="col-md-2">
-			<button class="btn btn-default" type="submit">&nbsp&nbsp删除商品&nbsp&nbsp</button>			</div>
-			<p class="col-sm-13 text-right">
-				<input type="text"></input>
-				<button class="btn btn-default" type="submit">&nbsp搜索&nbsp</button>
-			</p>
+			<form action="servlet/AdminProductChargeServlet">
+				<p class="col-sm-13 text-right">
+					<input type="text" name="pro"></input>
+					<button class="btn btn-default" type="submit" name="action"
+						value="search">&nbsp搜索&nbsp</button>
+				</p>
+			</form>
 		</div>
 		<div>
-			<table class="table">
-				<tr>
-					<th><input type="checkbox" onclick="checkAll(this)"></input>
-					</th>
-					<th>商品名称</th>
-					<th>商品价格</th>
-					<th>商品颜色</th>
-					<th>商品尺寸</th>
-					<th>商品分类</th>
-					<th>商品试用者层次</th>
-					<th>商品销量</th>
-					<th>商品图片</th>
-					<th>商品介绍</th>
-					<th>商品信息</th>
-					<th>商品是否上架</th>
-					<th>上架日期</th>
-				</tr>
-			</table>
+			<form action="servlet/AdminProductChargeServlet">
+				<div class="col-md-2">
+					<a href="adminproduct.jsp" class="btn btn-2">&nbsp&nbsp添加商品&nbsp&nbsp</a>
+				</div>
 
-			<div id="tab" style="display: none;">
-				<table class="table table-bordered">
-					<tr>
-						<td><input type="checkbox" name="box"></input>
-						</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
+				<div class="col-md-2">
+					<button class="btn btn-2" type="submit" name="action"
+						value="update">&nbsp&nbsp编辑商品&nbsp&nbsp</button>
+				</div>
+				<div class="col-md-2">
+					<button class="btn btn-2" type="submit" name="action"
+						value="delete"&nbsp>&nbsp删除商品&nbsp&nbsp</button>
+				</div>
+				<div class="col-md-2">
+					<button class="btn btn-2" type="submit" name="action"
+						value="upproduct"&nbsp>&nbsp上架商品&nbsp&nbsp</button>
+				</div>
+				<table class="table">
+					<tr style="border-top: 0px solid #000">
+						<td><h5></h5></td>
+						<td></td>
 					</tr>
-
 					<tr>
-						<td><input type="checkbox" name="box"></input>
-						</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
+						<th><input type="checkbox" onclick="checkAll(this)"></input>
+						</th>
+						<th>商品名称</th>
+						<th>商品价格</th>
+						<th>商品颜色</th>
+						<th>商品尺寸</th>
+						<th>商品分类</th>
+						<th>商品试用者层次</th>
+						<th>商品销量</th>
+						<th>商品图片</th>
+						<th>商品介绍</th>
+						<th>商品信息</th>
+						<th>商品是否上架</th>
+						<th>上架日期</th>
 					</tr>
 				</table>
-			</div>
+				<table class="table table-bordered">
+					<!-- 循环的开始 -->
+					<%
+						ProductDao pDao = new ProductDao();
+						String issale;
+						List<Product> list;
+						if (session.getAttribute("searchproduct") != null) {
+							list = (List<Product>) session.getAttribute("searchproduct");
+						} else {
+							list = pDao.findAllProduct();
+						}
+						for (Product p : list) {
+							product = p;
+							if (p.isProduct_is_sale()) {
+								issale = "已上架";
+							} else {
+								issale = "未上架";
+							}
+					%>
+					<tr>
+						<td><input type="checkbox" name="checkbox"
+							value=<%=p.getProduct_id()%>>
+						</td>
+						<td><%=p.getProduct_name()%></td>
+						<td><%=p.getProduct_price()%></td>
+						<td><%=p.getProduct_color()%></td>
+						<td><%=p.getProduct_size()%></td>
+						<td><%=p.getProduct_type()%></td>
+						<td><%=p.getProduct_level()%></td>
+						<td><%=p.getProduct_sale_count()%></td>
+						<td><img src="<%=p.getProduct_image()%>" alt="First slide"></td>
+						<td><%=p.getProduct_introdution()%></td>
+						<td><%=p.getProduct_infomation()%></td>
+						<td><%=issale%></td>
+						<td><%=p.getProduct_show_date()%></td>
+					</tr>
+					<%
+						}
+						session.removeValue("searchproduct");
+					%>
+				</table>
+
+			</form>
 		</div>
+
 	</div>
 </body>
 </html>
