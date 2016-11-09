@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.UserSaleLaterDao;
 import entity.SaleLater;
+import entity.Users;
 
 @SuppressWarnings("serial")
 public class UserSaleLaterServlet extends HttpServlet {
@@ -67,8 +68,7 @@ public class UserSaleLaterServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=utf-8");
 		if (addBackServer(request, response)) {
-			request.getRequestDispatcher("/deal.jsp")
-					.forward(request, response);
+			response.sendRedirect("../deal.jsp");
 		} else {
 			request.setAttribute("fail", "ÉêÇë·þÎñ");
 			request.getRequestDispatcher("/failure.jsp").forward(
@@ -80,25 +80,26 @@ public class UserSaleLaterServlet extends HttpServlet {
 	private boolean addBackServer(HttpServletRequest request,
 			HttpServletResponse response) {
 		SaleLater sal = new SaleLater();
-		if (request.getSession().getAttribute("product_id") != null)
-			sal.setProduct_id(Integer.parseInt(request.getSession()
-					.getAttribute("product_id").toString()));
+		System.out.println(request.getParameter("product_id"));
+		System.out.println(request.getParameter("deal_id"));
+		System.out.println(((Users)(request.getSession().getAttribute("user"))).getUserId());
+		System.out.println(request.getParameter("salelater"));
+		System.out.println(request.getParameter("salelater_type"));
+		if (request.getParameter("product_id") != null)
+			sal.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
 		else 
 			return false;
 		sal.setSalelater_is_handle(false);
-		if (request.getSession().getAttribute("deal_id") != null)
-			sal.setDeal(Integer.parseInt(request.getSession()
-					.getAttribute("deal_id").toString()));
+		if (request.getParameter("deal_id") != null)
+			sal.setDeal(Integer.parseInt(request.getParameter("deal_id")));
 		else 
 			return false;
-		if (request.getSession().getAttribute("user_id") != null)
-			sal.setUser_id(Integer.parseInt(request.getSession()
-					.getAttribute("user_id").toString()));
+		if (request.getSession().getAttribute("user") != null)
+			sal.setUser_id(((Users)(request.getSession().getAttribute("user"))).getUserId());
 		else 
 			return false;
-		if (request.getSession().getAttribute("salelater") != null)
-			sal.setServive_later(request.getSession().getAttribute("salelater")
-					.toString());
+		if (request.getParameter("salelater") != null)
+			sal.setServive_later(request.getParameter("salelater"));
 		else 
 			return false;
 		if (dao.BackServer(

@@ -34,7 +34,7 @@ public class UserSaleLaterDao {
 				server_type = "exchange";
 			stmt.setString(4, server_type);
 			stmt.setString(5, sale.getServive_later());
-			stmt.setBoolean(5, sale.isSalelater_is_handle());
+			stmt.setBoolean(6, sale.isSalelater_is_handle());
 			stmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {

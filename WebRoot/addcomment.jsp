@@ -54,6 +54,7 @@
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<%
+						request.setCharacterEncoding("utf-8");
 							if(session.getAttribute("isLogin")==null){
 					 %>
 						<li><a href="account.jsp"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
@@ -89,12 +90,18 @@
 			</div>
 			<div class="col-md-4">
 				<div id="cart">
-					<a class="btn btn-1" href="cart.html"><span
+					<a class="btn btn-1" href="cart.jsp"><span
 						class="glyphicon glyphicon-shopping-cart"></span>购物车 </a>
 				</div>
 			</div>
 		</div>
 	</header>
+	<%
+		if (session.getAttribute("user") != null) {
+			session.setAttribute("user_id",
+					((Users) session.getAttribute("user")).getUserId());
+		}else{response.sendRedirect("account.jsp");}
+	%>
 
 	<!-- <li class="active"><a href="#1" data-toggle="tab">我要评价</a></li>
 <label class="col-sm-2">商品评价等级：</label>
@@ -123,7 +130,7 @@
 					//	session.setAttribute("user_name",user.getUserName());
 					//	session.setAttribute("product_name",(dao.findProductById(request.getParameter("product_id")).getProduct_name()));
 					session.setAttribute("user_name","钟志坚");
-					session.setAttribute("product_name","TAKAMINE D5D 单板民谣吉他");
+					//session.setAttribute("product_name","TAKAMINE D5D 单板民谣吉他");
 					%>
 					<div class="tab-content">
 						<div class="tab-pane active" id="1">
@@ -150,6 +157,10 @@
 									<div class="col-sm-2">
 										<!--  <button>发表评价</button>-->
 										<!-- <div class="button"><input type="submit" value="发表评价" /></div> -->
+										<input type="hidden" name="product_name"
+											value=<%=request.getParameter("product_name")%>>
+											<input type="hidden" name="deal_id"
+											value=<%=request.getParameter("deal_id")%>>
 										<button type="submit" class="btn" value="发表评价">发表评价</button>
 									</div>
 								</div>
