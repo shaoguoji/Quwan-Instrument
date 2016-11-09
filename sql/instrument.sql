@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50051
 File Encoding         : 65001
 
-Date: 2016-11-08 04:15:07
+Date: 2016-11-10 04:59:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,15 +47,23 @@ CREATE TABLE `comment` (
   `product_id` int(11) default NULL,
   `user_id` int(11) default NULL,
   `comment_degree` varchar(10) default NULL,
-  `comment_content` varchar(200) character set utf8 default NULL,
+  `comment_content` varchar(1000) character set utf8 default NULL,
   `comment_date` date default NULL,
   PRIMARY KEY  (`comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
 INSERT INTO `comment` VALUES ('1', '1', '1', '5', '东西很好，音色不错，满意！！！', '2016-11-06');
+INSERT INTO `comment` VALUES ('2', '1', '2', '3', '特意用了好几天来说的，首先这款很适合初学者，材料很舒服，推荐大家选择原木色，耐看，黑色虽然酷酷的，但是真的不耐看，而且艳丽的颜色往往为了掩盖木材的缺陷，所以推荐原木色，音色音准都很可以！反正需要的就他家是没有错的！', '2016-10-09');
+INSERT INTO `comment` VALUES ('3', '1', '3', '4', '实物很精美，和图上的一样，颜色不会深。我是一个很在意细节的人，这把琴让我很满意，哈哈，没事的时候可以用来打发一下时间顺便学会一项新技能，坚持下去应该学会很容易。希望大家也可以来选购一下。哈哈哈哈哈哈。', '2016-09-22');
+INSERT INTO `comment` VALUES ('4', '9', '1', '5', '东西很好，音色不错，满意！！！', '2016-11-06');
+INSERT INTO `comment` VALUES ('5', '9', '2', '3', '特意用了好几天来说的，首先这款很适合初学者，材料很舒服，推荐大家选择原木色，耐看，黑色虽然酷酷的，但是真的不耐看，而且艳丽的颜色往往为了掩盖木材的缺陷，所以推荐原木色，音色音准都很可以！反正需要的就他家是没有错的！', '2016-10-09');
+INSERT INTO `comment` VALUES ('6', '9', '3', '4', '实物很精美，和图上的一样，颜色不会深。我是一个很在意细节的人，这把琴让我很满意，哈哈，没事的时候可以用来打发一下时间顺便学会一项新技能，坚持下去应该学会很容易。希望大家也可以来选购一下。哈哈哈哈哈哈。', '2016-09-22');
+INSERT INTO `comment` VALUES ('7', '3', '1', '5', '东西很好，音色不错，满意！！！', '2016-11-06');
+INSERT INTO `comment` VALUES ('8', '3', '2', '3', '特意用了好几天来说的，首先这款很适合初学者，材料很舒服，推荐大家选择原木色，耐看，黑色虽然酷酷的，但是真的不耐看，而且艳丽的颜色往往为了掩盖木材的缺陷，所以推荐原木色，音色音准都很可以！反正需要的就他家是没有错的！', '2016-10-09');
+INSERT INTO `comment` VALUES ('9', '3', '3', '4', '实物很精美，和图上的一样，颜色不会深。我是一个很在意细节的人，这把琴让我很满意，哈哈，没事的时候可以用来打发一下时间顺便学会一项新技能，坚持下去应该学会很容易。希望大家也可以来选购一下。哈哈哈哈哈哈。', '2016-09-22');
 
 -- ----------------------------
 -- Table structure for deal
@@ -137,10 +145,10 @@ CREATE TABLE `salebefore` (
   `salebefore_id` int(11) NOT NULL auto_increment,
   `user_id` int(11) default NULL,
   `product_id` int(11) default NULL,
-  `service_before` varchar(100) default NULL,
+  `service_before` varchar(1000) character set utf8 default NULL,
   `salebefore_is_handle` bit(1) default NULL,
   PRIMARY KEY  (`salebefore_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of salebefore
@@ -157,7 +165,7 @@ CREATE TABLE `salelater` (
   `user_id` int(11) default NULL,
   `product_id` int(11) default NULL,
   `deal_id` int(11) default NULL,
-  `service_type` varchar(10) default NULL,
+  `service_type` varchar(10) character set utf8 default NULL,
   `service_later` varchar(100) character set utf8 default NULL,
   `salelater_is_handle` bit(1) default NULL,
   PRIMARY KEY  (`salelater_id`)
@@ -176,20 +184,20 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL auto_increment,
   `user_account` varchar(50) default NULL,
-  `user_password` varchar(50) default NULL,
-  `user_name` varchar(50) character set utf8 default NULL,
-  `user_image` varchar(200) default NULL,
-  `user_phone` varchar(50) default NULL,
-  `user_email` varchar(100) default NULL,
-  `user_address` varchar(300) character set utf8 default NULL,
+  `user_password` varchar(50) character set latin1 default NULL,
+  `user_name` varchar(50) default NULL,
+  `user_image` varchar(200) character set latin1 default NULL,
+  `user_phone` varchar(50) character set latin1 default NULL,
+  `user_email` varchar(100) character set latin1 default NULL,
+  `user_address` varchar(300) default NULL,
   `user_point` int(11) default NULL,
   `user_vip` bit(1) default NULL,
   PRIMARY KEY  (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'shaoguoji', 'ICy5YqxZB1uWSwcVLSNLcA==', '邵国际', null, '18814142017', '752147916@qq.com', '广东省广州市海珠区仲恺路500号仲恺学生公寓', '400', '\0');
-INSERT INTO `user` VALUES ('2', 'caikaizhen', 'ICy5YqxZB1uWSwcVLSNLcA==', '蔡楷臻', null, '12345678901', '111111111@qq.com', '广东省广州市海珠区仲恺路500号仲恺学生公寓', '500', '\0');
-INSERT INTO `user` VALUES ('3', 'Jigiang', 'ICy5YqxZB1uWSwcVLSNLcA==', '钟志坚', null, '18835235123', '22222222@qq.com', '广东省广州市海珠区仲恺路500号仲恺学生公寓', '600', '\0');
+INSERT INTO `user` VALUES ('1', 'shaoguoji', 'ICy5YqxZB1uWSwcVLSNLcA==', '邵国际', 'images/shaoguoji.jpg', '18814142017', '752147916@qq.com', '广东省广州市海珠区仲恺路500号仲恺学生公寓', '400', '\0');
+INSERT INTO `user` VALUES ('2', 'caikaizhen', 'ICy5YqxZB1uWSwcVLSNLcA==', '蔡楷臻', 'images/caikaizhen.jpg', '12345678901', '111111111@qq.com', '广东省广州市海珠区仲恺路500号仲恺学生公寓', '500', '\0');
+INSERT INTO `user` VALUES ('3', 'Jigiang', 'ICy5YqxZB1uWSwcVLSNLcA==', '钟志坚', 'images/Jigiang.jpg', '18835235123', '22222222@qq.com', '广东省广州市海珠区仲恺路500号仲恺学生公寓', '600', '');

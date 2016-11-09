@@ -170,7 +170,7 @@ a:hover {
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="row">
 							<ul class="nav nav-tabs">
-								<li class="active"><a
+								<li><a
 									href="servlet/DealShoppingServlet?aciton=query">所有订单</a></li>
 								<li><a
 									href="servlet/DealShoppingServlet?aciton=querybytype&deal_type=paied">待收货</a>

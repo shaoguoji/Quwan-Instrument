@@ -144,7 +144,7 @@ public class DealShoppingServlet extends HttpServlet {
 		 * deal.setUser_id(user.getUserId());
 		 * deal.setProduct_id(pd.getProduct_id());
 		 * deal.setProduct_count(pd.getProduct_sale_count());
-		 * deal.setDeal_price_(pd.getProduct_id() pd.getProduct_sale_count());
+		 * deal.setDeal_price_(pd.getProduct_id()* pd.getProduct_sale_count());
 		 * list.add(deal); } }
 		 */
 

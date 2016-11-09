@@ -55,11 +55,10 @@ public class CartServlet extends HttpServlet {
 			{
 				if(addToCart(request,response))
 				{
-					request.getRequestDispatcher("/success.jsp").forward(request, response);
-				}
-				else
-				{
-					request.getRequestDispatcher("/failure.jsp").forward(request, response);
+//					String id = request.getParameter("id");
+//					String number = request.getParameter("num");
+//					response.sendRedirect(request.getContextPath() + "/success.jsp?id=" + id + "&num=" + number);
+					request.getRequestDispatcher("/addCartSuccess.jsp").forward(request, response);
 				}
 			}
 			if (action.equals("update"))
@@ -68,6 +67,14 @@ public class CartServlet extends HttpServlet {
 				int num = Integer.parseInt(request.getParameter("num"));
 				String id = request.getParameter("id");
 				if (cart.updateCart(num, id, loginUser))
+				{
+					response.sendRedirect(request.getContextPath() + "/cart.jsp");
+				}
+			}
+			if (action.equals("clear"))
+			{
+				Cart cart = (Cart)request.getSession().getAttribute("cart");
+				if (cart.clearCart(loginUser))
 				{
 					response.sendRedirect(request.getContextPath() + "/cart.jsp");
 				}

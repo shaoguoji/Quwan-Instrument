@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>memberManager</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
+	
+	<!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+	
+	
+	<!-- Custom Fonts -->
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"  type="text/css">
+    <link rel="stylesheet" href="fonts/font-slider.css" type="text/css">
+	
+	<!-- jQuery and Modernizr-->
+	<script src="js/jquery-2.1.1.js"></script>
+	
+	<!-- Core JavaScript Files -->  	 
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    	function delNode(node){
+    		// alert(node.parentNode.parentNode.parentNode);
+    		node.parentNode.parentNode.parentNode.removeChild(node.parentNode.parentNode);
+    	}
+
+    </script>
+ 
+    <style type="text/css">
+    	.tabbable{
+    		background-color: white;
+    		border:none;
+    	}
+    	.tab-content{
+    		border:none;
+    	}
+    </style>
+</head>
+<body>
+	<nav id="top">
+		<div class="container">
+		<!-- class="container"设置为固定宽度 -->
+			<div class="row">
+				<div class="col-xs-6">
+					<span>会员申请管理</span>
+				</div>
+				<div class="col-xs-6">
+					<ul class="top-link">
+						<li class="active"><a href="#"><span class="glyphicon glyphicon-off"></span>注销</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+<header class="container">
+	<div class="row" style="margin-bottom: 30px;">
+		<form class="pull-right">
+			<input class="text"></input>
+			<button>查询</button>
+		</form> 
+	</div>
+
+					<div class="row col-lg-12" >
+						<table class="table">
+							<tr>
+								
+								<th>用户名</th>
+								<th>用户积分</th>
+								<th>申请时间</th>
+								<th>已处理</th>
+								<th>操作</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td><input type="radio" name="gender">同意</input><input type="radio" name="gender">拒绝</input></td>
+								
+								<td><button onclick="delNode(this)">删除</button></td>
+								
+								
+							</tr>
+							<tr>
+								
+								
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<<td><input type="radio" name="gender">同意</input><input type="radio" name="gender">拒绝</input></td>
+								<td><button onclick="delNode(this)">删除</button></td>
+								
+								
+							</tr>
+						</table>
+					</div>
+			</header>
+
+	
+</body>
+</html>
