@@ -30,6 +30,8 @@ public class SaleBeforeDao {
 				salebefore.setUser_id(rs.getInt("user_id"));
 				salebefore.setProduct_id(rs.getInt("product_id"));
 				salebefore.setService_before(rs.getString("service_before"));
+				salebefore.setSalebefore_is_handle(rs.getBoolean("salebefore_is_handle"));
+				
 
 				salebefores.add(salebefore);
 			}
@@ -77,7 +79,7 @@ public class SaleBeforeDao {
 				salebefore.setUser_id(rs.getInt("user_id"));
 				salebefore.setProduct_id(rs.getInt("product_id"));
 				salebefore.setService_before(rs.getString("service_before"));
-
+				salebefore.setSalebefore_is_handle(rs.getBoolean("salebefore_is_handle"));
 				return salebefore;
 			} else {
 				return null;
@@ -126,7 +128,7 @@ public class SaleBeforeDao {
 				salebefore.setUser_id(rs.getInt("user_id"));
 				salebefore.setProduct_id(rs.getInt("product_id"));
 				salebefore.setService_before(rs.getString("service_before"));
-
+				salebefore.setSalebefore_is_handle(rs.getBoolean("salebefore_is_handle"));
 				return salebefore;
 			} else {
 				return null;
@@ -191,7 +193,7 @@ public class SaleBeforeDao {
 				salebefore.setUser_id(rs.getInt("user_id"));
 				salebefore.setProduct_id(rs.getInt("product_id"));
 				salebefore.setService_before(rs.getString("service_before"));
-
+				salebefore.setSalebefore_is_handle(rs.getBoolean("salebefore_is_handle"));
 				salebefores.add(salebefore);
 			}
 
