@@ -54,6 +54,12 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>VipAdminServlet</servlet-name>
+    <servlet-class>servlet.VipAdminServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>AdminSaleBeforeServlet</servlet-name>
     <servlet-class>servlet.AdminSaleBeforeServlet</servlet-class>
   </servlet>
@@ -92,14 +98,7 @@
     <servlet-name>UserPasswordChangeServlet</servlet-name>
     <servlet-class>servlet.UserPasswordChangeServlet</servlet-class>
   </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-<<<<<<< HEAD
-    <servlet-name>VipAdminServlet</servlet-name>
-    <servlet-class>servlet.VipAdminServlet</servlet-class>
-  </servlet>
-=======
+   <servlet>
     <servlet-name>UserSaleLaterServlet</servlet-name>
     <servlet-class>servlet.UserSaleLaterServlet</servlet-class>
   </servlet>
@@ -110,7 +109,6 @@
     <servlet-class>servlet.CartServlet</servlet-class>
   </servlet>
 
->>>>>>> master
 
 
 
@@ -161,16 +159,16 @@
     <url-pattern>/servlet/UserPasswordChangeServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-<<<<<<< HEAD
-    <servlet-name>VipAdminServlet</servlet-name>
-    <url-pattern>/servlet/VipAdminServlet</url-pattern>
-=======
     <servlet-name>SuperAdminServlet</servlet-name>
     <url-pattern>/servlet/SuperAdminServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AdminVipServlet</servlet-name>
     <url-pattern>/servlet/AdminVipServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>VipAdminServlet</servlet-name>
+    <url-pattern>/servlet/VipAdminServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AdminSaleBeforeServlet</servlet-name>
@@ -187,7 +185,6 @@
   <servlet-mapping>
     <servlet-name>CartServlet</servlet-name>
     <url-pattern>/servlet/CartServlet</url-pattern>
->>>>>>> master
   </servlet-mapping>
   
   <welcome-file-list>

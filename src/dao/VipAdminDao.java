@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import util.DBHelper;
-import entity.Users;
 
 public class VipAdminDao {
 	

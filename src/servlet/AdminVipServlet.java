@@ -60,7 +60,7 @@ public class AdminVipServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		if (request.getParameter("action") != null) {
+		/*if (request.getParameter("action") != null) {
 			this.action = request.getParameter("action");
 			
 			
@@ -131,7 +131,7 @@ public class AdminVipServlet extends HttpServlet {
 			return true;
 		} else {
 			return false;
-		}
+		}*/
 	}
 	/**
 	 * Initialization of the servlet. <br>
