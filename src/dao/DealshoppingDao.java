@@ -184,12 +184,12 @@ public class DealshoppingDao {
 					deal.setShopping_number(rs.getString("shopping_number"));
 					Deal d = getDealsByDealID(rs.getInt("deal_id"));
 					deal.setDeal(d);
-					if (deal_id == 0 &&d.getDeal_state()==type) {
+					if ((deal_id == 0) && ((d.getDeal_state()).equals(type))) {
 						deal_id = d.getDeal_id();
 						list.add(deal);// 加入订单集合
-					} else if (deal_id == d.getDeal_id()&&d.getDeal_state()==type) {
+					} else if ((deal_id == d.getDeal_id())&&((d.getDeal_state()).equals(type))) {
 						list.add(deal);// 加入订单集合
-					} else if(d.getDeal_state()==type){
+					} else if((d.getDeal_state()).equals(type)){
 						lists.add(list);// 加入全部订单集合
 						list = new ArrayList<DealShopping>();
 						deal_id = d.getDeal_id();

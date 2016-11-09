@@ -54,6 +54,7 @@ public class DealShoppingServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
+
 	}
 
 	/**
@@ -76,6 +77,8 @@ public class DealShoppingServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=utf-8");
 		if (request.getParameter("action") != null) {
+			System.out.println(request.getParameter("action"));
+			System.out.println(request.getParameter("deal_type"));
 			this.action = request.getParameter("action");
 			if (action.equals("add")) // 如果是添加订单
 			{
@@ -105,6 +108,7 @@ public class DealShoppingServlet extends HttpServlet {
 			if (action.equals("querybytype")) // 如果类型是查询订单
 			{
 				if (queryDealByType(request, response)) {
+					System.out.println("通过类型查询成功");
 					response.sendRedirect("../deal.jsp");
 					;
 				} else {
@@ -147,13 +151,14 @@ public class DealShoppingServlet extends HttpServlet {
 			Set<Product> ps = products.keySet();
 			Iterator<Product> it = ps.iterator();
 			ArrayList<DealShopping> list = new ArrayList<DealShopping>();
-			DealShopping deal = new DealShopping();
+			DealShopping deal;
 			if (products.size() == 0) {
 				System.out.println(products.size());
 				return false;
 			}
 			while (it.hasNext()) {
 				Product pd = it.next();
+				deal = new DealShopping();
 				System.out.println((Users) request.getSession().getAttribute(
 						"user"));
 				System.out.println(pd.getProduct_name());
@@ -166,12 +171,12 @@ public class DealShoppingServlet extends HttpServlet {
 				deal.setProduct_count(products.get(pd));
 				deal.setDeal_price_(pd.getProduct_price() * products.get(pd));
 				list.add(deal);
-
 			}
 			if (list != null && list.size() > 0) {
 				System.out.println(list.size());
 				if (dealDao.AddDeal(list)) {
-					cart.setProducts(null);
+					cart.clearCart((Users) request.getSession().getAttribute(
+							"user"));
 					return true;
 				} else {
 					return false;
@@ -241,6 +246,7 @@ public class DealShoppingServlet extends HttpServlet {
 		ArrayList<ArrayList<DealShopping>> deal = dealDao
 				.getDealsByUsernameAndType(userName, deal_type);
 		request.getSession().setAttribute("dealbytype", deal);
+		System.out.println(deal);
 		return true;
 
 	}
