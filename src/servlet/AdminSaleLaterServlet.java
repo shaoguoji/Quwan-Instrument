@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.SaleBeforeDao;
 import dao.SaleLaterDao;
+import entity.SaleBefore;
+import entity.SaleLater;
 
 public class AdminSaleLaterServlet extends HttpServlet {
 	
@@ -61,6 +65,7 @@ public class AdminSaleLaterServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		if (request.getParameter("action") != null) {
 			this.action = request.getParameter("action");
+			System.out.println(request.getParameter("action"));
 			if(action.equals("show")) //获取所有售后服务申请
 			{
 				request.getRequestDispatcher("#").forward(request,
@@ -75,30 +80,40 @@ public class AdminSaleLaterServlet extends HttpServlet {
 					request.getRequestDispatcher("#").forward(request,
 							response);
 			}
+			}
+			if(action.equals("select1")) //查找售后服务申请
+			{
+				if (SaleLaterSelect(request, response)) {
+					request.getRequestDispatcher("../ServerManage.jsp").forward(request,
+							response);
+				} else {
+					request.getRequestDispatcher("../ServerManage.jsp").forward(request,
+							response);
+				}
+			}
 			if(action.equals("delete")) //删除售后服务申请
 			{
 				if (SaleLaterDelete(request, response)) {
-					request.getRequestDispatcher("#").forward(request,
+					request.getRequestDispatcher("../ServerManage.jsp").forward(request,
 							response);
 				} else {
-					request.getRequestDispatcher("#").forward(request,
+					request.getRequestDispatcher("../ServerManage.jsp").forward(request,
 							response);
 			}
 			
 			}
 		}
 	}
-}
+
 
 	//删除售后申请
 	private boolean SaleLaterDelete(HttpServletRequest request,
 		HttpServletResponse response) {
 		String id = request.getParameter("salelater_id");
-		if (salelaterdao.deleteSaleLater(Integer.parseInt(id))) {
-			return true;
-		} else {
+		if(salelaterdao.deleteSaleLater(Integer.parseInt(id))){
+		return true;
+		}else
 			return false;
-		}
 	}	
 	//已处理售后申请
 	private boolean SaleLaterHandle(HttpServletRequest request,
@@ -110,6 +125,19 @@ public class AdminSaleLaterServlet extends HttpServlet {
 			return false;
 		}
 	}	
+	//查找售后申请
+		private boolean SaleLaterSelect(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+			List<SaleLater> salelaterlist;
+			System.out.println(request.getParameter("select1"));
+			if(salelaterdao.getSaleLaterByService(request.getParameter("select1"))!=null){
+				salelaterlist = salelaterdao.getSaleLaterByService(request.getParameter("select1"));
+				System.out.println(salelaterlist);
+			request.getSession().setAttribute("salelaterlist", salelaterlist);
+			return true;
+			}return false;
+		}	 
+	
 	/**
 	 * Initialization of the servlet. <br>
 	 *

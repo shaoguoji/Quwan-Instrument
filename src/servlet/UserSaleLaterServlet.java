@@ -91,7 +91,7 @@ public class UserSaleLaterServlet extends HttpServlet {
 			return false;
 		sal.setSalelater_is_handle(false);
 		if (request.getParameter("deal_id") != null)
-			sal.setDeal(Integer.parseInt(request.getParameter("deal_id")));
+			sal.setDeal_id(Integer.parseInt(request.getParameter("deal_id")));
 		else 
 			return false;
 		if (request.getSession().getAttribute("user") != null)
@@ -99,7 +99,7 @@ public class UserSaleLaterServlet extends HttpServlet {
 		else 
 			return false;
 		if (request.getParameter("salelater") != null)
-			sal.setServive_later(request.getParameter("salelater"));
+			sal.setService_later(request.getParameter("salelater"));
 		else 
 			return false;
 		if (dao.BackServer(

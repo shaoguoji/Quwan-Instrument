@@ -169,14 +169,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="col-md-3 col-md-offset-2">
 					<div class="heading"><h2>登录</h2></div>
-					<form name="form1" id="ff1" method="post" action="servlet/AdminServlet"  >
+					<form name="form1" id="ff1" method="post" >
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="用户名 :" name="username"  required/>
+							<input type="text" class="form-control" placeholder="用户名 :" name="username" id="username" required/><span id="username_errorinfo" style="margin-left:20px"></span>
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="密码 :" name="password" required/>
+							<input type="password" class="form-control" placeholder="密码 :" name="password" id="password" required/><span id="userpassword_errorinfo" style="margin-left:20px"></span>
+
 						</div>
-						<button type="submit" class="btn btn-1" name="login" id="login">登录</button>
+						<button type="button" class="btn btn-1" name="login" id="login">登录</button>
 					</form>
 				</div>
 			</div>
@@ -243,4 +244,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</footer>
 </body>
+<script type="text/javascript">
+$(function(){
+			$("#login").click(function(){
+			    var  username  = $('#username').val();
+				var password = $('#password').val(); 
+				$.ajax({
+				 data: {method:"doPost", admin_name:username,admin_password:password},
+	             type: "POST",
+	             url: "servlet/AdminServlet",
+	             success: function(data){
+		                     if(data==1){
+		                     		$("#username_errorinfo").html("用户名错误");
+		                     		$("#userpassword_errorinfo").html("");
+		                     }else if(data==2){
+		                     		$("#username_errorinfo").html("");
+		                     		$("#userpassword_errorinfo").html("密码不正确");
+		                     }
+		                     else if(data==3){
+		                     		window.location.href ="SuperManage.jsp";
+		                     }
+		                     else if(data==4){
+		                     		window.location.href ="index.jsp";
+		                     }
+		                     else if(data==5){
+		                     		window.location.href ="ServerManage.jsp";
+		                     }
+		                     else if(data==6){
+		                     		window.location.href ="productmanager.jsp";
+		                     }
+		                     else if(data==7){
+		                     		window.location.href ="index.jsp";
+		                     }
+		                     else if(data==8){
+		                     		window.location.href ="index.jsp";
+		                     }
+	                    }
+       			  }); 
+			
+			});
+		});
+</script>
 </html>

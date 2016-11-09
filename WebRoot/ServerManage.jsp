@@ -10,17 +10,20 @@
 <%@ page import="dao.DealshoppingDao" %>
 <%@ page import="dao.UsersDao" %>
 <%@ page import="dao.ProductDao" %>
+<%@ page import="entity.Admin" %>
+<%@ page import="servlet.AdminSaleBeforeServlet" %>
+
 
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<base href="<%=basePath%>"> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>服务管理</title>
+	<title>销售服务管理</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="">
@@ -61,11 +64,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	.tab-content{
     		border:none;
     	}
-    </style>
-    
-    
-	
+    </style>	
 </head>
+
 <body>
 	<!-- <div class="container">
 		  
@@ -96,6 +97,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</nav> -->
+	<% 		request.setCharacterEncoding("utf-8");
+			Admin admin =(Admin)session.getAttribute("admin");
+	%>
 	<nav id="top">
 		<div class="container">
 		<!-- class="container"设置为固定宽度 -->
@@ -105,7 +109,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="col-xs-6">
 					<ul class="top-link">
-						<li class="active"><a href="#"><span class="glyphicon glyphicon-off"></span>注销</a></li>
+						<li><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("admin_username") %></li>
+						<li class="active"><a href="admin_account.jsp"><span class="glyphicon glyphicon-off"></span>注销</a></li>
 					</ul>
 				</div>
 			</div>
@@ -116,13 +121,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="nav nav-tabs">    
 				<li class="active"><a href="#1" data-toggle="tab">售前服务</a></li>    
 				<li><a href="#2" data-toggle="tab">售后服务</a></li>  
+	
 			</ul> 
 			<div class="tab-content">    
 				<div class="tab-pane active" id="1">
 					<div class="row" style="margin-bottom: 30px;">     
-						<form class="pull-right">
-							<input class="text"></input>
-							<button>查询</button>
+						<form class="pull-right" action="servlet/AdminSaleBeforeServlet">
+							<input class="text"  name="select"></input>
+							<input class="btn btn-default" type="submit" value="查询"></input>
+							<input type="hidden" name="action" value="select">
+							
+							<!--  
+							<td><a href ="servlet/AdminSaleBeforeServlet?action=select&select=<%=request.getParameter("select") %>" class="btn btn-default">查询</a></td>
+							-->
 						</form> 
 					</div>
 
@@ -134,24 +145,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<th>用户ID</th>
 								<th>咨询内容</th>
 								<th>已解决</th>
-					
-
 							</tr>
 							
 							<!-- 循环的开始 -->
 							<%
 							SaleBeforeDao salebeforedao =new SaleBeforeDao();
-							SaleBefore salebefore =new SaleBefore();	
-							salebefore =salebeforedao.getSaleBeforeByProductid(1)	;					
-							 %>
+							List<SaleBefore> salebeforelist=null;
+							if(session.getAttribute("salebeforelist")!=null){
+								salebeforelist=(List<SaleBefore>)session.getAttribute("salebeforelist");
+							}
+							else if(salebeforedao.findSaleBefore()!=null){
+								salebeforelist = salebeforedao.findSaleBefore();
+							}	
+							 for (SaleBefore obj : salebeforelist) {
+
+							%>
 							<tr>
 								<td><input type="checkbox" name="box"></input></td>
-								<td class="user_id"><%=salebefore.getUser_id()  %></td>
-								<td class="product_id"><%=salebefore.getProduct_id() %></td>
-								<td class="service_before"><%=salebefore.getService_before()%></td>
+								<td class="user_id"><%=obj.getUser_id() %></td>
+								<td class="product_id"><%=obj.getProduct_id() %></td>
+								<td class="service_before"><%=obj.getService_before()%></td>
 								<%
 									String a ="";
-									if(salebefore.isSalebefore_is_handle()){
+									if(obj.isSalebefore_is_handle()){
 										
 										a ="已解决";
 					
@@ -159,198 +175,74 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										{a ="未解决";}
 								 %>
 								<td class="salebefore_is_handle"><%=a%></td>
-								<td><button onclick="delNode(this)">删除</button></td>
-								
-								
+								<td><a href ="servlet/AdminSaleBeforeServlet?action=delete&salebefore_id=<%=obj.getSalebefore_id() %>" class="btn btn-default">删除</a></td>
 							</tr>
-							<tr>
-								<td><input type="checkbox" name="box"></input></td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td><button onclick="delNode(this)">删除</button></td>
+							<%
+							}session.removeAttribute("salebeforelist"); %>
+					</table>
 					
-				     	<!--循环的结束-->
-							</tr>
-						</table>
-					
-					</div>
-				</div> 
+				</div>
+			</div> 
 				<div class="tab-pane" id="2">      
-					<header class="container">
-						<div class="tabbable">  
-							<ul class="nav nav-tabs">    
-								<li class="active"><a href="#3" data-toggle="tab">退货服务</a></li>    
-								<li><a href="#4" data-toggle="tab">退款服务</a></li>  
-								<li><a href="#5" data-toggle="tab">其他服务</a></li>  
-							</ul> 
-							<div class="tab-content"> 
-								<!-- 售后服务里的退货服务 -->   
-								<div class="tab-pane active" id="3">
-										<div class="row" style="margin-bottom: 30px;">     
-											<form class="pull-right">
-												<input class="text"></input>
-												<button>查询</button>
-											</form> 
-										</div>
+					<div class="row" style="margin-bottom: 30px;">     
+						<form class="pull-right" action="servlet/AdminSaleLaterServlet">
+							<input class="text"  name="select1"></input>
+							<input class="btn btn-default" type="submit" value="查询"></input>
+							<input type="hidden" name="action" value="select1">
+						</form> 
+					</div>
 
+					<div class="row col-lg-11" >
+						<table class="table">
+							<tr>
+								<th><input type="checkbox" ></th>
+								<th>用户ID</th>
+								<th>商品ID</th>
+								<th>订单ID</th>
+								<th>售后类型</th>
+								<th>咨询内容</th>
+								<th>已解决</th>
+							</tr>
+							
+							<!-- 循环的开始 -->
+							<%
+							SaleLaterDao salelaterdao =new SaleLaterDao();
+							List<SaleLater> salelaterlist = null;
+							if(session.getAttribute("salelaterlist")!=null){
+								salelaterlist=(List<SaleLater>)session.getAttribute("salelaterlist");
+							}
+							else if(salelaterdao.findSaleLater()!=null){
+								salelaterlist  = salelaterdao.findSaleLater();	
+							}		
+							 for (SaleLater obj : salelaterlist) {
 
-										<div class="row col-lg-11" >
-											<table class="table">
-												<tr>
-													<th><input type="checkbox" ></th>
-													<th>订单号</th>
-													<th>用户ID</th>
-													<th>退货理由</th>
-													<th>已解决</th>
-													<th>退货时间</th>
-													<th>解决时间</th>
-
-												</tr>
-												<tr>
-													<td><input type="checkbox" name="box"></input></td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td><button onclick="delNode(this)">删除</button></td>
-													
-													
-												</tr>
-												<tr>
-													<td><input type="checkbox" name="box"></input></td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td><button onclick="delNode(this)">删除</button></td>
-													
-													
-												</tr>
-											</table>
-										</div>
-									</div> 
-								
-								<!-- 售后服务里的退货服务END -->
-								<!-- 售后服务里的退款服务 -->
-							     <div class="tab-pane" id="4">
-							     	<div class="row" style="margin-bottom: 30px;">     
-											<form class="pull-right">
-												<input class="text"></input>
-												<button>查询</button>
-											</form> 
-										</div>
-
-										<div class="row col-lg-11" >
-											<table class="table">
-												<tr>
-													<th><input type="checkbox" ></th>
-													<th>订单号</th>
-													<th>用户ID</th>
-													<th>退款理由</th>
-													<th>已解决</th>
-													<th>退货时间</th>
-													<th>解决时间</th>
-
-												</tr>
-												<tr>
-													<td><input type="checkbox" name="box"></input></td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td><button onclick="delNode(this)">删除</button></td>
-													
-													
-												</tr>
-												<tr>
-													<td><input type="checkbox" name="box"></input></td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td><button onclick="delNode(this)">删除</button></td>
-													
-													
-												</tr>
-											</table>
-										</div>
-									</div> 
-							     
-							     <!-- 售后服务里的退款服务END    -->
-							     <!-- 售后服务里的其他服务 -->
-							     <div class="tab-pane" id="5">
-							     	<div class="row" style="margin-bottom: 30px;">     
-											<form class="pull-right">
-												<input class="text"></input>
-												<button>查询</button>
-											</form> 
-									</div>
-
-										<div class="row col-lg-11" >
-											<table class="table">
-												<tr>
-													<th><input type="checkbox" ></th>
-													<th>订单号</th>
-													<th>用户名</th>
-													<th>申请理由</th>
-													<th>已解决</th>
-													<th>申请时间</th>
-													<th>解决时间</th>
-
-												</tr>
-												<tr>
-													<td><input type="checkbox" name="box"></input></td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td><button onclick="delNode(this)">删除</button></td>
-													
-													
-												</tr>
-												<tr>
-													<td><input type="checkbox" name="box"></input></td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td>1</td>
-													<td><button onclick="delNode(this)">删除</button></td>
-													
-													
-												</tr>
-											</table>
-										</div>
-									</div> 
-								<!-- 售后服务里的其他服务END -->
-							     </div>
-							 </div> 
-						</div>
-					</header>
-				</div>   
-			
-		  </div>
-			
-
+							%>
+							<tr>
+								<td><input type="checkbox" name="txbox"></input></td>
+								<td class="user_id"><%=obj.getUser_id() %></td>
+								<td class="product_id"><%=obj.getProduct_id() %></td>
+								<td class="deal_id"><%=obj.getDeal_id() %></td>
+								<td class="service_type"><%=obj.getService_type() %></td>
+								<td class="service_later"><%=obj.getService_later() %></td>
+								<%
+									String a ="";
+									if(obj.isSalelater_is_handle()){
+										
+										a ="已解决";
 					
-				  
-			 
-		
+									}else
+										{a ="未解决";}
+								 %>
+								<td class="salelater_is_handle"><%=a%></td>
+								<td><a href ="servlet/AdminSaleLaterServlet?action=delete&salelater_id=<%=obj.getSalelater_id() %>" class="btn btn-default">删除</a></td>
+							</tr>
+							<% } session.removeAttribute("salelaterlist"); %>
+					</table>
+					
+				</div>   
+			</div> 
+		  </div>		 
+		</div>
 	</header>
 
 </body>
