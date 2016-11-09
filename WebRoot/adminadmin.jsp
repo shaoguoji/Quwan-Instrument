@@ -69,7 +69,7 @@
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<%
-							if (session.getAttribute("isLogin") == null) {
+							if (session.getAttribute("user_account") == null) {
 						%>
 						<li><a href="account.jsp"><span
 								class="glyphicon glyphicon-user"></span> 登录</a>
@@ -86,9 +86,6 @@
 						<%
 							}
 						%>
-						<li><a href="contact.jsp"><span
-								class="glyphicon glyphicon-envelope"></span> 联系我们</a>
-						</li>
 					</ul>
 				</div>
 			</div>

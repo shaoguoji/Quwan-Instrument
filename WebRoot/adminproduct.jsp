@@ -1,6 +1,8 @@
+<%@page import="entity.Product"%>
 <%@ page language="java" import="java.util.*"
 	contentType="text/html; charset=utf-8"%>
 <%@ page import="entity.Users"%>
+<%@ page import="entity.Product"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -72,8 +74,7 @@
 							if (session.getAttribute("isLogin") == null) {
 						%>
 						<li><a href="account.jsp"><span
-								class="glyphicon glyphicon-user"></span> 登录</a>
-						</li>
+								class="glyphicon glyphicon-user"></span> 登录</a></li>
 						<%
 							} else {
 						%>
@@ -81,14 +82,12 @@
 								class="glyphicon glyphicon-user"></span> <%=session.getAttribute("user_account")%></a>
 						</li>
 						<li><a href="servlet/LogoutDealServlet"><span
-								class="glyphicon glyphicon-off"></span> 注销</a>
-						</li>
+								class="glyphicon glyphicon-off"></span> 注销</a></li>
 						<%
 							}
 						%>
 						<li><a href="contact.jsp"><span
-								class="glyphicon glyphicon-envelope"></span> 联系我们</a>
-						</li>
+								class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
 					</ul>
 				</div>
 			</div>
@@ -102,19 +101,17 @@
 						<img src="images/logo.png" />
 					</div> </a>
 			</div>
-			
+
 		</div>
 	</header>
-	
+
 	<div id="page-content" class="single-page">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<ul class="breadcrumb">
-						<li><a href="index.jsp">首页</a>
-						</li>
-						<li><a href="adminproduct.jsp">商品管理</a>
-						</li>
+						<li><a href="productmanager.jsp">首页</a></li>
+						<li><a href="adminproduct.jsp">商品管理</a></li>
 					</ul>
 				</div>
 			</div>
@@ -124,34 +121,31 @@
 						<h1>添加&编辑商品</h1>
 					</div>
 				</div>
-				<form action="servlet/AdminProductChargeServlet">
+				<%
+					if (session.getAttribute("update") != null) {
+						Product pd = (Product) session.getAttribute("update");
+				%>
+				<form action="servlet/AdminProductChargeServlet" method="post">
 					<div class="col-md-6" style="margin-bottom: 30px;">
 						<table>
 							<tr>
 
-								<td><h5>名称：</h5>
-								</td>
-								<td><input type="email" name="user_email" id="user_email"
-									value=>
+								<td><h5>名称：</h5></td>
+								<td><input type="text" name="product_name" value="<%=pd.getProduct_name()%>">
 								</td>
 
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr>
 
-								<td><h5>价格：</h5>
-								</td>
-								<td><input type="email" name="user_email" id="user_email"
-									value=>
-								</td>
+								<td><h5>价格：</h5></td>
+								<td><input type="text" name="product_price" value="<%=pd.getProduct_price()%>"></td>
 
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
 
 							<tr>
@@ -160,13 +154,10 @@
 										<h5 />
 								</td>
 
-								<td><input type="text" name="user_address"
-									id="user_address" value=>
-								</td>
+								<td><input type="text" name="product_color" value="<%=pd.getProduct_color()%>"></td>
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr>
 								<td><h5>
@@ -174,73 +165,47 @@
 										<h5 />
 								</td>
 
-								<td><input type="text" name="user_address"
-									id="user_address" value=>
+								<td><input type="text" name="product_size" value="<%=pd.getProduct_size()%>"></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>商品信息：</h5></td>
+								<td><input type="text" name="product_information" value="<%=pd.getProduct_infomation()%>">
 								</td>
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
-							</tr>
-							<tr>
-
-								<td><h5>是否上架：</h5>
-								</td>
-								<td><input type="email" name="user_email" id="user_email"
-									value=>
-								</td>
-							</tr>
-							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
-							</tr>
-							<tr>
-								<td><h5>上架日期：</h5>
-								</td>
-								<td><input type="email" name="user_email" id="user_email"
-									value=>
-								</td>
-							</tr>
-							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
 
 
 							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
-							
+
 						</table>
 					</div>
 					<div class="col-md-6" style="margin-bottom: 30px;">
 						<table>
 							<tr>
 
-								<td><h5>分类：</h5>
-								</td>
-								<td><input type="text" name="user_phone" id="user_phone"
-									value=>
+								<td><h5>分类：</h5></td>
+								<td><input type="text" name="product_type" value="<%=pd.getProduct_type()%>"></td>
+
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+
+								<td><h5>销量：</h5></td>
+								<td><input type="text" name="product_sale_count" value="<%=pd.getProduct_sale_count()%>">
 								</td>
 
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
-							</tr>
-							<tr>
-
-								<td><h5>销量：</h5>
-								</td>
-								<td><input type="email" name="user_email" id="user_email"
-									value=>
-								</td>
-
-							</tr>
-							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr>
 								<td><h5>
@@ -248,13 +213,10 @@
 										<h5 />
 								</td>
 
-								<td><input type="text" name="user_address"
-									id="user_address" value=>
-								</td>
+								<td><input type="text" name="product_image" value="<%=pd.getProduct_image()%>"></td>
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr>
 								<td><h5>
@@ -262,46 +224,152 @@
 										<h5 />
 								</td>
 
-								<td><input type="text" name="user_address"
-									id="user_address" value=>
+								<td><input type="text" name="product_introduction" value="<%=pd.getProduct_introdution()%>">
 								</td>
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
-							</tr>
-							<td><h5>商品信息：</h5>
-							</td>
-							<td><input type="email" name="user_email" id="user_email"
-								value=>
-							</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
 							<tr>
-								<td><h5>&nbsp</h5>
+								<td><h5>适用者层次：</h5></td>
+								<td><input type="text" name="product_level" value="<%=pd.getProduct_level()%>"></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+						</table>
+						<button type="submit" name="change_phone" id="change_phone"
+							class="btn btn-2">&nbsp&nbsp&nbsp&nbsp提交&nbsp&nbsp&nbsp&nbsp</button>
+						<input type="hidden" name="action" value="add">
+					</div>
+				</form>
+				<%
+					session.removeAttribute("update");} else {
+				%>
+				<form action="servlet/AdminProductChargeServlet" method="post">
+					<div class="col-md-6" style="margin-bottom: 30px;">
+						<table>
+							<tr>
+
+								<td><h5>名称：</h5></td>
+								<td><input type="text" name="product_name">
+								</td>
+
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+
+								<td><h5>价格：</h5></td>
+								<td><input type="text" name="product_price"></td>
+
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+
+							<tr>
+								<td><h5>
+										颜色:
+										<h5 />
+								</td>
+
+								<td><input type="text" name="product_color"></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>
+										尺寸:
+										<h5 />
+								</td>
+
+								<td><input type="text" name="product_size"></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>商品信息：</h5></td>
+								<td><input type="text" name="product_information">
 								</td>
 							</tr>
 							<tr>
-								<td><h5>适用者层次：</h5>
-								</td>
-								<td><input type="email" name="user_email" id="user_email"
-									value=>
-								</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
+
+
 							<tr>
-								<td><h5>&nbsp</h5>
-								</td>
+								<td><h5>&nbsp</h5></td>
 							</tr>
-							<tr>
-								<td><button type="submit" name="change_phone"
-										id="change_phone" class="btn btn-2">&nbsp&nbsp&nbsp&nbsp提交&nbsp&nbsp&nbsp&nbsp</button>
-								</td>
 
 						</table>
 					</div>
-				</form>
-				<div class="heading">
-						<h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp.</h1>
+					<div class="col-md-6" style="margin-bottom: 30px;">
+						<table>
+							<tr>
+
+								<td><h5>分类：</h5></td>
+								<td><input type="text" name="product_type"></td>
+
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+
+								<td><h5>销量：</h5></td>
+								<td><input type="text" name="product_sale_count">
+								</td>
+
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>
+										图片:
+										<h5 />
+								</td>
+
+								<td><input type="text" name="product_image"></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>
+										介绍:
+										<h5 />
+								</td>
+
+								<td><input type="text" name="product_introduction">
+								</td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+							<tr>
+								<td><h5>适用者层次：</h5></td>
+								<td><input type="text" name="product_level"=></td>
+							</tr>
+							<tr>
+								<td><h5>&nbsp</h5></td>
+							</tr>
+						</table>
+						<button type="submit" name="change_phone" id="change_phone"
+							class="btn btn-2">&nbsp&nbsp&nbsp&nbsp提交&nbsp&nbsp&nbsp&nbsp</button>
+						<input type="hidden" name="action" value="add">
 					</div>
+				</form>
+				<%
+					}
+				%>
+				<div class="heading">
+					<h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp.</h1>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -320,16 +388,11 @@
 							<h4>用户服务</h4>
 						</div>
 						<ul>
-							<li><a href="#">关于我们</a>
-							</li>
-							<li><a href="#">物流信息</a>
-							</li>
-							<li><a href="#">隐私策略</a>
-							</li>
-							<li><a href="#">购物须知</a>
-							</li>
-							<li><a href="#">联系我们</a>
-							</li>
+							<li><a href="#">关于我们</a></li>
+							<li><a href="#">物流信息</a></li>
+							<li><a href="#">隐私策略</a></li>
+							<li><a href="#">购物须知</a></li>
+							<li><a href="#">联系我们</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-3">
@@ -337,16 +400,11 @@
 							<h4>我的账户</h4>
 						</div>
 						<ul>
-							<li><a href="#">我的账户</a>
-							</li>
-							<li><a href="#">品牌</a>
-							</li>
-							<li><a href="#">优惠卷</a>
-							</li>
-							<li><a href="#">特价</a>
-							</li>
-							<li><a href="#">网站导航</a>
-							</li>
+							<li><a href="#">我的账户</a></li>
+							<li><a href="#">品牌</a></li>
+							<li><a href="#">优惠卷</a></li>
+							<li><a href="#">特价</a></li>
+							<li><a href="#">网站导航</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-4">
@@ -373,14 +431,10 @@
 					<div class="col-md-6">
 						<div class="pull-right">
 							<ul>
-								<li><img src="images/visa-curved-32px.png" />
-								</li>
-								<li><img src="images/paypal-curved-32px.png" />
-								</li>
-								<li><img src="images/discover-curved-32px.png" />
-								</li>
-								<li><img src="images/maestro-curved-32px.png" />
-								</li>
+								<li><img src="images/visa-curved-32px.png" /></li>
+								<li><img src="images/paypal-curved-32px.png" /></li>
+								<li><img src="images/discover-curved-32px.png" /></li>
+								<li><img src="images/maestro-curved-32px.png" /></li>
 							</ul>
 						</div>
 					</div>

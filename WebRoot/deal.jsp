@@ -16,6 +16,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <title>我的订单</title>
 <meta charset="utf-8" />
@@ -23,7 +24,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="">
 <meta name="author" content="">
-
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -103,7 +103,8 @@ a:hover {
 					<div class="col-xs-6">
 						<ul class="top-link">
 							<li><a href="index.jsp"><span
-									class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a></li>
+									class="glyphicon glyphicon-home"></span> 趣玩乐器网上商城</a>
+							</li>
 						</ul>
 					</div>
 
@@ -115,7 +116,8 @@ a:hover {
 							if (session.getAttribute("isLogin") == null) {
 						%>
 						<li><a href="account.jsp"><span
-								class="glyphicon glyphicon-user"></span> 登录</a></li>
+								class="glyphicon glyphicon-user"></span> 登录</a>
+						</li>
 						<%
 							} else {
 						%>
@@ -123,12 +125,14 @@ a:hover {
 								class="glyphicon glyphicon-user"></span> <%=session.getAttribute("user_account")%></a>
 						</li>
 						<li><a href="servlet/LogoutDealServlet"><span
-								class="glyphicon glyphicon-off"></span> 注销</a></li>
+								class="glyphicon glyphicon-off"></span> 注销</a>
+						</li>
 						<%
 							}
 						%>
 						<li><a href="contact.jsp"><span
-								class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
+								class="glyphicon glyphicon-envelope"></span> 联系我们</a>
+						</li>
 					</ul>
 				</div>
 
@@ -159,9 +163,6 @@ a:hover {
 			</div>
 		</div>
 	</header>
-	<!--//////////////////////////////////////////////////-->
-	<!--///////////////////0rderForm/////////////////////-->
-	<!--//////////////////////////////////////////////////-->
 	<div id="page-content" class="single-page">
 		<div class="container">
 			<div class="row">
@@ -169,16 +170,14 @@ a:hover {
 
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="row">
-							<ul class="nav nav-tabs">
-								<li><a
-									href="servlet/DealShoppingServlet?aciton=query">所有订单</a></li>
-								<li><a
-									href="servlet/DealShoppingServlet?aciton=querybytype&deal_type=paied">待收货</a>
-								</li>
-								<li><a
-									href="servlet/DealShoppingServlet?aciton=querybytype&deal_type=recievednotcomment">待评价</a>
-								</li>
-							</ul>
+
+						
+								<a href="servlet/DealShoppingServlet?action=query" class="btn btn-1">所有订单</a>
+								<a href="servlet/DealShoppingServlet?action=querybytype&deal_type=paied" class="btn btn-1">&nbsp待收货&nbsp</a>
+								<a href="servlet/DealShoppingServlet?action=querybytype&deal_type=recievednotcomment" class="btn btn-1">&nbsp待评价&nbsp</a>
+								
+
+
 						</div>
 						<form action="servlet/DealShoppingServlet" class="form-search"
 							method="post">
@@ -251,12 +250,13 @@ a:hover {
 								ProductDao pDao = new ProductDao();
 								Product product = new Product();
 								Users user = (Users) session.getAttribute("user");
+
 								if (session.getAttribute("dealbynum") != null) {
 									lists = (ArrayList<ArrayList<DealShopping>>) session
 											.getAttribute("dealbynum");
-								} else if (request.getAttribute("dealbytype") != null) {
-									lists = (ArrayList<ArrayList<DealShopping>>)
-											session.getAttribute("dealbytype");
+								} else if (session.getAttribute("dealbytype") != null) {
+									lists = (ArrayList<ArrayList<DealShopping>>) session
+											.getAttribute("dealbytype");
 								} else {
 									lists = dealDao.getDealsByUsername(user.getUserName());
 								}
@@ -434,10 +434,7 @@ a:hover {
 			</div>
 		</div>
 	</div>
-	<%
-		session.removeAttribute("dealbynum");
-		session.removeAttribute("dealbytype");
-	%>
+
 	<footer>
 		<div class="container">
 			<div class="wrap-footer">
@@ -453,11 +450,16 @@ a:hover {
 							<h4>用户服务</h4>
 						</div>
 						<ul>
-							<li><a href="#">关于我们</a></li>
-							<li><a href="#">物流信息</a></li>
-							<li><a href="#">隐私策略</a></li>
-							<li><a href="#">购物须知</a></li>
-							<li><a href="#">联系我们</a></li>
+							<li><a href="#">关于我们</a>
+							</li>
+							<li><a href="#">物流信息</a>
+							</li>
+							<li><a href="#">隐私策略</a>
+							</li>
+							<li><a href="#">购物须知</a>
+							</li>
+							<li><a href="#">联系我们</a>
+							</li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-3">
@@ -465,11 +467,16 @@ a:hover {
 							<h4>我的账户</h4>
 						</div>
 						<ul>
-							<li><a href="#">我的账户</a></li>
-							<li><a href="#">品牌</a></li>
-							<li><a href="#">优惠卷</a></li>
-							<li><a href="#">特价</a></li>
-							<li><a href="#">网站导航</a></li>
+							<li><a href="#">我的账户</a>
+							</li>
+							<li><a href="#">品牌</a>
+							</li>
+							<li><a href="#">优惠卷</a>
+							</li>
+							<li><a href="#">特价</a>
+							</li>
+							<li><a href="#">网站导航</a>
+							</li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-footer footer-4">
@@ -496,10 +503,14 @@ a:hover {
 					<div class="col-md-6">
 						<div class="pull-right">
 							<ul>
-								<li><img src="images/visa-curved-32px.png" /></li>
-								<li><img src="images/paypal-curved-32px.png" /></li>
-								<li><img src="images/discover-curved-32px.png" /></li>
-								<li><img src="images/maestro-curved-32px.png" /></li>
+								<li><img src="images/visa-curved-32px.png" />
+								</li>
+								<li><img src="images/paypal-curved-32px.png" />
+								</li>
+								<li><img src="images/discover-curved-32px.png" />
+								</li>
+								<li><img src="images/maestro-curved-32px.png" />
+								</li>
 							</ul>
 						</div>
 					</div>
