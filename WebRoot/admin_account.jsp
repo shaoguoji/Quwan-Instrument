@@ -246,22 +246,22 @@ $(function(){
 		                     		$("#userpassword_errorinfo").html("密码不正确");
 		                     }
 		                     else if(data==3){
-		                     		window.location.href ="SuperAdmin.jsp";
+		                     		window.location.href ="SuperManage.jsp";
 		                     }
 		                     else if(data==4){
-		                     		window.location.href ="category.jsp";
+		                     		window.location.href ="index.jsp";
 		                     }
 		                     else if(data==5){
-		                     		window.location.href ="category.jsp";
+		                     		window.location.href ="ServerManage.jsp";
 		                     }
 		                     else if(data==6){
-		                     		window.location.href ="category.jsp";
+		                     		window.location.href ="productmanager.jsp";
 		                     }
 		                     else if(data==7){
-		                     		window.location.href ="category.jsp";
+		                     		window.location.href ="index.jsp";
 		                     }
 		                     else if(data==8){
-		                     		window.location.href ="category.jsp";
+		                     		window.location.href ="index.jsp";
 		                     }
 	                    }
        			  }); 

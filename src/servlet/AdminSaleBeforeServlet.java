@@ -2,19 +2,25 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.List;
+import java.util.Properties;
 import dao.SaleBeforeDao;
 import dao.VipAdminDao;
+import entity.SaleBefore;
+
 
 public class AdminSaleBeforeServlet extends HttpServlet {
 
 	private String action; // 表示超级管理员动作
 	private SaleBeforeDao  salebeforedao= new SaleBeforeDao();// 售前服务逻辑类的对象
+	
 	/**
 	 * Constructor of the object.
 	 */
@@ -58,6 +64,7 @@ public class AdminSaleBeforeServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		if (request.getParameter("action") != null) {
 			this.action = request.getParameter("action");
@@ -66,22 +73,46 @@ public class AdminSaleBeforeServlet extends HttpServlet {
 				request.getRequestDispatcher("#").forward(request,
 						response);
 			}
+			if(action.equals("select")) //查找所有售前服务申请
+			{
+				
+				if (SaleBeforeSelect(request, response)) {
+					request.getRequestDispatcher("../ServerManage.jsp").forward(request,
+							response);
+				} else {
+					request.getRequestDispatcher("../ServerManage.jsp").forward(request,
+							response);
+			}
+			}
 			if(action.equals("delete")) //删除售前服务申请
 			{
 				if (SaleBeforeDelete(request, response)) {
-					request.getRequestDispatcher("#").forward(request,
+					request.getRequestDispatcher("../ServerManage.jsp").forward(request,
 							response);
 				} else {
-					request.getRequestDispatcher("#").forward(request,
+					request.getRequestDispatcher("../ServerManage.jsp").forward(request,
 							response);
 			}	
 			}
+			}
 		}
-	}
+		
 	
+	
+	//查找售前申请
+	private boolean SaleBeforeSelect(HttpServletRequest request,
+		HttpServletResponse response) throws UnsupportedEncodingException {
+		List<SaleBefore> salebeforelist;
+		System.out.println(request.getParameter("select"));
+		if(salebeforedao.getSaleBeforeByService(request.getParameter("select"))!=null){
+			salebeforelist = salebeforedao.getSaleBeforeByService(request.getParameter("select"));
+		request.getSession().setAttribute("salebeforelist", salebeforelist);
+		return true;
+		}return false;
+	}	 
 	//删除售前申请
 	private boolean SaleBeforeDelete(HttpServletRequest request,
-		HttpServletResponse response) {
+			HttpServletResponse response) {
 		String id = request.getParameter("salebefore_id");
 		if (salebeforedao.deleteSaleBefore(Integer.parseInt(id))) {
 			return true;

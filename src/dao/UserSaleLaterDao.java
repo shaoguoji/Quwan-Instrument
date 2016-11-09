@@ -27,13 +27,13 @@ public class UserSaleLaterDao {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, sale.getUser_id());
 			stmt.setInt(2, sale.getProduct_id());
-			stmt.setInt(3, sale.getDeal());
+			stmt.setInt(3, sale.getDeal_id());
 			if (serverType == Constants.BACK_MONEY)
 				server_type = "return";
 			else
 				server_type = "exchange";
 			stmt.setString(4, server_type);
-			stmt.setString(5, sale.getServive_later());
+			stmt.setString(5, sale.getService_later());
 			stmt.setBoolean(6, sale.isSalelater_is_handle());
 			stmt.executeUpdate();
 			return true;

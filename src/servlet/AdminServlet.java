@@ -101,21 +101,40 @@ public class AdminServlet extends HttpServlet{
 		else if(admin.getAdminPassword().equals(newpassword)){
 				data=0;
 				if(admin.getAdminDep().equals("super")){
+					request.getSession().setAttribute("admin_username", admin.getAdminUsername());
+					request.getSession().setAttribute("isLogin", true);
+					request.getSession().setAttribute("admin", admin);
+					
 					data =3;
 				}
 				if(admin.getAdminDep().equals("buy")){
+					request.getSession().setAttribute("admin_username", admin.getAdminUsername());
+					request.getSession().setAttribute("isLogin", true);
+					request.getSession().setAttribute("admin", admin);
 					data =4;
 				}
 				if(admin.getAdminDep().equals("sale")){
+					request.getSession().setAttribute("admin_username", admin.getAdminUsername());
+					request.getSession().setAttribute("isLogin", true);
+					request.getSession().setAttribute("admin", admin);
 					data =5;
 				}
-				if(admin.getAdminDep().equals("data")){
+				if(admin.getAdminDep().equals("product")){
+					request.getSession().setAttribute("admin_username", admin.getAdminUsername());
+					request.getSession().setAttribute("isLogin", true);
+					request.getSession().setAttribute("admin", admin);
 					data =6;
 				}
-				if(admin.getAdminDep().equals("product")){
+				if(admin.getAdminDep().equals("data")){
+					request.getSession().setAttribute("admin_username", admin.getAdminUsername());
+					request.getSession().setAttribute("isLogin", true);
+					request.getSession().setAttribute("admin", admin);
 					data =7;
 				}
 				if(admin.getAdminDep().equals("system")){
+					request.getSession().setAttribute("admin_username", admin.getAdminUsername());
+					request.getSession().setAttribute("isLogin", true);
+					request.getSession().setAttribute("admin", admin);
 					data =8;
 				}
 			
