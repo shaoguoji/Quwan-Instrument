@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dao.DealshoppingDao;
+import dao.ProductDao;
 import entity.Comment;
+import entity.Product;
 
 
 @SuppressWarnings("serial")
@@ -66,8 +68,7 @@ public class CommentServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=utf-8");
 				if (addComment(request, response)) {
-					request.getRequestDispatcher("/success.jsp").forward(
-							request, response);
+					response.sendRedirect("../deal.jsp");
 				} else {
 					request.getRequestDispatcher("/failure.jsp").forward(
 							request, response);
@@ -79,7 +80,10 @@ public class CommentServlet extends HttpServlet {
 			HttpServletResponse response) {
 		String userName = null;
 		String productName = null;
+		ProductDao dao = new ProductDao();
 		Comment comment = new Comment();
+		System.out.println(request.getSession().getAttribute("user_name"));
+		System.out.println(request.getSession().getAttribute("product_name").toString());
 		comment.setComment_date(new Date());
 		if (request.getParameter("comment_content") != null) {
 			comment.setComment_content(request.getParameter("comment_content"));
@@ -91,7 +95,10 @@ public class CommentServlet extends HttpServlet {
 			userName = request.getSession().getAttribute("user_name").toString();
 		}
 		if (request.getSession().getAttribute("product_name") != null) {
-			productName = request.getSession().getAttribute("product_name").toString();
+			
+			Product p = dao.findProductById(request.getSession().getAttribute("product_name").toString());
+			productName = p.getProduct_name();
+			
 		}
 		if (dealDao.DealComment(userName, productName, comment)) {
 			System.out.println("添加评论成功");

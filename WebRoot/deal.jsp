@@ -386,7 +386,7 @@ a:hover {
 								%>
 								<div class="col-md-2">
 									<a
-										href="addcomment.jsp?product_name=<%=product.getProduct_name()%>&deal_id=<%=deal.getDeal()
+										href="addcomment.jsp?product_name=<%=product.getProduct_id()%>&deal_id=<%=deal.getDeal()
 													.getDeal_id()%>"
 										class="btn btn-default">评价晒单</a>
 									<div style="height: 5px;"></div>

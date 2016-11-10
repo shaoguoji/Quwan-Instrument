@@ -262,7 +262,7 @@ $(function(){
 		                     		$("#userpassword_errorinfo").html("密码不正确");
 		                     }
 		                     else if(data==3){
-		                     		window.location.href ="SuperManage.jsp";
+		                     		window.location.href ="superManage.jsp";
 		                     }
 		                     else if(data==4){
 		                     		window.location.href ="index.jsp";

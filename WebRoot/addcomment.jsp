@@ -5,6 +5,9 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+			
+
+request.setCharacterEncoding("utf-8");
 %>
 <%@ page import="entity.Users"%>
 <%@ page import="dao.ProductDao"%>
@@ -118,12 +121,13 @@
 						</li>
 					</ul>
 					<%
-					//	ProductDao dao = new ProductDao();
-					//	Users user = (Users)request.getSession().getAttribute("user");
-					//	request.setAttribute("user_name",user.getUserName());
-					//	request.setAttribute("product_name",(dao.findProductById(request.getParameter("product_id")).getProduct_name()));
-					session.setAttribute("user_name","钟志坚");
-					session.setAttribute("product_name","TAKAMINE D5D 单板民谣吉他");
+						ProductDao dao = new ProductDao();
+						Users user = (Users)request.getSession().getAttribute("user");
+						session.setAttribute("user_name",user.getUserName());
+						System.out.println("request.getParameter" + request.getParameter("product_name"));
+						session.setAttribute("product_name",request.getParameter("product_name"));
+					//session.setAttribute("user_name","钟志坚");
+					//session.setAttribute("product_name","TAKAMINE D5D 单板民谣吉他");
 					%>
 					<div class="tab-content">
 						<div class="tab-pane active" id="1">
@@ -149,7 +153,7 @@
 									<label class="col-sm-2 "></label>
 									<div class="col-sm-2">
 
-										 <button type="submit" class="btn" value="发表评价">发表评价</button>
+										 <button onclick="javascript:alert('评论成功')"type="submit" class="btn" value="发表评价">发表评价</button>
 
 									</div>
 								</div>
