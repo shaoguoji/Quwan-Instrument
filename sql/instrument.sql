@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50051
 File Encoding         : 65001
 
-Date: 2016-11-10 04:59:38
+Date: 2016-12-07 23:45:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -50,7 +50,7 @@ CREATE TABLE `comment` (
   `comment_content` varchar(1000) character set utf8 default NULL,
   `comment_date` date default NULL,
   PRIMARY KEY  (`comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of comment
@@ -64,6 +64,10 @@ INSERT INTO `comment` VALUES ('6', '9', '3', '4', '实物很精美，和图上�
 INSERT INTO `comment` VALUES ('7', '3', '1', '5', '东西很好，音色不错，满意！！！', '2016-11-06');
 INSERT INTO `comment` VALUES ('8', '3', '2', '3', '特意用了好几天来说的，首先这款很适合初学者，材料很舒服，推荐大家选择原木色，耐看，黑色虽然酷酷的，但是真的不耐看，而且艳丽的颜色往往为了掩盖木材的缺陷，所以推荐原木色，音色音准都很可以！反正需要的就他家是没有错的！', '2016-10-09');
 INSERT INTO `comment` VALUES ('9', '3', '3', '4', '实物很精美，和图上的一样，颜色不会深。我是一个很在意细节的人，这把琴让我很满意，哈哈，没事的时候可以用来打发一下时间顺便学会一项新技能，坚持下去应该学会很容易。希望大家也可以来选购一下。哈哈哈哈哈哈。', '2016-09-22');
+INSERT INTO `comment` VALUES ('10', '1', '1', '4', 'è¦çç', '2016-11-10');
+INSERT INTO `comment` VALUES ('11', '1', '1', '4', 'åè±èå¹²', '2016-11-10');
+INSERT INTO `comment` VALUES ('12', '1', '1', '3', '34', '2016-11-10');
+INSERT INTO `comment` VALUES ('13', '3', '5', '5', 'kaka', '2016-11-10');
 
 -- ----------------------------
 -- Table structure for deal
@@ -78,12 +82,20 @@ CREATE TABLE `deal` (
   `deal_receive_date` date default NULL,
   `deal_isdelete` bit(1) default NULL,
   PRIMARY KEY  (`deal_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of deal
 -- ----------------------------
-INSERT INTO `deal` VALUES ('1', '799', 'payed', '2016-11-06', '2016-11-06', '2016-11-06', '\0');
+INSERT INTO `deal` VALUES ('1', '799', 'recievednotcomment', '2016-11-06', '2016-11-06', '2016-11-06', '\0');
+INSERT INTO `deal` VALUES ('2', null, 'paied', '2016-11-10', null, null, '\0');
+INSERT INTO `deal` VALUES ('3', null, 'paied', '2016-11-10', null, null, '\0');
+INSERT INTO `deal` VALUES ('4', null, 'recievednotcomment', '2016-11-10', null, null, '\0');
+INSERT INTO `deal` VALUES ('5', null, 'recievednotcomment', '2016-11-10', null, null, '\0');
+INSERT INTO `deal` VALUES ('6', null, 'paied', '2016-11-10', null, null, '\0');
+INSERT INTO `deal` VALUES ('7', null, 'paied', '2016-11-10', null, null, '\0');
+INSERT INTO `deal` VALUES ('8', null, 'paied', '2016-11-10', null, null, '\0');
+INSERT INTO `deal` VALUES ('9', null, 'recievednotcomment', '2016-11-10', null, null, '\0');
 
 -- ----------------------------
 -- Table structure for deal_shopping
@@ -95,15 +107,26 @@ CREATE TABLE `deal_shopping` (
   `deal_id` int(11) default NULL,
   `deal_price` float default NULL,
   `product_id` int(11) default NULL,
-  `priduct_count` int(11) default NULL,
+  `product_count` int(11) default NULL,
   `shopping_number` varchar(50) default NULL,
   PRIMARY KEY  (`deal_shopping_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of deal_shopping
 -- ----------------------------
 INSERT INTO `deal_shopping` VALUES ('1', '1', '1', '799', '1', '1', '456345423467892345');
+INSERT INTO `deal_shopping` VALUES ('2', '1', '4', '2543.7', '9', '3', '44152219960105');
+INSERT INTO `deal_shopping` VALUES ('3', '1', '4', '799', '1', '1', '44152219960105');
+INSERT INTO `deal_shopping` VALUES ('4', '1', '4', '423.2', '3', '1', '44152219960105');
+INSERT INTO `deal_shopping` VALUES ('5', '1', '5', '4239.5', '9', '5', '44152219960106');
+INSERT INTO `deal_shopping` VALUES ('6', '1', '5', '1196', '7', '2', '44152219960106');
+INSERT INTO `deal_shopping` VALUES ('7', '1', '5', '7229.7', '2', '3', '44152219960106');
+INSERT INTO `deal_shopping` VALUES ('8', '1', '6', '1598', '1', '2', '44152219960107');
+INSERT INTO `deal_shopping` VALUES ('9', '1', '7', '423.2', '3', '1', '44152219960108');
+INSERT INTO `deal_shopping` VALUES ('10', '1', '8', '7229.7', '2', '3', '44152219960109');
+INSERT INTO `deal_shopping` VALUES ('11', '5', '9', '4819.8', '2', '2', '44152219960110');
+INSERT INTO `deal_shopping` VALUES ('12', '5', '9', '423.2', '3', '1', '44152219960110');
 
 -- ----------------------------
 -- Table structure for product
@@ -169,13 +192,14 @@ CREATE TABLE `salelater` (
   `service_later` varchar(100) character set utf8 default NULL,
   `salelater_is_handle` bit(1) default NULL,
   PRIMARY KEY  (`salelater_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of salelater
 -- ----------------------------
 INSERT INTO `salelater` VALUES ('1', '1', '1', '1', 'exchange', 'exchange', '\0');
 INSERT INTO `salelater` VALUES ('2', '2', '2', '2', 'return', 'return', '\0');
+INSERT INTO `salelater` VALUES ('3', '5', '3', '9', 'exchange', 'liu', '\0');
 
 -- ----------------------------
 -- Table structure for user
@@ -193,7 +217,7 @@ CREATE TABLE `user` (
   `user_point` int(11) default NULL,
   `user_vip` bit(1) default NULL,
   PRIMARY KEY  (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -201,3 +225,4 @@ CREATE TABLE `user` (
 INSERT INTO `user` VALUES ('1', 'shaoguoji', 'ICy5YqxZB1uWSwcVLSNLcA==', '邵国际', 'images/shaoguoji.jpg', '18814142017', '752147916@qq.com', '广东省广州市海珠区仲恺路500号仲恺学生公寓', '400', '\0');
 INSERT INTO `user` VALUES ('2', 'caikaizhen', 'ICy5YqxZB1uWSwcVLSNLcA==', '蔡楷臻', 'images/caikaizhen.jpg', '12345678901', '111111111@qq.com', '广东省广州市海珠区仲恺路500号仲恺学生公寓', '500', '\0');
 INSERT INTO `user` VALUES ('3', 'Jigiang', 'ICy5YqxZB1uWSwcVLSNLcA==', '钟志坚', 'images/Jigiang.jpg', '18835235123', '22222222@qq.com', '广东省广州市海珠区仲恺路500号仲恺学生公寓', '600', '');
+INSERT INTO `user` VALUES ('5', 'nihao', '4QrcOUm6Wau+VuBX8g+IPg==', 'nihao', null, '123456789', '123456789@qq.com', null, '0', '\0');

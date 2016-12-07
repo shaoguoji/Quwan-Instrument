@@ -37,13 +37,15 @@ public class ProductFilterServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=utf-8");
 		//PrintWriter out = response.getWriter();
-
+		
+		// 获取请求参数
 		String search = request.getParameter("search");
 		String type = request.getParameter("type");
 		String size = request.getParameter("size");
 		String level = request.getParameter("level");
 		String action = request.getParameter("action");
 		
+		// session中保持筛选条件键值对集合
 		if(request.getSession().getAttribute("pro") == null)
 		{
 			Properties pro = new Properties();
@@ -52,6 +54,7 @@ public class ProductFilterServlet extends HttpServlet {
 		
 		Properties pro = (Properties)request.getSession().getAttribute("pro");
 		
+		// 搜索
 		if (action.equals("query"))
 		{
 			pro.clear();
@@ -59,9 +62,10 @@ public class ProductFilterServlet extends HttpServlet {
 			pro.setProperty("product_name", new String(search.getBytes("ISO-8859-1"), "utf-8"));
 		}
 		
+		// 筛选
 		if (action.equals("filter"))
 		{
-			if (type != null)
+			if (type != null) // 商品类型
 			{
 				pro.setProperty("product_type", new String(type.getBytes("ISO-8859-1"), "utf-8"));
 				if (type.equals("all"))
@@ -71,14 +75,14 @@ public class ProductFilterServlet extends HttpServlet {
 				}					
 			}
 			
-			if (size != null)
+			if (size != null) // 商品尺寸
 			{
 				pro.setProperty("product_size", new String(size.getBytes("ISO-8859-1"), "utf-8"));
 				if (size.equals("all"))
 					pro.remove("product_size");
 			}
 			
-			if (level != null)
+			if (level != null) // 适用对象
 			{
 				pro.setProperty("product_level", new String(level.getBytes("ISO-8859-1"), "utf-8"));
 				if (level.equals("all"))
